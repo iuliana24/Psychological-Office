@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministratorPacients));
-            Diagnostic = new DataGridViewTextBoxColumn();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             label5 = new Label();
             pictureBox5 = new PictureBox();
             label4 = new Label();
@@ -38,46 +41,33 @@
             label3 = new Label();
             pictureBox2 = new PictureBox();
             label2 = new Label();
-            Telefon = new DataGridViewTextBoxColumn();
-            Gen = new DataGridViewComboBoxColumn();
-            Varsta = new DataGridViewTextBoxColumn();
-            Prenume = new DataGridViewTextBoxColumn();
             pictureBox1 = new PictureBox();
             label1 = new Label();
-            dataGridView1 = new DataGridView();
-            Nume = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
             panel1 = new Panel();
-            textBox2 = new TextBox();
+            firstname = new TextBox();
             label7 = new Label();
-            textBox1 = new TextBox();
+            lastname = new TextBox();
             label6 = new Label();
-            textBox3 = new TextBox();
+            gender = new TextBox();
             label8 = new Label();
-            textBox5 = new TextBox();
+            mail = new TextBox();
             label10 = new Label();
-            textBox6 = new TextBox();
+            phone = new TextBox();
             label11 = new Label();
-            textBox4 = new TextBox();
+            age = new TextBox();
             label9 = new Label();
             label12 = new Label();
-            richTextBox1 = new RichTextBox();
-            button1 = new Button();
+            diagnosis = new RichTextBox();
+            addBtn = new Button();
+            pacientsView = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pacientsView).BeginInit();
             SuspendLayout();
-            // 
-            // Diagnostic
-            // 
-            Diagnostic.HeaderText = "Diagnostic";
-            Diagnostic.MinimumWidth = 6;
-            Diagnostic.Name = "Diagnostic";
-            Diagnostic.Width = 125;
             // 
             // label5
             // 
@@ -171,37 +161,6 @@
             label2.Text = "Pacienți";
             label2.TextAlign = ContentAlignment.TopCenter;
             // 
-            // Telefon
-            // 
-            Telefon.HeaderText = "Telefon";
-            Telefon.MinimumWidth = 6;
-            Telefon.Name = "Telefon";
-            Telefon.Width = 125;
-            // 
-            // Gen
-            // 
-            Gen.HeaderText = "Gen";
-            Gen.Items.AddRange(new object[] { "Masculin", "Feminin" });
-            Gen.MinimumWidth = 6;
-            Gen.Name = "Gen";
-            Gen.Resizable = DataGridViewTriState.True;
-            Gen.SortMode = DataGridViewColumnSortMode.Automatic;
-            Gen.Width = 125;
-            // 
-            // Varsta
-            // 
-            Varsta.HeaderText = "Vârsta";
-            Varsta.MinimumWidth = 6;
-            Varsta.Name = "Varsta";
-            Varsta.Width = 125;
-            // 
-            // Prenume
-            // 
-            Prenume.HeaderText = "Prenume";
-            Prenume.MinimumWidth = 6;
-            Prenume.Name = "Prenume";
-            Prenume.Width = 125;
-            // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Transparent;
@@ -225,32 +184,6 @@
             label1.Text = "Pacienți";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
-            // dataGridView1
-            // 
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.BackgroundColor = Color.FromArgb(241, 251, 247);
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Nume, Prenume, Varsta, Gen, Telefon, Email, Diagnostic });
-            dataGridView1.Location = new Point(323, 430);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(927, 255);
-            dataGridView1.TabIndex = 13;
-            // 
-            // Nume
-            // 
-            Nume.HeaderText = "Nume";
-            Nume.MinimumWidth = 6;
-            Nume.Name = "Nume";
-            Nume.Width = 125;
-            // 
-            // Email
-            // 
-            Email.HeaderText = "Email";
-            Email.MinimumWidth = 6;
-            Email.Name = "Email";
-            Email.Width = 125;
-            // 
             // panel1
             // 
             panel1.BackColor = Color.Teal;
@@ -269,12 +202,12 @@
             panel1.Size = new Size(290, 720);
             panel1.TabIndex = 12;
             // 
-            // textBox2
+            // firstname
             // 
-            textBox2.Location = new Point(322, 259);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(250, 30);
-            textBox2.TabIndex = 18;
+            firstname.Location = new Point(322, 259);
+            firstname.Name = "firstname";
+            firstname.Size = new Size(250, 30);
+            firstname.TabIndex = 18;
             // 
             // label7
             // 
@@ -289,12 +222,12 @@
             label7.Text = "Prenume";
             label7.TextAlign = ContentAlignment.TopCenter;
             // 
-            // textBox1
+            // lastname
             // 
-            textBox1.Location = new Point(322, 161);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(250, 30);
-            textBox1.TabIndex = 16;
+            lastname.Location = new Point(322, 161);
+            lastname.Name = "lastname";
+            lastname.Size = new Size(250, 30);
+            lastname.TabIndex = 16;
             // 
             // label6
             // 
@@ -309,12 +242,12 @@
             label6.Text = "Nume";
             label6.TextAlign = ContentAlignment.TopCenter;
             // 
-            // textBox3
+            // gender
             // 
-            textBox3.Location = new Point(663, 161);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(250, 30);
-            textBox3.TabIndex = 22;
+            gender.Location = new Point(663, 161);
+            gender.Name = "gender";
+            gender.Size = new Size(250, 30);
+            gender.TabIndex = 22;
             // 
             // label8
             // 
@@ -329,12 +262,12 @@
             label8.Text = "Gen";
             label8.TextAlign = ContentAlignment.TopCenter;
             // 
-            // textBox5
+            // mail
             // 
-            textBox5.Location = new Point(663, 357);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(250, 30);
-            textBox5.TabIndex = 26;
+            mail.Location = new Point(663, 357);
+            mail.Name = "mail";
+            mail.Size = new Size(250, 30);
+            mail.TabIndex = 26;
             // 
             // label10
             // 
@@ -349,12 +282,12 @@
             label10.Text = "Email";
             label10.TextAlign = ContentAlignment.TopCenter;
             // 
-            // textBox6
+            // phone
             // 
-            textBox6.Location = new Point(663, 259);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(250, 30);
-            textBox6.TabIndex = 24;
+            phone.Location = new Point(663, 259);
+            phone.Name = "phone";
+            phone.Size = new Size(250, 30);
+            phone.TabIndex = 24;
             // 
             // label11
             // 
@@ -369,12 +302,12 @@
             label11.Text = "Telefon";
             label11.TextAlign = ContentAlignment.TopCenter;
             // 
-            // textBox4
+            // age
             // 
-            textBox4.Location = new Point(323, 357);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(250, 30);
-            textBox4.TabIndex = 28;
+            age.Location = new Point(323, 357);
+            age.Name = "age";
+            age.Size = new Size(250, 30);
+            age.TabIndex = 28;
             // 
             // label9
             // 
@@ -402,28 +335,66 @@
             label12.Text = "Diagnostic";
             label12.TextAlign = ContentAlignment.TopCenter;
             // 
-            // richTextBox1
+            // diagnosis
             // 
-            richTextBox1.Location = new Point(1000, 161);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(250, 128);
-            richTextBox1.TabIndex = 30;
-            richTextBox1.Text = "";
+            diagnosis.Location = new Point(1000, 161);
+            diagnosis.Name = "diagnosis";
+            diagnosis.Size = new Size(250, 128);
+            diagnosis.TabIndex = 30;
+            diagnosis.Text = "";
             // 
-            // button1
+            // addBtn
             // 
-            button1.AutoEllipsis = true;
-            button1.BackColor = Color.Teal;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(1060, 338);
-            button1.Name = "button1";
-            button1.Size = new Size(129, 49);
-            button1.TabIndex = 31;
-            button1.Text = "Salvează";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            addBtn.AutoEllipsis = true;
+            addBtn.BackColor = Color.Teal;
+            addBtn.FlatStyle = FlatStyle.Flat;
+            addBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addBtn.ForeColor = Color.White;
+            addBtn.Location = new Point(1060, 338);
+            addBtn.Name = "addBtn";
+            addBtn.Size = new Size(129, 49);
+            addBtn.TabIndex = 31;
+            addBtn.Text = "Salvează";
+            addBtn.UseVisualStyleBackColor = false;
+            addBtn.Click += addBtn_Click;
+            // 
+            // pacientsView
+            // 
+            pacientsView.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.BackColor = SystemColors.ControlLight;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumAquamarine;
+            pacientsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            pacientsView.BackgroundColor = Color.FromArgb(241, 251, 247);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.Teal;
+            dataGridViewCellStyle2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Turquoise;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            pacientsView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            pacientsView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            pacientsView.DefaultCellStyle = dataGridViewCellStyle3;
+            pacientsView.Location = new Point(322, 430);
+            pacientsView.Name = "pacientsView";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            pacientsView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            pacientsView.RowHeadersWidth = 51;
+            pacientsView.Size = new Size(928, 255);
+            pacientsView.TabIndex = 32;
             // 
             // AdministratorPacients
             // 
@@ -431,23 +402,23 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
-            Controls.Add(button1);
-            Controls.Add(richTextBox1);
+            Controls.Add(pacientsView);
+            Controls.Add(addBtn);
+            Controls.Add(diagnosis);
             Controls.Add(label12);
-            Controls.Add(textBox4);
+            Controls.Add(age);
             Controls.Add(label9);
-            Controls.Add(textBox5);
+            Controls.Add(mail);
             Controls.Add(label10);
-            Controls.Add(textBox6);
+            Controls.Add(phone);
             Controls.Add(label11);
-            Controls.Add(textBox3);
+            Controls.Add(gender);
             Controls.Add(label8);
-            Controls.Add(textBox2);
+            Controls.Add(firstname);
             Controls.Add(label7);
-            Controls.Add(textBox1);
+            Controls.Add(lastname);
             Controls.Add(label6);
             Controls.Add(label1);
-            Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.None;
@@ -460,16 +431,14 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pacientsView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private DataGridViewTextBoxColumn Diagnostic;
         private Label label5;
         private PictureBox pictureBox5;
         private Label label4;
@@ -478,30 +447,24 @@
         private Label label3;
         private PictureBox pictureBox2;
         private Label label2;
-        private DataGridViewTextBoxColumn Telefon;
-        private DataGridViewComboBoxColumn Gen;
-        private DataGridViewTextBoxColumn Varsta;
-        private DataGridViewTextBoxColumn Prenume;
         private PictureBox pictureBox1;
         private Label label1;
-        private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn Nume;
-        private DataGridViewTextBoxColumn Email;
         private Panel panel1;
-        private TextBox textBox2;
+        private TextBox firstname;
         private Label label7;
-        private TextBox textBox1;
+        private TextBox lastname;
         private Label label6;
-        private TextBox textBox3;
+        private TextBox gender;
         private Label label8;
-        private TextBox textBox5;
+        private TextBox mail;
         private Label label10;
-        private TextBox textBox6;
+        private TextBox phone;
         private Label label11;
-        private TextBox textBox4;
+        private TextBox age;
         private Label label9;
         private Label label12;
-        private RichTextBox richTextBox1;
-        private Button button1;
+        private RichTextBox diagnosis;
+        private Button addBtn;
+        private DataGridView pacientsView;
     }
 }

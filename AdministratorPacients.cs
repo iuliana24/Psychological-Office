@@ -18,36 +18,39 @@ namespace Licenta
         public AdministratorPacients()
         {
             InitializeComponent();
+            displayPacients();
         }
 
-        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-C78TFJK\SQLEXPRESS02;Initial Catalog=OfficeDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
         private void AdministratorPacients_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void addBtn_Click(object sender, EventArgs e)
         {
-            if(textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == ""
-                || textBox4.Text == "" || textBox5.Text == "" || textBox6.Text == "")
+            if(lastname.Text == "" || firstname.Text == "" || gender.Text == ""
+                || age.Text == "" || mail.Text == "" || phone.Text == "")
             {
-                MessageBox.Show("Lipsesc informatii");
+                MessageBox.Show("Lipsesc informatii!");
             }
             else
             {
                 try
                 {
                     Con.Open();
-                    SqlCommand cmd = new SqlCommand("insert into pacient(firstname, lastname, age, gender, phone, email)values(@firstname,@lastname,@age,@gender,@phone, @email)", Con);
-                    cmd.Parameters.AddWithValue("@firstname", textBox1.Text);
-                    cmd.Parameters.AddWithValue("@lastname", textBox2.Text);
-                    cmd.Parameters.AddWithValue("@age", textBox4.Text);
-                    cmd.Parameters.AddWithValue("@gender", textBox3.Text);
-                    cmd.Parameters.AddWithValue("@phone", textBox6.Text);
-                    cmd.Parameters.AddWithValue("@email", textBox5.Text);
+                    SqlCommand cmd = new SqlCommand("insert into pacient(firstname, lastname, age, gender, phone, email, diagnostic)values(@firstname,@lastname,@age,@gender,@phone,@email,@diagnostic)", Con);
+                    cmd.Parameters.AddWithValue("@lastname", lastname.Text);
+                    cmd.Parameters.AddWithValue("@firstname", firstname.Text);
+                    cmd.Parameters.AddWithValue("@age", age.Text);
+                    cmd.Parameters.AddWithValue("@gender", gender.Text);
+                    cmd.Parameters.AddWithValue("@phone", phone.Text);
+                    cmd.Parameters.AddWithValue("@email", mail.Text);
+                    cmd.Parameters.AddWithValue("@diagnostic", diagnosis.Text);
                     cmd.ExecuteNonQuery();
                     Con.Close();
-                    MessageBox.Show("Pacient adaugat");
+                    MessageBox.Show("Pacient adaugat.");
+                    displayPacients();
                     
                 }
                 catch(Exception Ex)
@@ -56,5 +59,19 @@ namespace Licenta
                 }
             }
         }
+
+        private void displayPacients()
+        {
+            Con.Open();
+            string query = "SELECT lastname as Nume, firstname as Prenume, age as Varsta," +
+                " gender as Gen, phone as Telefon, Email, Diagnostic  FROM pacient;";
+            SqlDataAdapter sda = new SqlDataAdapter(query, Con);
+            SqlCommandBuilder builder = new SqlCommandBuilder(sda);
+            var ds = new DataSet();
+            sda.Fill(ds);
+            pacientsView.DataSource = ds.Tables[0];
+            Con.Close();
+        }
+
     }
 }
