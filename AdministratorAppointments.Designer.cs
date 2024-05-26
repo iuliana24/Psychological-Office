@@ -32,15 +32,11 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministratorAppointments));
             label1 = new Label();
-            dataGridView1 = new DataGridView();
-            Data = new DataGridViewTextBoxColumn();
-            Ora = new DataGridViewTextBoxColumn();
-            Nume_Pacient = new DataGridViewTextBoxColumn();
-            Prenume_Pacient = new DataGridViewTextBoxColumn();
+            appointmentsView = new DataGridView();
             label8 = new Label();
             label9 = new Label();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
+            date = new DateTimePicker();
+            time = new DateTimePicker();
             panel1 = new Panel();
             label5 = new Label();
             pictureBox5 = new PictureBox();
@@ -51,18 +47,22 @@
             pictureBox2 = new PictureBox();
             label2 = new Label();
             pictureBox1 = new PictureBox();
-            textBox2 = new TextBox();
+            firstname = new TextBox();
             label7 = new Label();
-            textBox1 = new TextBox();
+            lastname = new TextBox();
             label6 = new Label();
-            button1 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            addBtn = new Button();
+            closeBtn = new PictureBox();
+            editBtn = new Button();
+            delBtn = new Button();
+            ((System.ComponentModel.ISupportInitialize)appointmentsView).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -76,53 +76,30 @@
             label1.TabIndex = 5;
             label1.Text = "Programări";
             label1.TextAlign = ContentAlignment.TopCenter;
-            label1.Click += label1_Click;
             // 
-            // dataGridView1
+            // appointmentsView
             // 
-            dataGridView1.BackgroundColor = Color.FromArgb(241, 251, 247);
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Data, Ora, Nume_Pacient, Prenume_Pacient });
-            dataGridView1.Location = new Point(364, 426);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 50;
-            dataGridView1.Size = new Size(852, 227);
-            dataGridView1.TabIndex = 6;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // Data
-            // 
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            Data.DefaultCellStyle = dataGridViewCellStyle1;
-            Data.HeaderText = "Data";
-            Data.MinimumWidth = 6;
-            Data.Name = "Data";
-            Data.Width = 200;
-            // 
-            // Ora
-            // 
-            dataGridViewCellStyle2.Format = "t";
-            dataGridViewCellStyle2.NullValue = null;
-            Ora.DefaultCellStyle = dataGridViewCellStyle2;
-            Ora.HeaderText = "Ora";
-            Ora.MinimumWidth = 6;
-            Ora.Name = "Ora";
-            Ora.Width = 200;
-            // 
-            // Nume_Pacient
-            // 
-            Nume_Pacient.HeaderText = "Nume pacient";
-            Nume_Pacient.MinimumWidth = 6;
-            Nume_Pacient.Name = "Nume_Pacient";
-            Nume_Pacient.Width = 200;
-            // 
-            // Prenume_Pacient
-            // 
-            Prenume_Pacient.HeaderText = "Prenume pacient";
-            Prenume_Pacient.MinimumWidth = 6;
-            Prenume_Pacient.Name = "Prenume_Pacient";
-            Prenume_Pacient.Width = 200;
+            appointmentsView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumAquamarine;
+            appointmentsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            appointmentsView.BackgroundColor = Color.FromArgb(241, 251, 247);
+            appointmentsView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            appointmentsView.DefaultCellStyle = dataGridViewCellStyle2;
+            appointmentsView.Location = new Point(515, 418);
+            appointmentsView.Name = "appointmentsView";
+            appointmentsView.RowHeadersVisible = false;
+            appointmentsView.RowHeadersWidth = 20;
+            appointmentsView.Size = new Size(540, 262);
+            appointmentsView.TabIndex = 6;
+            appointmentsView.CellClick += appointmentsView_CellClick;
             // 
             // label8
             // 
@@ -149,24 +126,24 @@
             label9.TabIndex = 11;
             label9.Text = "Data";
             label9.TextAlign = ContentAlignment.TopCenter;
-            label9.Click += label9_Click;
             // 
-            // dateTimePicker1
+            // date
             // 
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(919, 170);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 30);
-            dateTimePicker1.TabIndex = 15;
-            dateTimePicker1.Value = new DateTime(2024, 5, 8, 0, 0, 0, 0);
+            date.Format = DateTimePickerFormat.Short;
+            date.Location = new Point(919, 170);
+            date.Name = "date";
+            date.Size = new Size(250, 30);
+            date.TabIndex = 15;
+            date.Value = new DateTime(2024, 5, 8, 0, 0, 0, 0);
             // 
-            // dateTimePicker2
+            // time
             // 
-            dateTimePicker2.Format = DateTimePickerFormat.Time;
-            dateTimePicker2.Location = new Point(919, 268);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(250, 30);
-            dateTimePicker2.TabIndex = 16;
+            time.Format = DateTimePickerFormat.Time;
+            time.Location = new Point(919, 268);
+            time.Name = "time";
+            time.ShowUpDown = true;
+            time.Size = new Size(250, 30);
+            time.TabIndex = 16;
             // 
             // panel1
             // 
@@ -289,12 +266,12 @@
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
-            // textBox2
+            // firstname
             // 
-            textBox2.Location = new Point(406, 271);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(250, 30);
-            textBox2.TabIndex = 23;
+            firstname.Location = new Point(406, 271);
+            firstname.Name = "firstname";
+            firstname.Size = new Size(250, 30);
+            firstname.TabIndex = 23;
             // 
             // label7
             // 
@@ -309,12 +286,12 @@
             label7.Text = "Prenume pacient";
             label7.TextAlign = ContentAlignment.TopCenter;
             // 
-            // textBox1
+            // lastname
             // 
-            textBox1.Location = new Point(406, 173);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(250, 30);
-            textBox1.TabIndex = 21;
+            lastname.Location = new Point(406, 173);
+            lastname.Name = "lastname";
+            lastname.Size = new Size(250, 30);
+            lastname.TabIndex = 21;
             // 
             // label6
             // 
@@ -329,19 +306,62 @@
             label6.Text = "Nume pacient";
             label6.TextAlign = ContentAlignment.TopCenter;
             // 
-            // button1
+            // addBtn
             // 
-            button1.AutoEllipsis = true;
-            button1.BackColor = Color.Teal;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(724, 326);
-            button1.Name = "button1";
-            button1.Size = new Size(129, 49);
-            button1.TabIndex = 24;
-            button1.Text = "Salvează";
-            button1.UseVisualStyleBackColor = false;
+            addBtn.AutoEllipsis = true;
+            addBtn.BackColor = Color.Teal;
+            addBtn.FlatStyle = FlatStyle.Flat;
+            addBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addBtn.ForeColor = Color.White;
+            addBtn.Location = new Point(570, 333);
+            addBtn.Name = "addBtn";
+            addBtn.Size = new Size(129, 49);
+            addBtn.TabIndex = 24;
+            addBtn.Text = "Salvează";
+            addBtn.UseVisualStyleBackColor = false;
+            addBtn.Click += addBtn_Click;
+            // 
+            // closeBtn
+            // 
+            closeBtn.BackColor = Color.Transparent;
+            closeBtn.Image = (Image)resources.GetObject("closeBtn.Image");
+            closeBtn.Location = new Point(1239, 0);
+            closeBtn.Name = "closeBtn";
+            closeBtn.Size = new Size(42, 42);
+            closeBtn.SizeMode = PictureBoxSizeMode.StretchImage;
+            closeBtn.TabIndex = 36;
+            closeBtn.TabStop = false;
+            closeBtn.Click += closeBtn_Click;
+            // 
+            // editBtn
+            // 
+            editBtn.AutoEllipsis = true;
+            editBtn.BackColor = Color.MediumAquamarine;
+            editBtn.FlatStyle = FlatStyle.Flat;
+            editBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            editBtn.ForeColor = Color.White;
+            editBtn.Location = new Point(724, 333);
+            editBtn.Name = "editBtn";
+            editBtn.Size = new Size(129, 49);
+            editBtn.TabIndex = 37;
+            editBtn.Text = "Editează";
+            editBtn.UseVisualStyleBackColor = false;
+            editBtn.Click += editBtn_Click;
+            // 
+            // delBtn
+            // 
+            delBtn.AutoEllipsis = true;
+            delBtn.BackColor = Color.CadetBlue;
+            delBtn.FlatStyle = FlatStyle.Flat;
+            delBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            delBtn.ForeColor = Color.White;
+            delBtn.Location = new Point(877, 333);
+            delBtn.Name = "delBtn";
+            delBtn.Size = new Size(129, 49);
+            delBtn.TabIndex = 38;
+            delBtn.Text = "Șterge";
+            delBtn.UseVisualStyleBackColor = false;
+            delBtn.Click += delBtn_Click;
             // 
             // AdministratorAppointments
             // 
@@ -349,24 +369,28 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
-            Controls.Add(button1);
-            Controls.Add(textBox2);
+            Controls.Add(delBtn);
+            Controls.Add(editBtn);
+            Controls.Add(closeBtn);
+            Controls.Add(addBtn);
+            Controls.Add(firstname);
             Controls.Add(label7);
-            Controls.Add(textBox1);
+            Controls.Add(lastname);
             Controls.Add(label6);
             Controls.Add(panel1);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(time);
+            Controls.Add(date);
             Controls.Add(label8);
             Controls.Add(label9);
-            Controls.Add(dataGridView1);
+            Controls.Add(appointmentsView);
             Controls.Add(label1);
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 3, 4, 3);
             Name = "AdministratorAppointments";
             Text = "Appointments";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += AdministratorAppointments_Load;
+            ((System.ComponentModel.ISupportInitialize)appointmentsView).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
@@ -374,21 +398,18 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)closeBtn).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
         private Label label1;
-        private DataGridView dataGridView1;
+        private DataGridView appointmentsView;
         private Label label8;
         private Label label9;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
-        private DataGridViewTextBoxColumn Data;
-        private DataGridViewTextBoxColumn Ora;
-        private DataGridViewTextBoxColumn Nume_Pacient;
-        private DataGridViewTextBoxColumn Prenume_Pacient;
+        private DateTimePicker date;
+        private DateTimePicker time;
         private Panel panel1;
         private Label label5;
         private PictureBox pictureBox5;
@@ -399,10 +420,13 @@
         private PictureBox pictureBox2;
         private Label label2;
         private PictureBox pictureBox1;
-        private TextBox textBox2;
+        private TextBox firstname;
         private Label label7;
-        private TextBox textBox1;
+        private TextBox lastname;
         private Label label6;
-        private Button button1;
+        private Button addBtn;
+        private PictureBox closeBtn;
+        private Button editBtn;
+        private Button delBtn;
     }
 }

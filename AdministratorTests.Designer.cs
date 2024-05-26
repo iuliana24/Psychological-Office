@@ -47,6 +47,8 @@
             label8 = new Label();
             button1 = new Button();
             button2 = new Button();
+            editBtn = new Button();
+            delBtn = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -249,7 +251,7 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(718, 314);
+            button1.Location = new Point(532, 314);
             button1.Name = "button1";
             button1.Size = new Size(129, 49);
             button1.TabIndex = 18;
@@ -271,12 +273,42 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
-            // Tests
+            // editBtn
+            // 
+            editBtn.AutoEllipsis = true;
+            editBtn.BackColor = Color.MediumAquamarine;
+            editBtn.FlatStyle = FlatStyle.Flat;
+            editBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            editBtn.ForeColor = Color.White;
+            editBtn.Location = new Point(715, 314);
+            editBtn.Name = "editBtn";
+            editBtn.Size = new Size(129, 49);
+            editBtn.TabIndex = 38;
+            editBtn.Text = "Editează";
+            editBtn.UseVisualStyleBackColor = false;
+            // 
+            // delBtn
+            // 
+            delBtn.AutoEllipsis = true;
+            delBtn.BackColor = Color.CadetBlue;
+            delBtn.FlatStyle = FlatStyle.Flat;
+            delBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            delBtn.ForeColor = Color.White;
+            delBtn.Location = new Point(899, 314);
+            delBtn.Name = "delBtn";
+            delBtn.Size = new Size(129, 49);
+            delBtn.TabIndex = 39;
+            delBtn.Text = "Șterge";
+            delBtn.UseVisualStyleBackColor = false;
+            // 
+            // AdministratorTests
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
+            Controls.Add(delBtn);
+            Controls.Add(editBtn);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label8);
@@ -290,7 +322,7 @@
             ForeColor = SystemColors.ControlText;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 3, 4, 3);
-            Name = "Tests";
+            Name = "AdministratorTests";
             Text = "Tests";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -323,5 +355,7 @@
         private Label label8;
         private Button button1;
         private Button button2;
+        private Button editBtn;
+        private Button delBtn;
     }
 }

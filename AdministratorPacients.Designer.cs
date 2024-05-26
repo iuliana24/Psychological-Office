@@ -48,7 +48,6 @@
             label7 = new Label();
             lastname = new TextBox();
             label6 = new Label();
-            gender = new TextBox();
             label8 = new Label();
             mail = new TextBox();
             label10 = new Label();
@@ -60,6 +59,10 @@
             diagnosis = new RichTextBox();
             addBtn = new Button();
             pacientsView = new DataGridView();
+            editBtn = new Button();
+            delBtn = new Button();
+            closeBtn = new PictureBox();
+            gender = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -67,6 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pacientsView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
             SuspendLayout();
             // 
             // label5
@@ -242,13 +246,6 @@
             label6.Text = "Nume";
             label6.TextAlign = ContentAlignment.TopCenter;
             // 
-            // gender
-            // 
-            gender.Location = new Point(663, 161);
-            gender.Name = "gender";
-            gender.Size = new Size(250, 30);
-            gender.TabIndex = 22;
-            // 
             // label8
             // 
             label8.AutoSize = true;
@@ -350,9 +347,9 @@
             addBtn.FlatStyle = FlatStyle.Flat;
             addBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             addBtn.ForeColor = Color.White;
-            addBtn.Location = new Point(1060, 338);
+            addBtn.Location = new Point(1000, 305);
             addBtn.Name = "addBtn";
-            addBtn.Size = new Size(129, 49);
+            addBtn.Size = new Size(116, 49);
             addBtn.TabIndex = 31;
             addBtn.Text = "Salvează";
             addBtn.UseVisualStyleBackColor = false;
@@ -361,7 +358,8 @@
             // pacientsView
             // 
             pacientsView.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = SystemColors.ControlLight;
+            pacientsView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
             dataGridViewCellStyle1.SelectionBackColor = Color.MediumAquamarine;
             pacientsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             pacientsView.BackgroundColor = Color.FromArgb(241, 251, 247);
@@ -392,9 +390,64 @@
             dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
             pacientsView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            pacientsView.RowHeadersVisible = false;
             pacientsView.RowHeadersWidth = 51;
+            pacientsView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            pacientsView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             pacientsView.Size = new Size(928, 255);
             pacientsView.TabIndex = 32;
+            pacientsView.CellClick += pacientsView_CellClick;
+            // 
+            // editBtn
+            // 
+            editBtn.AutoEllipsis = true;
+            editBtn.BackColor = Color.MediumAquamarine;
+            editBtn.FlatStyle = FlatStyle.Flat;
+            editBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            editBtn.ForeColor = Color.White;
+            editBtn.Location = new Point(1134, 305);
+            editBtn.Name = "editBtn";
+            editBtn.Size = new Size(116, 49);
+            editBtn.TabIndex = 33;
+            editBtn.Text = "Editează";
+            editBtn.UseVisualStyleBackColor = false;
+            editBtn.Click += editBtn_Click;
+            // 
+            // delBtn
+            // 
+            delBtn.AutoEllipsis = true;
+            delBtn.BackColor = Color.CadetBlue;
+            delBtn.FlatStyle = FlatStyle.Flat;
+            delBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            delBtn.ForeColor = Color.White;
+            delBtn.Location = new Point(1069, 360);
+            delBtn.Name = "delBtn";
+            delBtn.Size = new Size(116, 49);
+            delBtn.TabIndex = 34;
+            delBtn.Text = "Șterge";
+            delBtn.UseVisualStyleBackColor = false;
+            delBtn.Click += delBtn_Click;
+            // 
+            // closeBtn
+            // 
+            closeBtn.BackColor = Color.Transparent;
+            closeBtn.Image = (Image)resources.GetObject("closeBtn.Image");
+            closeBtn.Location = new Point(1239, 0);
+            closeBtn.Name = "closeBtn";
+            closeBtn.Size = new Size(42, 42);
+            closeBtn.SizeMode = PictureBoxSizeMode.StretchImage;
+            closeBtn.TabIndex = 35;
+            closeBtn.TabStop = false;
+            closeBtn.Click += closeBtn_Click;
+            // 
+            // gender
+            // 
+            gender.FormattingEnabled = true;
+            gender.Items.AddRange(new object[] { "Feminin ", "Masculin" });
+            gender.Location = new Point(663, 161);
+            gender.Name = "gender";
+            gender.Size = new Size(250, 30);
+            gender.TabIndex = 40;
             // 
             // AdministratorPacients
             // 
@@ -402,6 +455,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
+            Controls.Add(gender);
+            Controls.Add(closeBtn);
+            Controls.Add(delBtn);
+            Controls.Add(editBtn);
             Controls.Add(pacientsView);
             Controls.Add(addBtn);
             Controls.Add(diagnosis);
@@ -412,7 +469,6 @@
             Controls.Add(label10);
             Controls.Add(phone);
             Controls.Add(label11);
-            Controls.Add(gender);
             Controls.Add(label8);
             Controls.Add(firstname);
             Controls.Add(label7);
@@ -434,6 +490,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pacientsView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)closeBtn).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -454,7 +511,6 @@
         private Label label7;
         private TextBox lastname;
         private Label label6;
-        private TextBox gender;
         private Label label8;
         private TextBox mail;
         private Label label10;
@@ -466,5 +522,9 @@
         private RichTextBox diagnosis;
         private Button addBtn;
         private DataGridView pacientsView;
+        private Button editBtn;
+        private Button delBtn;
+        private PictureBox closeBtn;
+        private ComboBox gender;
     }
 }
