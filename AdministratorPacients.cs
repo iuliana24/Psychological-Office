@@ -22,7 +22,7 @@ namespace Licenta
         }
 
 
-        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-C78TFJK\SQLEXPRESS02;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
         private void AdministratorPacients_Load(object sender, EventArgs e)
         {
             pacientsView.Columns[0].Width = 40;
@@ -65,7 +65,7 @@ namespace Licenta
         private void displayPacients()
         {
             Con.Open();
-            string query = "SELECT pacientID as Id, lastname as Nume, firstname as Prenume, age as Varsta," +
+            string query = "SELECT pacientID as Id, lastname as Nume, firstname as Prenume, age as Vârsta," +
                 " gender as Gen, phone as Telefon, Email, Diagnostic FROM pacient;";
             SqlDataAdapter sda = new SqlDataAdapter(query, Con);
             SqlCommandBuilder builder = new SqlCommandBuilder(sda);

@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministratorTests));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label5 = new Label();
             pictureBox5 = new PictureBox();
@@ -41,20 +45,26 @@
             pictureBox1 = new PictureBox();
             label1 = new Label();
             label7 = new Label();
-            textBox1 = new TextBox();
+            name = new TextBox();
             label6 = new Label();
-            richTextBox1 = new RichTextBox();
+            description = new RichTextBox();
             label8 = new Label();
-            button1 = new Button();
-            button2 = new Button();
+            addBtn = new Button();
+            fileBtn = new Button();
             editBtn = new Button();
             delBtn = new Button();
+            closeBtn = new PictureBox();
+            openFileDialog1 = new OpenFileDialog();
+            testsView = new DataGridView();
+            filename = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)testsView).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -203,12 +213,12 @@
             label7.Text = "Descriere\r\n";
             label7.TextAlign = ContentAlignment.TopCenter;
             // 
-            // textBox1
+            // name
             // 
-            textBox1.Location = new Point(411, 161);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(250, 30);
-            textBox1.TabIndex = 12;
+            name.Location = new Point(411, 161);
+            name.Name = "name";
+            name.Size = new Size(250, 30);
+            name.TabIndex = 12;
             // 
             // label6
             // 
@@ -223,13 +233,13 @@
             label6.Text = "Denumire\r\n";
             label6.TextAlign = ContentAlignment.TopCenter;
             // 
-            // richTextBox1
+            // description
             // 
-            richTextBox1.Location = new Point(899, 161);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(250, 120);
-            richTextBox1.TabIndex = 15;
-            richTextBox1.Text = "";
+            description.Location = new Point(899, 161);
+            description.Name = "description";
+            description.Size = new Size(250, 120);
+            description.TabIndex = 15;
+            description.Text = "";
             // 
             // label8
             // 
@@ -244,34 +254,35 @@
             label8.Text = "Fișier";
             label8.TextAlign = ContentAlignment.TopCenter;
             // 
-            // button1
+            // addBtn
             // 
-            button1.AutoEllipsis = true;
-            button1.BackColor = Color.Teal;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(532, 314);
-            button1.Name = "button1";
-            button1.Size = new Size(129, 49);
-            button1.TabIndex = 18;
-            button1.Text = "Salvează";
-            button1.UseVisualStyleBackColor = false;
+            addBtn.AutoEllipsis = true;
+            addBtn.BackColor = Color.Teal;
+            addBtn.FlatStyle = FlatStyle.Flat;
+            addBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addBtn.ForeColor = Color.White;
+            addBtn.Location = new Point(552, 326);
+            addBtn.Name = "addBtn";
+            addBtn.Size = new Size(129, 49);
+            addBtn.TabIndex = 18;
+            addBtn.Text = "Salvează";
+            addBtn.UseVisualStyleBackColor = false;
+            addBtn.Click += addBtn_Click;
             // 
-            // button2
+            // fileBtn
             // 
-            button2.AutoEllipsis = true;
-            button2.BackColor = Color.Teal;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(411, 251);
-            button2.Name = "button2";
-            button2.Size = new Size(250, 40);
-            button2.TabIndex = 19;
-            button2.Text = "Selectează fișier";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            fileBtn.AutoEllipsis = true;
+            fileBtn.BackColor = Color.Teal;
+            fileBtn.FlatStyle = FlatStyle.Flat;
+            fileBtn.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            fileBtn.ForeColor = Color.White;
+            fileBtn.Location = new Point(411, 241);
+            fileBtn.Name = "fileBtn";
+            fileBtn.Size = new Size(250, 40);
+            fileBtn.TabIndex = 19;
+            fileBtn.Text = "Selectează fișier";
+            fileBtn.UseVisualStyleBackColor = false;
+            fileBtn.Click += fileBtn_Click;
             // 
             // editBtn
             // 
@@ -280,7 +291,7 @@
             editBtn.FlatStyle = FlatStyle.Flat;
             editBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editBtn.ForeColor = Color.White;
-            editBtn.Location = new Point(715, 314);
+            editBtn.Location = new Point(715, 326);
             editBtn.Name = "editBtn";
             editBtn.Size = new Size(129, 49);
             editBtn.TabIndex = 38;
@@ -294,12 +305,79 @@
             delBtn.FlatStyle = FlatStyle.Flat;
             delBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             delBtn.ForeColor = Color.White;
-            delBtn.Location = new Point(899, 314);
+            delBtn.Location = new Point(877, 326);
             delBtn.Name = "delBtn";
             delBtn.Size = new Size(129, 49);
             delBtn.TabIndex = 39;
             delBtn.Text = "Șterge";
             delBtn.UseVisualStyleBackColor = false;
+            // 
+            // closeBtn
+            // 
+            closeBtn.BackColor = Color.Transparent;
+            closeBtn.Image = (Image)resources.GetObject("closeBtn.Image");
+            closeBtn.Location = new Point(1239, 0);
+            closeBtn.Name = "closeBtn";
+            closeBtn.Size = new Size(42, 42);
+            closeBtn.SizeMode = PictureBoxSizeMode.StretchImage;
+            closeBtn.TabIndex = 40;
+            closeBtn.TabStop = false;
+            closeBtn.Click += closeBtn_Click;
+            // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // testsView
+            // 
+            testsView.AllowUserToOrderColumns = true;
+            testsView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumAquamarine;
+            testsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            testsView.BackgroundColor = Color.FromArgb(241, 251, 247);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.Teal;
+            dataGridViewCellStyle2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            testsView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            testsView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            testsView.DefaultCellStyle = dataGridViewCellStyle3;
+            testsView.Location = new Point(442, 415);
+            testsView.Name = "testsView";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.Teal;
+            dataGridViewCellStyle4.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            testsView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            testsView.RowHeadersVisible = false;
+            testsView.RowHeadersWidth = 100;
+            testsView.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            testsView.Size = new Size(670, 262);
+            testsView.TabIndex = 41;
+            testsView.CellClick += testsView_CellClick;
+            // 
+            // filename
+            // 
+            filename.AutoSize = true;
+            filename.Location = new Point(411, 284);
+            filename.Name = "filename";
+            filename.Size = new Size(180, 22);
+            filename.TabIndex = 42;
+            filename.Text = "Niciun fișier selectat.";
             // 
             // AdministratorTests
             // 
@@ -307,14 +385,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
+            Controls.Add(filename);
+            Controls.Add(testsView);
+            Controls.Add(closeBtn);
             Controls.Add(delBtn);
             Controls.Add(editBtn);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(fileBtn);
+            Controls.Add(addBtn);
             Controls.Add(label8);
-            Controls.Add(richTextBox1);
+            Controls.Add(description);
             Controls.Add(label7);
-            Controls.Add(textBox1);
+            Controls.Add(name);
             Controls.Add(label6);
             Controls.Add(label1);
             Controls.Add(panel1);
@@ -324,6 +405,7 @@
             Margin = new Padding(4, 3, 4, 3);
             Name = "AdministratorTests";
             Text = "Tests";
+            Load += AdministratorTests_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
@@ -331,6 +413,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)closeBtn).EndInit();
+            ((System.ComponentModel.ISupportInitialize)testsView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -349,13 +433,17 @@
         private PictureBox pictureBox1;
         private Label label1;
         private Label label7;
-        private TextBox textBox1;
+        private TextBox name;
         private Label label6;
-        private RichTextBox richTextBox1;
+        private RichTextBox description;
         private Label label8;
-        private Button button1;
-        private Button button2;
+        private Button addBtn;
+        private Button fileBtn;
         private Button editBtn;
         private Button delBtn;
+        private PictureBox closeBtn;
+        private OpenFileDialog openFileDialog1;
+        private DataGridView testsView;
+        private Label filename;
     }
 }

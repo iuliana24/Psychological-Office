@@ -79,6 +79,7 @@
             // 
             // appointmentsView
             // 
+            appointmentsView.AllowUserToOrderColumns = true;
             appointmentsView.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
             dataGridViewCellStyle1.SelectionBackColor = Color.MediumAquamarine;
