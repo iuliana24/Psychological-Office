@@ -30,14 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PsychologistPacients));
             panel1 = new Panel();
-            label5 = new Label();
+            pictureBox6 = new PictureBox();
+            logoutBtn = new Label();
+            invoicesLb = new Label();
             pictureBox5 = new PictureBox();
-            label4 = new Label();
+            testsLb = new Label();
             pictureBox4 = new PictureBox();
+            appointmentsLb = new Label();
             pictureBox3 = new PictureBox();
-            label3 = new Label();
+            pacientsLb = new Label();
             pictureBox2 = new PictureBox();
-            label2 = new Label();
             pictureBox1 = new PictureBox();
             dataGridView1 = new DataGridView();
             Nume = new DataGridViewTextBoxColumn();
@@ -48,45 +50,73 @@
             Email = new DataGridViewTextBoxColumn();
             Diagnostic = new DataGridViewTextBoxColumn();
             label1 = new Label();
+            closeBtn = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.Teal;
-            panel1.Controls.Add(label5);
+            panel1.Controls.Add(pictureBox6);
+            panel1.Controls.Add(logoutBtn);
+            panel1.Controls.Add(invoicesLb);
             panel1.Controls.Add(pictureBox5);
-            panel1.Controls.Add(label4);
+            panel1.Controls.Add(testsLb);
             panel1.Controls.Add(pictureBox4);
+            panel1.Controls.Add(appointmentsLb);
             panel1.Controls.Add(pictureBox3);
-            panel1.Controls.Add(label3);
+            panel1.Controls.Add(pacientsLb);
             panel1.Controls.Add(pictureBox2);
-            panel1.Controls.Add(label2);
             panel1.Controls.Add(pictureBox1);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(290, 720);
             panel1.TabIndex = 3;
-            panel1.Paint += panel1_Paint;
             // 
-            // label5
+            // pictureBox6
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(108, 396);
-            label5.Name = "label5";
-            label5.Size = new Size(86, 25);
-            label5.TabIndex = 12;
-            label5.Text = "Facturi";
-            label5.TextAlign = ContentAlignment.TopCenter;
+            pictureBox6.BackColor = Color.Transparent;
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(72, 643);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(30, 30);
+            pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox6.TabIndex = 18;
+            pictureBox6.TabStop = false;
+            // 
+            // logoutBtn
+            // 
+            logoutBtn.AutoSize = true;
+            logoutBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            logoutBtn.ForeColor = Color.White;
+            logoutBtn.Location = new Point(108, 648);
+            logoutBtn.Name = "logoutBtn";
+            logoutBtn.Size = new Size(84, 25);
+            logoutBtn.TabIndex = 17;
+            logoutBtn.Text = "Logout";
+            logoutBtn.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // invoicesLb
+            // 
+            invoicesLb.AutoSize = true;
+            invoicesLb.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            invoicesLb.ForeColor = Color.White;
+            invoicesLb.Location = new Point(108, 396);
+            invoicesLb.Name = "invoicesLb";
+            invoicesLb.Size = new Size(86, 25);
+            invoicesLb.TabIndex = 16;
+            invoicesLb.Text = "Facturi";
+            invoicesLb.TextAlign = ContentAlignment.TopCenter;
+            invoicesLb.Click += invoicesLb_Click;
             // 
             // pictureBox5
             // 
@@ -99,17 +129,18 @@
             pictureBox5.TabIndex = 11;
             pictureBox5.TabStop = false;
             // 
-            // label4
+            // testsLb
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(108, 338);
-            label4.Name = "label4";
-            label4.Size = new Size(64, 25);
-            label4.TabIndex = 8;
-            label4.Text = "Teste";
-            label4.TextAlign = ContentAlignment.TopCenter;
+            testsLb.AutoSize = true;
+            testsLb.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            testsLb.ForeColor = Color.White;
+            testsLb.Location = new Point(108, 338);
+            testsLb.Name = "testsLb";
+            testsLb.Size = new Size(64, 25);
+            testsLb.TabIndex = 15;
+            testsLb.Text = "Teste";
+            testsLb.TextAlign = ContentAlignment.TopCenter;
+            testsLb.Click += testsLb_Click;
             // 
             // pictureBox4
             // 
@@ -122,6 +153,19 @@
             pictureBox4.TabIndex = 7;
             pictureBox4.TabStop = false;
             // 
+            // appointmentsLb
+            // 
+            appointmentsLb.AutoSize = true;
+            appointmentsLb.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            appointmentsLb.ForeColor = Color.White;
+            appointmentsLb.Location = new Point(108, 278);
+            appointmentsLb.Name = "appointmentsLb";
+            appointmentsLb.Size = new Size(129, 25);
+            appointmentsLb.TabIndex = 14;
+            appointmentsLb.Text = "Programări";
+            appointmentsLb.TextAlign = ContentAlignment.TopCenter;
+            appointmentsLb.Click += appointmentsLb_Click;
+            // 
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Transparent;
@@ -133,17 +177,17 @@
             pictureBox3.TabIndex = 6;
             pictureBox3.TabStop = false;
             // 
-            // label3
+            // pacientsLb
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(108, 278);
-            label3.Name = "label3";
-            label3.Size = new Size(129, 25);
-            label3.TabIndex = 5;
-            label3.Text = "Programări";
-            label3.TextAlign = ContentAlignment.TopCenter;
+            pacientsLb.AutoSize = true;
+            pacientsLb.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            pacientsLb.ForeColor = Color.White;
+            pacientsLb.Location = new Point(108, 221);
+            pacientsLb.Name = "pacientsLb";
+            pacientsLb.Size = new Size(92, 25);
+            pacientsLb.TabIndex = 13;
+            pacientsLb.Text = "Pacienți";
+            pacientsLb.TextAlign = ContentAlignment.TopCenter;
             // 
             // pictureBox2
             // 
@@ -155,18 +199,6 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 4;
             pictureBox2.TabStop = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(108, 221);
-            label2.Name = "label2";
-            label2.Size = new Size(92, 25);
-            label2.TabIndex = 3;
-            label2.Text = "Pacienți";
-            label2.TextAlign = ContentAlignment.TopCenter;
             // 
             // pictureBox1
             // 
@@ -255,29 +287,44 @@
             label1.Text = "Pacienți";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
-            // PsychologistPatients
+            // closeBtn
+            // 
+            closeBtn.BackColor = Color.Transparent;
+            closeBtn.Image = (Image)resources.GetObject("closeBtn.Image");
+            closeBtn.Location = new Point(1239, 0);
+            closeBtn.Name = "closeBtn";
+            closeBtn.Size = new Size(42, 42);
+            closeBtn.SizeMode = PictureBoxSizeMode.StretchImage;
+            closeBtn.TabIndex = 37;
+            closeBtn.TabStop = false;
+            closeBtn.Click += closeBtn_Click;
+            // 
+            // PsychologistPacients
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
+            Controls.Add(closeBtn);
             Controls.Add(label1);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 3, 4, 3);
-            Name = "PsychologistPatients";
+            Name = "PsychologistPacients";
             Text = "Patients";
             Load += Patients_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)closeBtn).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -285,14 +332,10 @@
         #endregion
 
         private Panel panel1;
-        private Label label5;
         private PictureBox pictureBox5;
-        private Label label4;
         private PictureBox pictureBox4;
         private PictureBox pictureBox3;
-        private Label label3;
         private PictureBox pictureBox2;
-        private Label label2;
         private PictureBox pictureBox1;
         private DataGridView dataGridView1;
         private Label label1;
@@ -303,5 +346,12 @@
         private DataGridViewTextBoxColumn Telefon;
         private DataGridViewTextBoxColumn Email;
         private DataGridViewTextBoxColumn Diagnostic;
+        private Label invoicesLb;
+        private Label testsLb;
+        private Label appointmentsLb;
+        private Label pacientsLb;
+        private PictureBox pictureBox6;
+        private Label logoutBtn;
+        private PictureBox closeBtn;
     }
 }

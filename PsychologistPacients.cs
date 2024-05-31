@@ -17,19 +17,38 @@ namespace Licenta
             InitializeComponent();
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Patients_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void appointmentsLb_Click(object sender, EventArgs e)
         {
 
+            PsychologistAppointments Obj = new PsychologistAppointments();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void testsLb_Click(object sender, EventArgs e)
+        {
+
+            PsychologistTests Obj = new PsychologistTests();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void invoicesLb_Click(object sender, EventArgs e)
+        {
+
+            PsychologistInvoices Obj = new PsychologistInvoices();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit(); 
         }
     }
 }

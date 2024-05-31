@@ -34,11 +34,11 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            comboBox1 = new ComboBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            button1 = new Button();
-            label4 = new Label();
+            role = new ComboBox();
+            username = new TextBox();
+            password = new TextBox();
+            loginBtn = new Button();
+            reset = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -63,7 +63,6 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
             // 
             // label1
             // 
@@ -76,7 +75,6 @@
             label1.TabIndex = 1;
             label1.Text = "Cabinet Psihologic";
             label1.TextAlign = ContentAlignment.TopCenter;
-            label1.Click += label1_Click;
             // 
             // label2
             // 
@@ -101,58 +99,57 @@
             label3.TabIndex = 3;
             label3.Text = "Parola\r\n";
             label3.TextAlign = ContentAlignment.TopCenter;
-            label3.Click += label3_Click;
             // 
-            // comboBox1
+            // role
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Administrator", "Psiholog", "Pacient" });
-            comboBox1.Location = new Point(129, 219);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(250, 30);
-            comboBox1.TabIndex = 4;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            role.FormattingEnabled = true;
+            role.Items.AddRange(new object[] { "Administrator", "Psiholog", "Pacient" });
+            role.Location = new Point(129, 219);
+            role.Name = "role";
+            role.Size = new Size(250, 30);
+            role.TabIndex = 4;
             // 
-            // textBox1
+            // username
             // 
-            textBox1.Location = new Point(129, 311);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(250, 30);
-            textBox1.TabIndex = 5;
+            username.Location = new Point(129, 311);
+            username.Name = "username";
+            username.Size = new Size(250, 30);
+            username.TabIndex = 5;
             // 
-            // textBox2
+            // password
             // 
-            textBox2.Location = new Point(129, 381);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(250, 30);
-            textBox2.TabIndex = 6;
+            password.Location = new Point(129, 381);
+            password.Name = "password";
+            password.Size = new Size(250, 30);
+            password.TabIndex = 6;
             // 
-            // button1
+            // loginBtn
             // 
-            button1.AutoEllipsis = true;
-            button1.BackColor = Color.Teal;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(154, 446);
-            button1.Name = "button1";
-            button1.Size = new Size(196, 49);
-            button1.TabIndex = 7;
-            button1.Text = "Login";
-            button1.UseVisualStyleBackColor = false;
+            loginBtn.AutoEllipsis = true;
+            loginBtn.BackColor = Color.Teal;
+            loginBtn.FlatStyle = FlatStyle.Flat;
+            loginBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            loginBtn.ForeColor = Color.White;
+            loginBtn.Location = new Point(154, 446);
+            loginBtn.Name = "loginBtn";
+            loginBtn.Size = new Size(196, 49);
+            loginBtn.TabIndex = 7;
+            loginBtn.Text = "Login";
+            loginBtn.UseVisualStyleBackColor = false;
+            loginBtn.Click += loginBtn_Click;
             // 
-            // label4
+            // reset
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Times New Roman", 12F, FontStyle.Underline, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Teal;
-            label4.Location = new Point(222, 498);
-            label4.Name = "label4";
-            label4.Size = new Size(60, 22);
-            label4.TabIndex = 8;
-            label4.Text = "Șterge";
-            label4.TextAlign = ContentAlignment.TopCenter;
-            label4.Click += label4_Click;
+            reset.AutoSize = true;
+            reset.Font = new Font("Times New Roman", 12F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            reset.ForeColor = Color.Teal;
+            reset.Location = new Point(222, 498);
+            reset.Name = "reset";
+            reset.Size = new Size(60, 22);
+            reset.TabIndex = 8;
+            reset.Text = "Șterge";
+            reset.TextAlign = ContentAlignment.TopCenter;
+            reset.Click += reset_Click;
             // 
             // Login
             // 
@@ -160,11 +157,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(500, 600);
-            Controls.Add(label4);
-            Controls.Add(button1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(comboBox1);
+            Controls.Add(reset);
+            Controls.Add(loginBtn);
+            Controls.Add(password);
+            Controls.Add(username);
+            Controls.Add(role);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -175,6 +172,7 @@
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
+            Load += Login_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -188,10 +186,10 @@
         private PictureBox pictureBox1;
         private Label label2;
         private Label label3;
-        private ComboBox comboBox1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Button button1;
-        private Label label4;
+        private ComboBox role;
+        private TextBox username;
+        private TextBox password;
+        private Button loginBtn;
+        private Label reset;
     }
 }

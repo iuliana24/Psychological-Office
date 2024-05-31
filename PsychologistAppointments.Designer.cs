@@ -29,44 +29,37 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PsychologistAppointments));
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            label5 = new Label();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pictureBox5 = new PictureBox();
-            label4 = new Label();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
-            label3 = new Label();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
-            label2 = new Label();
+            pictureBox6 = new PictureBox();
+            logoutBtn = new Label();
+            invoicesLb = new Label();
+            testsLb = new Label();
+            appointmentsLb = new Label();
+            pacientsLb = new Label();
             Prenume_Pacient = new DataGridViewTextBoxColumn();
             Nume_Pacient = new DataGridViewTextBoxColumn();
             Ora = new DataGridViewTextBoxColumn();
             Data = new DataGridViewTextBoxColumn();
             dataGridView1 = new DataGridView();
             label1 = new Label();
+            closeBtn = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
             SuspendLayout();
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(108, 396);
-            label5.Name = "label5";
-            label5.Size = new Size(86, 25);
-            label5.TabIndex = 12;
-            label5.Text = "Facturi";
-            label5.TextAlign = ContentAlignment.TopCenter;
             // 
             // pictureBox5
             // 
@@ -78,18 +71,6 @@
             pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox5.TabIndex = 11;
             pictureBox5.TabStop = false;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(108, 338);
-            label4.Name = "label4";
-            label4.Size = new Size(64, 25);
-            label4.TabIndex = 8;
-            label4.Text = "Teste";
-            label4.TextAlign = ContentAlignment.TopCenter;
             // 
             // pictureBox4
             // 
@@ -112,18 +93,6 @@
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 6;
             pictureBox3.TabStop = false;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(108, 278);
-            label3.Name = "label3";
-            label3.Size = new Size(129, 25);
-            label3.TabIndex = 5;
-            label3.Text = "Programări";
-            label3.TextAlign = ContentAlignment.TopCenter;
             // 
             // pictureBox2
             // 
@@ -150,14 +119,16 @@
             // panel1
             // 
             panel1.BackColor = Color.Teal;
-            panel1.Controls.Add(label5);
+            panel1.Controls.Add(pictureBox6);
+            panel1.Controls.Add(logoutBtn);
+            panel1.Controls.Add(invoicesLb);
             panel1.Controls.Add(pictureBox5);
-            panel1.Controls.Add(label4);
+            panel1.Controls.Add(testsLb);
             panel1.Controls.Add(pictureBox4);
+            panel1.Controls.Add(appointmentsLb);
             panel1.Controls.Add(pictureBox3);
-            panel1.Controls.Add(label3);
+            panel1.Controls.Add(pacientsLb);
             panel1.Controls.Add(pictureBox2);
-            panel1.Controls.Add(label2);
             panel1.Controls.Add(pictureBox1);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
@@ -165,17 +136,79 @@
             panel1.Size = new Size(290, 720);
             panel1.TabIndex = 27;
             // 
-            // label2
+            // pictureBox6
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(108, 221);
-            label2.Name = "label2";
-            label2.Size = new Size(92, 25);
-            label2.TabIndex = 3;
-            label2.Text = "Pacienți";
-            label2.TextAlign = ContentAlignment.TopCenter;
+            pictureBox6.BackColor = Color.Transparent;
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(72, 643);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(30, 30);
+            pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox6.TabIndex = 33;
+            pictureBox6.TabStop = false;
+            // 
+            // logoutBtn
+            // 
+            logoutBtn.AutoSize = true;
+            logoutBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            logoutBtn.ForeColor = Color.White;
+            logoutBtn.Location = new Point(108, 648);
+            logoutBtn.Name = "logoutBtn";
+            logoutBtn.Size = new Size(84, 25);
+            logoutBtn.TabIndex = 32;
+            logoutBtn.Text = "Logout";
+            logoutBtn.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // invoicesLb
+            // 
+            invoicesLb.AutoSize = true;
+            invoicesLb.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            invoicesLb.ForeColor = Color.White;
+            invoicesLb.Location = new Point(108, 396);
+            invoicesLb.Name = "invoicesLb";
+            invoicesLb.Size = new Size(86, 25);
+            invoicesLb.TabIndex = 31;
+            invoicesLb.Text = "Facturi";
+            invoicesLb.TextAlign = ContentAlignment.TopCenter;
+            invoicesLb.Click += invoicesLb_Click;
+            // 
+            // testsLb
+            // 
+            testsLb.AutoSize = true;
+            testsLb.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            testsLb.ForeColor = Color.White;
+            testsLb.Location = new Point(108, 338);
+            testsLb.Name = "testsLb";
+            testsLb.Size = new Size(64, 25);
+            testsLb.TabIndex = 30;
+            testsLb.Text = "Teste";
+            testsLb.TextAlign = ContentAlignment.TopCenter;
+            testsLb.Click += testsLb_Click;
+            // 
+            // appointmentsLb
+            // 
+            appointmentsLb.AutoSize = true;
+            appointmentsLb.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            appointmentsLb.ForeColor = Color.White;
+            appointmentsLb.Location = new Point(108, 278);
+            appointmentsLb.Name = "appointmentsLb";
+            appointmentsLb.Size = new Size(129, 25);
+            appointmentsLb.TabIndex = 29;
+            appointmentsLb.Text = "Programări";
+            appointmentsLb.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // pacientsLb
+            // 
+            pacientsLb.AutoSize = true;
+            pacientsLb.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            pacientsLb.ForeColor = Color.White;
+            pacientsLb.Location = new Point(108, 221);
+            pacientsLb.Name = "pacientsLb";
+            pacientsLb.Size = new Size(92, 25);
+            pacientsLb.TabIndex = 28;
+            pacientsLb.Text = "Pacienți";
+            pacientsLb.TextAlign = ContentAlignment.TopCenter;
+            pacientsLb.Click += pacientsLb_Click;
             // 
             // Prenume_Pacient
             // 
@@ -193,9 +226,9 @@
             // 
             // Ora
             // 
-            dataGridViewCellStyle5.Format = "t";
-            dataGridViewCellStyle5.NullValue = null;
-            Ora.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Format = "t";
+            dataGridViewCellStyle1.NullValue = null;
+            Ora.DefaultCellStyle = dataGridViewCellStyle1;
             Ora.HeaderText = "Ora";
             Ora.MinimumWidth = 6;
             Ora.Name = "Ora";
@@ -203,9 +236,9 @@
             // 
             // Data
             // 
-            dataGridViewCellStyle6.Format = "d";
-            dataGridViewCellStyle6.NullValue = null;
-            Data.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            Data.DefaultCellStyle = dataGridViewCellStyle2;
             Data.HeaderText = "Data";
             Data.MinimumWidth = 6;
             Data.Name = "Data";
@@ -234,12 +267,25 @@
             label1.Text = "Programări";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
+            // closeBtn
+            // 
+            closeBtn.BackColor = Color.Transparent;
+            closeBtn.Image = (Image)resources.GetObject("closeBtn.Image");
+            closeBtn.Location = new Point(1238, 0);
+            closeBtn.Name = "closeBtn";
+            closeBtn.Size = new Size(42, 42);
+            closeBtn.SizeMode = PictureBoxSizeMode.StretchImage;
+            closeBtn.TabIndex = 37;
+            closeBtn.TabStop = false;
+            closeBtn.Click += closeBtn_Click;
+            // 
             // PsychologistAppointments
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
+            Controls.Add(closeBtn);
             Controls.Add(panel1);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
@@ -255,28 +301,32 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)closeBtn).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label label5;
         private PictureBox pictureBox5;
-        private Label label4;
         private PictureBox pictureBox4;
         private PictureBox pictureBox3;
-        private Label label3;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private Panel panel1;
-        private Label label2;
         private DataGridViewTextBoxColumn Prenume_Pacient;
         private DataGridViewTextBoxColumn Nume_Pacient;
         private DataGridViewTextBoxColumn Ora;
         private DataGridViewTextBoxColumn Data;
         private DataGridView dataGridView1;
         private Label label1;
+        private Label invoicesLb;
+        private Label testsLb;
+        private Label appointmentsLb;
+        private Label pacientsLb;
+        private PictureBox pictureBox6;
+        private Label logoutBtn;
+        private PictureBox closeBtn;
     }
 }

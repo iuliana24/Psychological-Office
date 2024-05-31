@@ -36,6 +36,39 @@ namespace Licenta
             Con.Close();
         }
 
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            if (lastname.Text == "" || firstname.Text == "" || date.Value.Date == DateTime.MinValue
+                || time.Value == DateTime.MinValue)
+            {
+                MessageBox.Show("Lipsesc informații!");
+            }
+            else
+            {
+                try
+                {
+                    Con.Open();
+                    SqlCommand cmd = new SqlCommand("insert into appointment(firstname, lastname, date, time)values(@firstname,@lastname,@date,@time)", Con);
+                    cmd.Parameters.AddWithValue("@lastname", lastname.Text);
+                    cmd.Parameters.AddWithValue("@firstname", firstname.Text);
+                    cmd.Parameters.AddWithValue("@date", date.Value.Date);
+                    string formattedTime = time.Value.ToString("t");
+                    cmd.Parameters.AddWithValue("@time", formattedTime);
+                    cmd.ExecuteNonQuery();
+                    Con.Close();
+                    MessageBox.Show("Programare adăugată.");
+                    displayAppointments();
+                    Clear();
+
+                }
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.Message);
+                }
+            }
+
+        }
+
         int Key = 0;
         private void editBtn_Click(object sender, EventArgs e)
         {
@@ -70,27 +103,24 @@ namespace Licenta
             }
         }
 
-        private void addBtn_Click(object sender, EventArgs e)
+
+        private void delBtn_Click(object sender, EventArgs e)
         {
-            if (lastname.Text == "" || firstname.Text == "" || date.Value.Date == DateTime.MinValue
-                || time.Value == DateTime.MinValue)
+            if (Key == 0)
             {
-                MessageBox.Show("Lipsesc informații!");
+                MessageBox.Show("Selectează programarea.");
             }
             else
             {
                 try
                 {
                     Con.Open();
-                    SqlCommand cmd = new SqlCommand("insert into appointment(firstname, lastname, date, time)values(@firstname,@lastname,@date,@time)", Con);
-                    cmd.Parameters.AddWithValue("@lastname", lastname.Text);
-                    cmd.Parameters.AddWithValue("@firstname", firstname.Text);
-                    cmd.Parameters.AddWithValue("@date", date.Value.Date);
-                    string formattedTime = time.Value.ToString("t");
-                    cmd.Parameters.AddWithValue("@time", formattedTime);
+                    SqlCommand cmd = new SqlCommand("delete from appointment where appointmentID=@Key", Con);
+
+                    cmd.Parameters.AddWithValue("@Key", Key);
                     cmd.ExecuteNonQuery();
                     Con.Close();
-                    MessageBox.Show("Programare adăugată.");
+                    MessageBox.Show("Programare ștearsă.");
                     displayAppointments();
                     Clear();
 
@@ -100,29 +130,8 @@ namespace Licenta
                     MessageBox.Show(Ex.Message);
                 }
             }
-
         }
 
-        private void Clear()
-        {
-            lastname.Text = "";
-            firstname.Text = "";
-            date.Text = "";
-            time.Text = "";
-            Key = 0;
-
-        }
-
-        private void closeBtn_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void AdministratorAppointments_Load(object sender, EventArgs e)
-        {
-
-            appointmentsView.Columns[0].Width = 40;
-        }
 
         private void appointmentsView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -182,34 +191,46 @@ namespace Licenta
             return cellValue.ToString();
         }
 
-        private void delBtn_Click(object sender, EventArgs e)
+        private void Clear()
         {
-            if (Key == 0)
-            {
-                MessageBox.Show("Selectează programarea.");
-            }
-            else
-            {
-                try
-                {
-                    Con.Open();
-                    SqlCommand cmd = new SqlCommand("delete from appointment where appointmentID=@Key", Con);
+            lastname.Text = "";
+            firstname.Text = "";
+            date.Text = "";
+            time.Text = "";
+            Key = 0;
 
-                    cmd.Parameters.AddWithValue("@Key", Key);
-                    cmd.ExecuteNonQuery();
-                    Con.Close();
-                    MessageBox.Show("Programare ștearsă.");
-                    displayAppointments();
-                    Clear();
-
-                }
-                catch (Exception Ex)
-                {
-                    MessageBox.Show(Ex.Message);
-                }
-            }
         }
 
-     
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void AdministratorAppointments_Load(object sender, EventArgs e)
+        {
+
+            appointmentsView.Columns[0].Width = 40;
+        }
+
+        private void pacientsLb_Click(object sender, EventArgs e)
+        {
+            AdministratorPacients Obj = new AdministratorPacients();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void testsLb_Click(object sender, EventArgs e)
+        {
+            AdministratorTests Obj = new AdministratorTests();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void invoicesLb_Click(object sender, EventArgs e)
+        {
+            AdministratorInvoices Obj = new AdministratorInvoices();
+            Obj.Show();
+            this.Hide();
+        }
     }
 }

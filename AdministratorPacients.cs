@@ -94,7 +94,7 @@ namespace Licenta
                     int phoneIndex = 5;
                     int mailIndex = 6;
                     int diagnosisIndex = 7;
-                
+
                     if (selectedRow.Cells.Count > diagnosisIndex)
                     {
                         lastname.Text = GetCellValue(selectedRow, lastnameIndex);
@@ -116,7 +116,7 @@ namespace Licenta
 
             }
             catch (Exception ex)
-            { 
+            {
                 MessageBox.Show($"A apărut o eroare: {ex.Message}", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -134,7 +134,7 @@ namespace Licenta
             {
                 return stringValue;
             }
-     
+
             return cellValue.ToString();
         }
 
@@ -218,6 +218,27 @@ namespace Licenta
         private void closeBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void appointmentsLb_Click(object sender, EventArgs e)
+        {
+            AdministratorAppointments Obj = new AdministratorAppointments();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void testsLb_Click(object sender, EventArgs e)
+        {
+            AdministratorTests Obj = new AdministratorTests();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void invoicesLb_Click(object sender, EventArgs e)
+        {
+            AdministratorInvoices Obj = new AdministratorInvoices();
+            Obj.Show();
+            this.Hide();
         }
     }
 }

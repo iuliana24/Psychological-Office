@@ -16,5 +16,31 @@ namespace Licenta
         {
             InitializeComponent();
         }
+
+        private void pacientsLb_Click(object sender, EventArgs e)
+        {
+            PsychologistPacients Obj = new PsychologistPacients();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void appointmentsLb_Click(object sender, EventArgs e)
+        {
+            PsychologistAppointments Obj = new PsychologistAppointments();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void testsLb_Click(object sender, EventArgs e)
+        {
+            PsychologistTests Obj = new PsychologistTests();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
