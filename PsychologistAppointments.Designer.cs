@@ -158,6 +158,7 @@
             logoutBtn.TabIndex = 32;
             logoutBtn.Text = "Logout";
             logoutBtn.TextAlign = ContentAlignment.TopCenter;
+            logoutBtn.Click += logoutBtn_Click;
             // 
             // invoicesLb
             // 
@@ -271,7 +272,7 @@
             // 
             closeBtn.BackColor = Color.Transparent;
             closeBtn.Image = (Image)resources.GetObject("closeBtn.Image");
-            closeBtn.Location = new Point(1238, 0);
+            closeBtn.Location = new Point(1239, 0);
             closeBtn.Name = "closeBtn";
             closeBtn.Size = new Size(42, 42);
             closeBtn.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -293,7 +294,9 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 3, 4, 3);
             Name = "PsychologistAppointments";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "PsychologistAppointments";
+            Load += PsychologistAppointments_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();

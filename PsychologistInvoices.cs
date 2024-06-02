@@ -42,5 +42,12 @@ namespace Licenta
         {
             Application.Exit();
         }
+
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            Login Obj = new Login();
+            Obj.Show();
+            this.Hide();
+        }
     }
 }

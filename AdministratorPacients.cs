@@ -21,8 +21,8 @@ namespace Licenta
             displayPacients();
         }
 
-
-        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-C78TFJK\SQLEXPRESS02;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        //SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
         private void AdministratorPacients_Load(object sender, EventArgs e)
         {
             pacientsView.Columns[0].Width = 40;
@@ -237,6 +237,13 @@ namespace Licenta
         private void invoicesLb_Click(object sender, EventArgs e)
         {
             AdministratorInvoices Obj = new AdministratorInvoices();
+            Obj.Show();
+            this.Hide();
+        }
+
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            Login Obj = new Login();
             Obj.Show();
             this.Hide();
         }

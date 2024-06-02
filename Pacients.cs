@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Licenta
 {
-    public partial class Clients : Form
+    public partial class Pacients : Form
     {
-        public Clients()
+        public Pacients()
         {
             InitializeComponent();
         }
@@ -20,6 +20,18 @@ namespace Licenta
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            Login Obj = new Login();
+            Obj.Show();
+            this.Hide();
         }
     }
 }

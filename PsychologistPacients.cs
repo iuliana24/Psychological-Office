@@ -40,7 +40,6 @@ namespace Licenta
 
         private void invoicesLb_Click(object sender, EventArgs e)
         {
-
             PsychologistInvoices Obj = new PsychologistInvoices();
             Obj.Show();
             this.Hide();
@@ -48,7 +47,14 @@ namespace Licenta
 
         private void closeBtn_Click(object sender, EventArgs e)
         {
-            Application.Exit(); 
+            Application.Exit();
+        }
+
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            Login Obj = new Login();
+            Obj.Show();
+            this.Hide();
         }
     }
 }

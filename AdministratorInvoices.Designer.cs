@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministratorInvoices));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pictureBox5 = new PictureBox();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
@@ -43,6 +45,21 @@
             appointmentsLb = new Label();
             pacientsLb = new Label();
             closeBtn = new PictureBox();
+            firstname = new TextBox();
+            label7 = new Label();
+            lastname = new TextBox();
+            label6 = new Label();
+            amount = new TextBox();
+            label2 = new Label();
+            invoicesView = new DataGridView();
+            date = new DateTimePicker();
+            label9 = new Label();
+            label3 = new Label();
+            consultype = new ComboBox();
+            delBtn = new Button();
+            editBtn = new Button();
+            addBtn = new Button();
+            invoicegenBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -51,6 +68,7 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)invoicesView).BeginInit();
             SuspendLayout();
             // 
             // pictureBox5
@@ -187,6 +205,7 @@
             logoutBtn.TabIndex = 15;
             logoutBtn.Text = "Logout";
             logoutBtn.TextAlign = ContentAlignment.TopCenter;
+            logoutBtn.Click += logoutBtn_Click;
             // 
             // appointmentsLb
             // 
@@ -226,12 +245,216 @@
             closeBtn.TabStop = false;
             closeBtn.Click += closeBtn_Click;
             // 
+            // firstname
+            // 
+            firstname.Location = new Point(361, 257);
+            firstname.Name = "firstname";
+            firstname.Size = new Size(250, 30);
+            firstname.TabIndex = 45;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.White;
+            label7.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.Teal;
+            label7.Location = new Point(361, 217);
+            label7.Name = "label7";
+            label7.Size = new Size(163, 25);
+            label7.TabIndex = 44;
+            label7.Text = "Prenume client";
+            label7.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // lastname
+            // 
+            lastname.Location = new Point(361, 159);
+            lastname.Name = "lastname";
+            lastname.Size = new Size(250, 30);
+            lastname.TabIndex = 43;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.White;
+            label6.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Teal;
+            label6.Location = new Point(361, 117);
+            label6.Name = "label6";
+            label6.Size = new Size(131, 25);
+            label6.TabIndex = 42;
+            label6.Text = "Nume client";
+            label6.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // amount
+            // 
+            amount.Location = new Point(978, 159);
+            amount.Name = "amount";
+            amount.Size = new Size(250, 30);
+            amount.TabIndex = 47;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.White;
+            label2.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Teal;
+            label2.Location = new Point(978, 119);
+            label2.Name = "label2";
+            label2.Size = new Size(62, 25);
+            label2.TabIndex = 46;
+            label2.Text = "Total";
+            label2.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // invoicesView
+            // 
+            invoicesView.AllowUserToOrderColumns = true;
+            invoicesView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumAquamarine;
+            invoicesView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            invoicesView.BackgroundColor = Color.FromArgb(241, 251, 247);
+            invoicesView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            invoicesView.DefaultCellStyle = dataGridViewCellStyle2;
+            invoicesView.Location = new Point(456, 375);
+            invoicesView.Name = "invoicesView";
+            invoicesView.RowHeadersVisible = false;
+            invoicesView.RowHeadersWidth = 20;
+            invoicesView.Size = new Size(666, 298);
+            invoicesView.TabIndex = 48;
+            invoicesView.CellClick += invoicesView_CellClick;
+            // 
+            // date
+            // 
+            date.Format = DateTimePickerFormat.Short;
+            date.Location = new Point(670, 257);
+            date.Name = "date";
+            date.Size = new Size(250, 30);
+            date.TabIndex = 53;
+            date.Value = new DateTime(2024, 5, 8, 0, 0, 0, 0);
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.BackColor = Color.White;
+            label9.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.ForeColor = Color.Teal;
+            label9.Location = new Point(670, 217);
+            label9.Name = "label9";
+            label9.Size = new Size(61, 25);
+            label9.TabIndex = 52;
+            label9.Text = "Data";
+            label9.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.White;
+            label3.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Teal;
+            label3.Location = new Point(670, 117);
+            label3.Name = "label3";
+            label3.Size = new Size(122, 25);
+            label3.TabIndex = 54;
+            label3.Text = "Tip consult";
+            label3.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // consultype
+            // 
+            consultype.FormattingEnabled = true;
+            consultype.Items.AddRange(new object[] { "Consult psihologic individual", "Psihoterapie", "Consiliere psihologică", "Evaluare psihologică" });
+            consultype.Location = new Point(670, 159);
+            consultype.Name = "consultype";
+            consultype.Size = new Size(250, 30);
+            consultype.TabIndex = 56;
+            // 
+            // delBtn
+            // 
+            delBtn.AutoEllipsis = true;
+            delBtn.BackColor = Color.CadetBlue;
+            delBtn.FlatStyle = FlatStyle.Flat;
+            delBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            delBtn.ForeColor = Color.White;
+            delBtn.Location = new Point(1047, 278);
+            delBtn.Name = "delBtn";
+            delBtn.Size = new Size(116, 49);
+            delBtn.TabIndex = 59;
+            delBtn.Text = "Șterge";
+            delBtn.UseVisualStyleBackColor = false;
+            delBtn.Click += delBtn_Click;
+            // 
+            // editBtn
+            // 
+            editBtn.AutoEllipsis = true;
+            editBtn.BackColor = Color.MediumAquamarine;
+            editBtn.FlatStyle = FlatStyle.Flat;
+            editBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            editBtn.ForeColor = Color.White;
+            editBtn.Location = new Point(1112, 221);
+            editBtn.Name = "editBtn";
+            editBtn.Size = new Size(116, 49);
+            editBtn.TabIndex = 58;
+            editBtn.Text = "Editează";
+            editBtn.UseVisualStyleBackColor = false;
+            editBtn.Click += editBtn_Click;
+            // 
+            // addBtn
+            // 
+            addBtn.AutoEllipsis = true;
+            addBtn.BackColor = Color.Teal;
+            addBtn.FlatStyle = FlatStyle.Flat;
+            addBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addBtn.ForeColor = Color.White;
+            addBtn.Location = new Point(978, 221);
+            addBtn.Name = "addBtn";
+            addBtn.Size = new Size(116, 49);
+            addBtn.TabIndex = 57;
+            addBtn.Text = "Adaugă";
+            addBtn.UseVisualStyleBackColor = false;
+            addBtn.Click += addBtn_Click;
+            // 
+            // invoicegenBtn
+            // 
+            invoicegenBtn.AutoEllipsis = true;
+            invoicegenBtn.BackColor = Color.DarkCyan;
+            invoicegenBtn.FlatStyle = FlatStyle.Flat;
+            invoicegenBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            invoicegenBtn.ForeColor = Color.White;
+            invoicegenBtn.Location = new Point(670, 305);
+            invoicegenBtn.Name = "invoicegenBtn";
+            invoicegenBtn.Size = new Size(250, 49);
+            invoicegenBtn.TabIndex = 60;
+            invoicegenBtn.Text = "Generează factură";
+            invoicegenBtn.UseVisualStyleBackColor = false;
+            invoicegenBtn.Click += invoicegenBtn_Click;
+            // 
             // AdministratorInvoices
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
+            Controls.Add(invoicegenBtn);
+            Controls.Add(delBtn);
+            Controls.Add(editBtn);
+            Controls.Add(addBtn);
+            Controls.Add(consultype);
+            Controls.Add(label3);
+            Controls.Add(date);
+            Controls.Add(label9);
+            Controls.Add(invoicesView);
+            Controls.Add(amount);
+            Controls.Add(label2);
+            Controls.Add(firstname);
+            Controls.Add(label7);
+            Controls.Add(lastname);
+            Controls.Add(label6);
             Controls.Add(closeBtn);
             Controls.Add(label1);
             Controls.Add(panel1);
@@ -239,7 +462,8 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 3, 4, 3);
             Name = "AdministratorInvoices";
-            Text = "AdministratorInvoices";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = " ";
             Load += AdministratorInvoices_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
@@ -250,6 +474,7 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)closeBtn).EndInit();
+            ((System.ComponentModel.ISupportInitialize)invoicesView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -269,5 +494,20 @@
         private Label testsLb;
         private Label appointmentsLb;
         private Label pacientsLb;
+        private TextBox firstname;
+        private Label label7;
+        private TextBox lastname;
+        private Label label6;
+        private TextBox amount;
+        private Label label2;
+        private DataGridView invoicesView;
+        private DateTimePicker date;
+        private Label label9;
+        private Label label3;
+        private ComboBox consultype;
+        private Button delBtn;
+        private Button editBtn;
+        private Button addBtn;
+        private Button invoicegenBtn;
     }
 }

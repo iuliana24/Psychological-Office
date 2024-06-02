@@ -97,7 +97,7 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             appointmentsView.DefaultCellStyle = dataGridViewCellStyle2;
-            appointmentsView.Location = new Point(515, 418);
+            appointmentsView.Location = new Point(517, 411);
             appointmentsView.Name = "appointmentsView";
             appointmentsView.RowHeadersVisible = false;
             appointmentsView.RowHeadersWidth = 20;
@@ -191,6 +191,7 @@
             logoutBtn.TabIndex = 15;
             logoutBtn.Text = "Logout";
             logoutBtn.TextAlign = ContentAlignment.TopCenter;
+            logoutBtn.Click += logoutBtn_Click;
             // 
             // invoicesLb
             // 
@@ -420,6 +421,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 3, 4, 3);
             Name = "AdministratorAppointments";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Appointments";
             Load += AdministratorAppointments_Load;
             ((System.ComponentModel.ISupportInitialize)appointmentsView).EndInit();

@@ -137,6 +137,7 @@
             logoutBtn.TabIndex = 13;
             logoutBtn.Text = "Logout";
             logoutBtn.TextAlign = ContentAlignment.TopCenter;
+            logoutBtn.Click += logoutBtn_Click;
             // 
             // appointmentsLb
             // 
@@ -386,7 +387,7 @@
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             testsView.DefaultCellStyle = dataGridViewCellStyle3;
-            testsView.Location = new Point(442, 415);
+            testsView.Location = new Point(445, 411);
             testsView.Name = "testsView";
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.Teal;
@@ -437,6 +438,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 3, 4, 3);
             Name = "AdministratorTests";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Tests";
             Load += AdministratorTests_Load;
             panel1.ResumeLayout(false);

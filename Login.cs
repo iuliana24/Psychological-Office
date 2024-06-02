@@ -24,7 +24,8 @@ namespace Licenta
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 50, 50));
         }
 
-        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-C78TFJK\SQLEXPRESS02;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        //SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
         private void reset_Click(object sender, EventArgs e)
         {
             role.SelectedIndex = -1;
@@ -33,7 +34,7 @@ namespace Licenta
 
         }
 
-        public static string Role;
+
         private void loginBtn_Click(object sender, EventArgs e)
         {
             if (role.SelectedIndex == -1)
@@ -110,7 +111,7 @@ namespace Licenta
                     sda.Fill(dt);
                     if (dt.Rows[0][0].ToString() == "1")
                     {
-                        Clients Obj = new Clients();
+                        Pacients Obj = new Pacients();
                         Obj.Show();
                         this.Hide();
                     }
@@ -125,9 +126,9 @@ namespace Licenta
             }
         }
 
-        private void Login_Load(object sender, EventArgs e)
+        private void closeBtn_Click(object sender, EventArgs e)
         {
-
+            Application.Exit();
         }
     }
 }

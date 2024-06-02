@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             panel1 = new Panel();
+            closeBtn = new PictureBox();
             pictureBox1 = new PictureBox();
             label1 = new Label();
             label2 = new Label();
@@ -40,18 +41,32 @@
             loginBtn = new Button();
             reset = new Label();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.Teal;
+            panel1.Controls.Add(closeBtn);
             panel1.Controls.Add(pictureBox1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(500, 130);
             panel1.TabIndex = 0;
+            // 
+            // closeBtn
+            // 
+            closeBtn.BackColor = Color.Transparent;
+            closeBtn.Image = (Image)resources.GetObject("closeBtn.Image");
+            closeBtn.Location = new Point(453, 12);
+            closeBtn.Name = "closeBtn";
+            closeBtn.Size = new Size(32, 32);
+            closeBtn.SizeMode = PictureBoxSizeMode.StretchImage;
+            closeBtn.TabIndex = 38;
+            closeBtn.TabStop = false;
+            closeBtn.Click += closeBtn_Click;
             // 
             // pictureBox1
             // 
@@ -120,6 +135,7 @@
             // 
             password.Location = new Point(129, 381);
             password.Name = "password";
+            password.PasswordChar = '*';
             password.Size = new Size(250, 30);
             password.TabIndex = 6;
             // 
@@ -172,8 +188,8 @@
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
-            Load += Login_Load;
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)closeBtn).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -191,5 +207,6 @@
         private TextBox password;
         private Button loginBtn;
         private Label reset;
+        private PictureBox closeBtn;
     }
 }

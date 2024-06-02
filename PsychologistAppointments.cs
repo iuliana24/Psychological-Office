@@ -44,5 +44,17 @@ namespace Licenta
         {
             Application.Exit();
         }
+
+        private void PsychologistAppointments_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            Login Obj = new Login();
+            Obj.Show();
+            this.Hide();
+        }
     }
 }

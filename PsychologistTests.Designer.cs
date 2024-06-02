@@ -223,6 +223,7 @@
             logoutBtn.TabIndex = 38;
             logoutBtn.Text = "Logout";
             logoutBtn.TextAlign = ContentAlignment.TopCenter;
+            logoutBtn.Click += logoutBtn_Click;
             // 
             // invoicesLb
             // 
@@ -301,6 +302,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 3, 4, 3);
             Name = "PsychologistTests";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "PsychologistTests";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();

@@ -211,6 +211,7 @@
             logoutBtn.TabIndex = 15;
             logoutBtn.Text = "Logout";
             logoutBtn.TextAlign = ContentAlignment.TopCenter;
+            logoutBtn.Click += logoutBtn_Click;
             // 
             // appointmentsLb
             // 
@@ -511,6 +512,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 3, 4, 3);
             Name = "AdministratorPacients";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "AdministratorPatients";
             Load += AdministratorPacients_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();

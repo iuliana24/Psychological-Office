@@ -104,6 +104,7 @@
             logoutBtn.TabIndex = 17;
             logoutBtn.Text = "Logout";
             logoutBtn.TextAlign = ContentAlignment.TopCenter;
+            logoutBtn.Click += logoutBtn_Click;
             // 
             // invoicesLb
             // 
@@ -313,6 +314,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 3, 4, 3);
             Name = "PsychologistPacients";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Patients";
             Load += Patients_Load;
             panel1.ResumeLayout(false);
