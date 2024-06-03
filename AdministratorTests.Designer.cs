@@ -399,7 +399,7 @@
             testsView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             testsView.RowHeadersVisible = false;
             testsView.RowHeadersWidth = 100;
-            testsView.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            testsView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             testsView.Size = new Size(670, 262);
             testsView.TabIndex = 41;
             testsView.CellClick += testsView_CellClick;

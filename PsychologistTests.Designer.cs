@@ -30,13 +30,10 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PsychologistTests));
-            dataGridView1 = new DataGridView();
-            Nume_Pacient = new DataGridViewTextBoxColumn();
-            Prenume_Pacient = new DataGridViewTextBoxColumn();
-            Denumire_test = new DataGridViewTextBoxColumn();
-            Descriere = new DataGridViewTextBoxColumn();
-            Rezultat = new DataGridViewTextBoxColumn();
+            testsView = new DataGridView();
             pictureBox5 = new PictureBox();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
@@ -51,7 +48,7 @@
             appointmentsLb = new Label();
             pacientsLb = new Label();
             closeBtn = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)testsView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -62,57 +59,47 @@
             ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // testsView
             // 
-            dataGridView1.BackgroundColor = Color.FromArgb(241, 251, 247);
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Nume_Pacient, Prenume_Pacient, Denumire_test, Descriere, Rezultat });
-            dataGridView1.Location = new Point(323, 166);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 50;
-            dataGridView1.Size = new Size(927, 417);
-            dataGridView1.TabIndex = 7;
-            // 
-            // Nume_Pacient
-            // 
-            Nume_Pacient.HeaderText = "Nume pacient";
-            Nume_Pacient.MinimumWidth = 6;
-            Nume_Pacient.Name = "Nume_Pacient";
-            Nume_Pacient.Width = 175;
-            // 
-            // Prenume_Pacient
-            // 
-            Prenume_Pacient.HeaderText = "Prenume pacient";
-            Prenume_Pacient.MinimumWidth = 6;
-            Prenume_Pacient.Name = "Prenume_Pacient";
-            Prenume_Pacient.Width = 175;
-            // 
-            // Denumire_test
-            // 
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            Denumire_test.DefaultCellStyle = dataGridViewCellStyle1;
-            Denumire_test.HeaderText = "Denumire test";
-            Denumire_test.MinimumWidth = 6;
-            Denumire_test.Name = "Denumire_test";
-            Denumire_test.Width = 175;
-            // 
-            // Descriere
-            // 
-            dataGridViewCellStyle2.Format = "t";
-            dataGridViewCellStyle2.NullValue = null;
-            Descriere.DefaultCellStyle = dataGridViewCellStyle2;
-            Descriere.HeaderText = "Descriere";
-            Descriere.MinimumWidth = 6;
-            Descriere.Name = "Descriere";
-            Descriere.Width = 175;
-            // 
-            // Rezultat
-            // 
-            Rezultat.HeaderText = "Rezultat";
-            Rezultat.MinimumWidth = 6;
-            Rezultat.Name = "Rezultat";
-            Rezultat.Width = 175;
+            testsView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumAquamarine;
+            testsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            testsView.BackgroundColor = Color.FromArgb(241, 251, 247);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Teal;
+            dataGridViewCellStyle2.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            testsView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            testsView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            testsView.DefaultCellStyle = dataGridViewCellStyle3;
+            testsView.Location = new Point(322, 192);
+            testsView.Name = "testsView";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.Teal;
+            dataGridViewCellStyle4.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            testsView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            testsView.RowHeadersVisible = false;
+            testsView.RowHeadersWidth = 50;
+            testsView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            testsView.Size = new Size(927, 417);
+            testsView.TabIndex = 7;
             // 
             // pictureBox5
             // 
@@ -297,14 +284,15 @@
             Controls.Add(closeBtn);
             Controls.Add(label1);
             Controls.Add(panel1);
-            Controls.Add(dataGridView1);
+            Controls.Add(testsView);
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 3, 4, 3);
             Name = "PsychologistTests";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "PsychologistTests";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += PsychologistTests_Load;
+            ((System.ComponentModel.ISupportInitialize)testsView).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -320,7 +308,7 @@
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView testsView;
         private PictureBox pictureBox5;
         private PictureBox pictureBox4;
         private PictureBox pictureBox3;
@@ -328,11 +316,6 @@
         private Label label1;
         private PictureBox pictureBox1;
         private Panel panel1;
-        private DataGridViewTextBoxColumn Nume_Pacient;
-        private DataGridViewTextBoxColumn Prenume_Pacient;
-        private DataGridViewTextBoxColumn Denumire_test;
-        private DataGridViewTextBoxColumn Descriere;
-        private DataGridViewTextBoxColumn Rezultat;
         private Label invoicesLb;
         private Label testsLb;
         private Label appointmentsLb;

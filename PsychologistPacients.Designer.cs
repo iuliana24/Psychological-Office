@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PsychologistPacients));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
             pictureBox6 = new PictureBox();
             logoutBtn = new Label();
@@ -41,16 +45,24 @@
             pacientsLb = new Label();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
-            dataGridView1 = new DataGridView();
-            Nume = new DataGridViewTextBoxColumn();
-            Prenume = new DataGridViewTextBoxColumn();
-            Varsta = new DataGridViewTextBoxColumn();
-            Gen = new DataGridViewComboBoxColumn();
-            Telefon = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
-            Diagnostic = new DataGridViewTextBoxColumn();
             label1 = new Label();
             closeBtn = new PictureBox();
+            gender = new ComboBox();
+            editBtn = new Button();
+            pacientsView = new DataGridView();
+            diagnosis = new RichTextBox();
+            label12 = new Label();
+            age = new TextBox();
+            label9 = new Label();
+            mail = new TextBox();
+            label10 = new Label();
+            phone = new TextBox();
+            label11 = new Label();
+            label8 = new Label();
+            firstname = new TextBox();
+            label7 = new Label();
+            lastname = new TextBox();
+            label6 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
@@ -58,8 +70,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pacientsView).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -212,70 +224,6 @@
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
-            // dataGridView1
-            // 
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.BackgroundColor = Color.FromArgb(241, 251, 247);
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Nume, Prenume, Varsta, Gen, Telefon, Email, Diagnostic });
-            dataGridView1.Location = new Point(324, 134);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(927, 515);
-            dataGridView1.TabIndex = 10;
-            // 
-            // Nume
-            // 
-            Nume.HeaderText = "Nume";
-            Nume.MinimumWidth = 6;
-            Nume.Name = "Nume";
-            Nume.Width = 125;
-            // 
-            // Prenume
-            // 
-            Prenume.HeaderText = "Prenume";
-            Prenume.MinimumWidth = 6;
-            Prenume.Name = "Prenume";
-            Prenume.Width = 125;
-            // 
-            // Varsta
-            // 
-            Varsta.HeaderText = "Vârsta";
-            Varsta.MinimumWidth = 6;
-            Varsta.Name = "Varsta";
-            Varsta.Width = 125;
-            // 
-            // Gen
-            // 
-            Gen.HeaderText = "Gen";
-            Gen.Items.AddRange(new object[] { "Masculin", "Feminin" });
-            Gen.MinimumWidth = 6;
-            Gen.Name = "Gen";
-            Gen.Resizable = DataGridViewTriState.True;
-            Gen.SortMode = DataGridViewColumnSortMode.Automatic;
-            Gen.Width = 125;
-            // 
-            // Telefon
-            // 
-            Telefon.HeaderText = "Telefon";
-            Telefon.MinimumWidth = 6;
-            Telefon.Name = "Telefon";
-            Telefon.Width = 125;
-            // 
-            // Email
-            // 
-            Email.HeaderText = "Email";
-            Email.MinimumWidth = 6;
-            Email.Name = "Email";
-            Email.Width = 125;
-            // 
-            // Diagnostic
-            // 
-            Diagnostic.HeaderText = "Diagnostic";
-            Diagnostic.MinimumWidth = 6;
-            Diagnostic.Name = "Diagnostic";
-            Diagnostic.Width = 125;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -300,15 +248,231 @@
             closeBtn.TabStop = false;
             closeBtn.Click += closeBtn_Click;
             // 
+            // gender
+            // 
+            gender.FormattingEnabled = true;
+            gender.Items.AddRange(new object[] { "Feminin ", "Masculin" });
+            gender.Location = new Point(661, 165);
+            gender.Name = "gender";
+            gender.Size = new Size(250, 30);
+            gender.TabIndex = 58;
+            // 
+            // editBtn
+            // 
+            editBtn.AutoEllipsis = true;
+            editBtn.BackColor = Color.MediumAquamarine;
+            editBtn.FlatStyle = FlatStyle.Flat;
+            editBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            editBtn.ForeColor = Color.White;
+            editBtn.Location = new Point(1068, 321);
+            editBtn.Name = "editBtn";
+            editBtn.Size = new Size(116, 49);
+            editBtn.TabIndex = 56;
+            editBtn.Text = "Editează";
+            editBtn.UseVisualStyleBackColor = false;
+            editBtn.Click += editBtn_Click;
+            // 
+            // pacientsView
+            // 
+            pacientsView.AllowUserToOrderColumns = true;
+            pacientsView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumAquamarine;
+            pacientsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            pacientsView.BackgroundColor = Color.FromArgb(241, 251, 247);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.Teal;
+            dataGridViewCellStyle2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Turquoise;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            pacientsView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            pacientsView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            pacientsView.DefaultCellStyle = dataGridViewCellStyle3;
+            pacientsView.Location = new Point(320, 434);
+            pacientsView.Name = "pacientsView";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            pacientsView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            pacientsView.RowHeadersVisible = false;
+            pacientsView.RowHeadersWidth = 51;
+            pacientsView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            pacientsView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            pacientsView.Size = new Size(928, 255);
+            pacientsView.TabIndex = 55;
+            pacientsView.CellClick += pacientsView_CellClick;
+            // 
+            // diagnosis
+            // 
+            diagnosis.Location = new Point(998, 165);
+            diagnosis.Name = "diagnosis";
+            diagnosis.Size = new Size(250, 128);
+            diagnosis.TabIndex = 53;
+            diagnosis.Text = "";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.BackColor = Color.White;
+            label12.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label12.ForeColor = Color.Teal;
+            label12.Location = new Point(998, 125);
+            label12.Name = "label12";
+            label12.Size = new Size(116, 25);
+            label12.TabIndex = 52;
+            label12.Text = "Diagnostic";
+            label12.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // age
+            // 
+            age.Location = new Point(321, 361);
+            age.Name = "age";
+            age.Size = new Size(250, 30);
+            age.TabIndex = 51;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.BackColor = Color.White;
+            label9.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.ForeColor = Color.Teal;
+            label9.Location = new Point(320, 321);
+            label9.Name = "label9";
+            label9.Size = new Size(79, 25);
+            label9.TabIndex = 50;
+            label9.Text = "Vârsta";
+            label9.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // mail
+            // 
+            mail.Location = new Point(661, 361);
+            mail.Name = "mail";
+            mail.Size = new Size(250, 30);
+            mail.TabIndex = 49;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = Color.White;
+            label10.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.ForeColor = Color.Teal;
+            label10.Location = new Point(661, 321);
+            label10.Name = "label10";
+            label10.Size = new Size(68, 25);
+            label10.TabIndex = 48;
+            label10.Text = "Email";
+            label10.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // phone
+            // 
+            phone.Location = new Point(661, 263);
+            phone.Name = "phone";
+            phone.Size = new Size(250, 30);
+            phone.TabIndex = 47;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.BackColor = Color.White;
+            label11.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.ForeColor = Color.Teal;
+            label11.Location = new Point(661, 221);
+            label11.Name = "label11";
+            label11.Size = new Size(85, 25);
+            label11.TabIndex = 46;
+            label11.Text = "Telefon";
+            label11.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = Color.White;
+            label8.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Teal;
+            label8.Location = new Point(661, 125);
+            label8.Name = "label8";
+            label8.Size = new Size(54, 25);
+            label8.TabIndex = 45;
+            label8.Text = "Gen";
+            label8.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // firstname
+            // 
+            firstname.Location = new Point(320, 263);
+            firstname.Name = "firstname";
+            firstname.Size = new Size(250, 30);
+            firstname.TabIndex = 44;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.White;
+            label7.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.Teal;
+            label7.Location = new Point(320, 223);
+            label7.Name = "label7";
+            label7.Size = new Size(104, 25);
+            label7.TabIndex = 43;
+            label7.Text = "Prenume";
+            label7.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // lastname
+            // 
+            lastname.Location = new Point(320, 165);
+            lastname.Name = "lastname";
+            lastname.Size = new Size(250, 30);
+            lastname.TabIndex = 42;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.White;
+            label6.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Teal;
+            label6.Location = new Point(320, 123);
+            label6.Name = "label6";
+            label6.Size = new Size(72, 25);
+            label6.TabIndex = 41;
+            label6.Text = "Nume";
+            label6.TextAlign = ContentAlignment.TopCenter;
+            // 
             // PsychologistPacients
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
+            Controls.Add(gender);
+            Controls.Add(editBtn);
+            Controls.Add(pacientsView);
+            Controls.Add(diagnosis);
+            Controls.Add(label12);
+            Controls.Add(age);
+            Controls.Add(label9);
+            Controls.Add(mail);
+            Controls.Add(label10);
+            Controls.Add(phone);
+            Controls.Add(label11);
+            Controls.Add(label8);
+            Controls.Add(firstname);
+            Controls.Add(label7);
+            Controls.Add(lastname);
+            Controls.Add(label6);
             Controls.Add(closeBtn);
             Controls.Add(label1);
-            Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.None;
@@ -325,8 +489,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)closeBtn).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pacientsView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -339,15 +503,7 @@
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
-        private DataGridView dataGridView1;
         private Label label1;
-        private DataGridViewTextBoxColumn Nume;
-        private DataGridViewTextBoxColumn Prenume;
-        private DataGridViewTextBoxColumn Varsta;
-        private DataGridViewComboBoxColumn Gen;
-        private DataGridViewTextBoxColumn Telefon;
-        private DataGridViewTextBoxColumn Email;
-        private DataGridViewTextBoxColumn Diagnostic;
         private Label invoicesLb;
         private Label testsLb;
         private Label appointmentsLb;
@@ -355,5 +511,21 @@
         private PictureBox pictureBox6;
         private Label logoutBtn;
         private PictureBox closeBtn;
+        private ComboBox gender;
+        private Button editBtn;
+        private DataGridView pacientsView;
+        private RichTextBox diagnosis;
+        private Label label12;
+        private TextBox age;
+        private Label label9;
+        private TextBox mail;
+        private Label label10;
+        private TextBox phone;
+        private Label label11;
+        private Label label8;
+        private TextBox firstname;
+        private Label label7;
+        private TextBox lastname;
+        private Label label6;
     }
 }

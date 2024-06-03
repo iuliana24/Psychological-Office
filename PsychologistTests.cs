@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,8 +16,22 @@ namespace Licenta
         public PsychologistTests()
         {
             InitializeComponent();
+            displayTests();
         }
 
+        //SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-C78TFJK\SQLEXPRESS02;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        private void displayTests()
+        {
+            Con.Open();
+            string query = "SELECT t.testID as Id, t.name as Denumire, t.description as Descriere, tr.date as Data, tr.time as Ora, tr.score as Rezultat FROM test t join test_result tr on t.testID = tr.testID;";
+            SqlDataAdapter sda = new SqlDataAdapter(query, Con);
+            SqlCommandBuilder builder = new SqlCommandBuilder(sda);
+            var ds = new DataSet();
+            sda.Fill(ds);
+            testsView.DataSource = ds.Tables[0];
+            Con.Close();
+        }
         private void pacientsLb_Click(object sender, EventArgs e)
         {
 
@@ -50,6 +65,16 @@ namespace Licenta
             Login Obj = new Login();
             Obj.Show();
             this.Hide();
+        }
+
+        private void PsychologistTests_Load(object sender, EventArgs e)
+        {
+            testsView.Columns[0].Width = 40;
+            testsView.Columns[1].Width = 180;
+            testsView.Columns[2].Width = 180;
+            testsView.Columns[3].Width = 180;
+            testsView.Columns[4].Width = 180;
+            testsView.Columns[5].Width = 180;
         }
     }
 }

@@ -43,13 +43,9 @@
             testsLb = new Label();
             appointmentsLb = new Label();
             pacientsLb = new Label();
-            Prenume_Pacient = new DataGridViewTextBoxColumn();
-            Nume_Pacient = new DataGridViewTextBoxColumn();
-            Ora = new DataGridViewTextBoxColumn();
-            Data = new DataGridViewTextBoxColumn();
-            dataGridView1 = new DataGridView();
             label1 = new Label();
             closeBtn = new PictureBox();
+            appointmentsView = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -57,8 +53,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)appointmentsView).BeginInit();
             SuspendLayout();
             // 
             // pictureBox5
@@ -211,51 +207,6 @@
             pacientsLb.TextAlign = ContentAlignment.TopCenter;
             pacientsLb.Click += pacientsLb_Click;
             // 
-            // Prenume_Pacient
-            // 
-            Prenume_Pacient.HeaderText = "Prenume pacient";
-            Prenume_Pacient.MinimumWidth = 6;
-            Prenume_Pacient.Name = "Prenume_Pacient";
-            Prenume_Pacient.Width = 200;
-            // 
-            // Nume_Pacient
-            // 
-            Nume_Pacient.HeaderText = "Nume pacient";
-            Nume_Pacient.MinimumWidth = 6;
-            Nume_Pacient.Name = "Nume_Pacient";
-            Nume_Pacient.Width = 200;
-            // 
-            // Ora
-            // 
-            dataGridViewCellStyle1.Format = "t";
-            dataGridViewCellStyle1.NullValue = null;
-            Ora.DefaultCellStyle = dataGridViewCellStyle1;
-            Ora.HeaderText = "Ora";
-            Ora.MinimumWidth = 6;
-            Ora.Name = "Ora";
-            Ora.Width = 200;
-            // 
-            // Data
-            // 
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            Data.DefaultCellStyle = dataGridViewCellStyle2;
-            Data.HeaderText = "Data";
-            Data.MinimumWidth = 6;
-            Data.Name = "Data";
-            Data.Width = 200;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.BackgroundColor = Color.FromArgb(241, 251, 247);
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Data, Ora, Nume_Pacient, Prenume_Pacient });
-            dataGridView1.Location = new Point(363, 137);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 50;
-            dataGridView1.Size = new Size(851, 516);
-            dataGridView1.TabIndex = 21;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -280,15 +231,40 @@
             closeBtn.TabStop = false;
             closeBtn.Click += closeBtn_Click;
             // 
+            // appointmentsView
+            // 
+            appointmentsView.AllowUserToOrderColumns = true;
+            appointmentsView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumAquamarine;
+            appointmentsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            appointmentsView.BackgroundColor = Color.FromArgb(241, 251, 247);
+            appointmentsView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            appointmentsView.DefaultCellStyle = dataGridViewCellStyle2;
+            appointmentsView.Location = new Point(518, 186);
+            appointmentsView.Name = "appointmentsView";
+            appointmentsView.RowHeadersVisible = false;
+            appointmentsView.RowHeadersWidth = 20;
+            appointmentsView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            appointmentsView.Size = new Size(540, 374);
+            appointmentsView.TabIndex = 38;
+            // 
             // PsychologistAppointments
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
+            Controls.Add(appointmentsView);
             Controls.Add(closeBtn);
             Controls.Add(panel1);
-            Controls.Add(dataGridView1);
             Controls.Add(label1);
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.None;
@@ -305,8 +281,8 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)closeBtn).EndInit();
+            ((System.ComponentModel.ISupportInitialize)appointmentsView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -318,11 +294,6 @@
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private Panel panel1;
-        private DataGridViewTextBoxColumn Prenume_Pacient;
-        private DataGridViewTextBoxColumn Nume_Pacient;
-        private DataGridViewTextBoxColumn Ora;
-        private DataGridViewTextBoxColumn Data;
-        private DataGridView dataGridView1;
         private Label label1;
         private Label invoicesLb;
         private Label testsLb;
@@ -331,5 +302,6 @@
         private PictureBox pictureBox6;
         private Label logoutBtn;
         private PictureBox closeBtn;
+        private DataGridView appointmentsView;
     }
 }

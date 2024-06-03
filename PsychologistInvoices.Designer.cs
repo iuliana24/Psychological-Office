@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PsychologistInvoices));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pictureBox5 = new PictureBox();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
@@ -43,6 +45,8 @@
             appointmentsLb = new Label();
             pacientsLb = new Label();
             closeBtn = new PictureBox();
+            invoicesView = new DataGridView();
+            invoicegenBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -51,6 +55,7 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)invoicesView).BeginInit();
             SuspendLayout();
             // 
             // pictureBox5
@@ -227,12 +232,55 @@
             closeBtn.TabStop = false;
             closeBtn.Click += closeBtn_Click;
             // 
+            // invoicesView
+            // 
+            invoicesView.AllowUserToOrderColumns = true;
+            invoicesView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumAquamarine;
+            invoicesView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            invoicesView.BackgroundColor = Color.FromArgb(241, 251, 247);
+            invoicesView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            invoicesView.DefaultCellStyle = dataGridViewCellStyle2;
+            invoicesView.Location = new Point(452, 192);
+            invoicesView.Name = "invoicesView";
+            invoicesView.RowHeadersVisible = false;
+            invoicesView.RowHeadersWidth = 20;
+            invoicesView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            invoicesView.Size = new Size(666, 298);
+            invoicesView.TabIndex = 49;
+            invoicesView.CellClick += invoicesView_CellClick;
+            // 
+            // invoicegenBtn
+            // 
+            invoicegenBtn.AutoEllipsis = true;
+            invoicegenBtn.BackColor = Color.DarkCyan;
+            invoicegenBtn.FlatStyle = FlatStyle.Flat;
+            invoicegenBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            invoicegenBtn.ForeColor = Color.White;
+            invoicegenBtn.Location = new Point(666, 514);
+            invoicegenBtn.Name = "invoicegenBtn";
+            invoicegenBtn.Size = new Size(250, 49);
+            invoicegenBtn.TabIndex = 61;
+            invoicegenBtn.Text = "Generează factură";
+            invoicegenBtn.UseVisualStyleBackColor = false;
+            invoicegenBtn.Click += invoicegenBtn_Click;
+            // 
             // PsychologistInvoices
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
+            Controls.Add(invoicegenBtn);
+            Controls.Add(invoicesView);
             Controls.Add(closeBtn);
             Controls.Add(label1);
             Controls.Add(panel1);
@@ -242,6 +290,7 @@
             Name = "PsychologistInvoices";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "PsychologistInvoices";
+            Load += PsychologistInvoices_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -251,6 +300,7 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)closeBtn).EndInit();
+            ((System.ComponentModel.ISupportInitialize)invoicesView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -270,5 +320,7 @@
         private PictureBox closeBtn;
         private PictureBox pictureBox6;
         private Label logoutBtn;
+        private DataGridView invoicesView;
+        private Button invoicegenBtn;
     }
 }

@@ -326,6 +326,7 @@
             invoicesView.Name = "invoicesView";
             invoicesView.RowHeadersVisible = false;
             invoicesView.RowHeadersWidth = 20;
+            invoicesView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             invoicesView.Size = new Size(666, 298);
             invoicesView.TabIndex = 48;
             invoicesView.CellClick += invoicesView_CellClick;

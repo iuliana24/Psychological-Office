@@ -101,6 +101,7 @@
             appointmentsView.Name = "appointmentsView";
             appointmentsView.RowHeadersVisible = false;
             appointmentsView.RowHeadersWidth = 20;
+            appointmentsView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             appointmentsView.Size = new Size(540, 262);
             appointmentsView.TabIndex = 6;
             appointmentsView.CellClick += appointmentsView_CellClick;
