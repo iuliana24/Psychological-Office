@@ -97,10 +97,10 @@
             pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(567, 3);
+            pictureBox1.Location = new Point(567, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(146, 130);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.Size = new Size(140, 140);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
             // 
@@ -109,13 +109,12 @@
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Teal;
-            label1.Location = new Point(43, 167);
+            label1.Location = new Point(67, 167);
             label1.Name = "label1";
             label1.Size = new Size(213, 32);
             label1.TabIndex = 3;
             label1.Text = "Teste psihologice";
             label1.TextAlign = ContentAlignment.TopCenter;
-            label1.Click += label1_Click;
             // 
             // Pacients
             // 

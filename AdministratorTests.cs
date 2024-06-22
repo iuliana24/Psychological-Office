@@ -16,6 +16,7 @@ namespace Licenta
 {
     public partial class AdministratorTests : Form
     {
+        int testID;
         public AdministratorTests()
         {
             InitializeComponent();
@@ -24,10 +25,12 @@ namespace Licenta
 
         //SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
         SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-C78TFJK\SQLEXPRESS02;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+
+
         private void displayTests()
         {
             Con.Open();
-            string query = "SELECT testID as Id, name as Denumire, description as Descriere, filePath as CaleFișier FROM test;";
+            string query = "SELECT testID as Id, name as Denumire, description as Descriere FROM test;";
             SqlDataAdapter sda = new SqlDataAdapter(query, Con);
             SqlCommandBuilder builder = new SqlCommandBuilder(sda);
             var ds = new DataSet();
@@ -36,50 +39,72 @@ namespace Licenta
             Con.Close();
         }
 
-        private string selectedFilePath = "";
-        private void fileBtn_Click(object sender, EventArgs e)
+        private void uploadImgBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Fișiere text (*.txt)|*.txt|Toate fișierele (*.*)|*.*";
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                string selectedImagePath = openFileDialog.FileName;
+                imgPath.Text = selectedImagePath;
 
-                selectedFilePath = openFileDialog.FileName;
-                filename.Text = Path.GetFileName(selectedFilePath);
-            }
-            else
-            {
-
-                MessageBox.Show("Selectarea fișierului a fost anulată.");
-                selectedFilePath = "";
+            
             }
         }
 
-
         private void addBtn_Click(object sender, EventArgs e)
         {
-
-            if (name.Text == "" || description.Text == "" || selectedFilePath == "")
+            if (name.Text == "" || description.Text == "")
             {
-                MessageBox.Show("Lipsesc informații sau fișierul nu este încărcat!");
+                MessageBox.Show("Lipsesc informații!");
             }
             else
             {
+                string imagePath = imgPath.Text;
                 try
                 {
 
-
                     Con.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO test(name, description, filePath) VALUES (@name, @description, @filePath)", Con);
+
+                    SqlCommand checkCmd = new SqlCommand("SELECT COUNT(*) FROM test WHERE CAST(name AS NVARCHAR(MAX)) = @name AND CAST(description AS NVARCHAR(MAX)) = @description", Con);
+                    checkCmd.Parameters.AddWithValue("@name", name.Text);
+                    checkCmd.Parameters.AddWithValue("@description", description.Text);
+                    int count = (int)checkCmd.ExecuteScalar();
+
+                    if (count > 0)
+                    {
+                        MessageBox.Show("Un test cu același nume și descriere există deja.");
+                        Con.Close();
+                        return;
+                    }
+
+
+                    SqlCommand cmd = new SqlCommand("INSERT INTO test(name, description, imagePath) VALUES (@name, @description, @imagePath); SELECT SCOPE_IDENTITY()", Con);
                     cmd.Parameters.AddWithValue("@name", name.Text);
                     cmd.Parameters.AddWithValue("@description", description.Text);
-                    cmd.Parameters.AddWithValue("@filePath", selectedFilePath);
-                    cmd.ExecuteNonQuery();
-                    Con.Close();
-                    MessageBox.Show("Test adăugat.");
-                    displayTests();
+                    cmd.Parameters.AddWithValue("@imagePath", imagePath);
 
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        testID = Convert.ToInt32(result);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nu s-a putut obține testID valid.");
+                        return;
+                    }
+
+                    TestQuestions addQuestions = new TestQuestions(testID, false);
+                    this.Hide();
+                    addQuestions.Show();
+
+
+                    Con.Close();
                     Clear();
+                    MessageBox.Show("Test adăugat.");
+
                 }
                 catch (Exception Ex)
                 {
@@ -88,28 +113,34 @@ namespace Licenta
 
             }
 
-
         }
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            if (name.Text == "" || description.Text == "" || filename.Text == "")
+            if (name.Text == "" || description.Text == "")
             {
-                MessageBox.Show("Lipsesc informații sau fișierul nu este încărcat!");
+                MessageBox.Show("Lipsesc informații!");
             }
             else
             {
+                string imagePath = imgPath.Text;
                 try
                 {
                     Con.Open();
-                    SqlCommand cmd = new SqlCommand("update test set name=@name, description=@description, filePath=@filePath  where testID=@Key", Con);
+                    SqlCommand cmd = new SqlCommand("update test set name=@name, description=@description, imagePath=@imagePath where testID=@Key", Con);
                     cmd.Parameters.AddWithValue("@name", name.Text);
                     cmd.Parameters.AddWithValue("@description", description.Text);
-                    cmd.Parameters.AddWithValue("@filePath", filename.Text);
+                    cmd.Parameters.AddWithValue("@imagePath", imagePath);
                     cmd.Parameters.AddWithValue("@Key", Key);
                     cmd.ExecuteNonQuery();
                     Con.Close();
-                    MessageBox.Show("Test actualizat.");
+
+
+                    TestQuestions testQuestionsForm = new TestQuestions(Key, true);
+                    this.Hide();
+                    testQuestionsForm.LoadTestQuestions(Key);
+                    testQuestionsForm.ShowDialog();
+
                     displayTests();
                     Clear();
 
@@ -132,15 +163,26 @@ namespace Licenta
                 try
                 {
                     Con.Open();
-                    SqlCommand cmd = new SqlCommand("delete from test where testID=@Key", Con);
 
-                    cmd.Parameters.AddWithValue("@Key", Key);
-                    cmd.ExecuteNonQuery();
+
+                    SqlCommand deleteOptionsCmd = new SqlCommand("DELETE FROM [option] WHERE questionID IN (SELECT questionID FROM test_question WHERE testID=@Key)", Con);
+                    deleteOptionsCmd.Parameters.AddWithValue("@Key", Key);
+                    deleteOptionsCmd.ExecuteNonQuery();
+
+
+                    SqlCommand deleteQuestionsCmd = new SqlCommand("DELETE FROM test_question WHERE testID=@Key", Con);
+                    deleteQuestionsCmd.Parameters.AddWithValue("@Key", Key);
+                    deleteQuestionsCmd.ExecuteNonQuery();
+
+
+                    SqlCommand deleteTestCmd = new SqlCommand("DELETE FROM test WHERE testID=@Key", Con);
+                    deleteTestCmd.Parameters.AddWithValue("@Key", Key);
+                    deleteTestCmd.ExecuteNonQuery();
+
                     Con.Close();
                     MessageBox.Show("Test șters.");
-                    displayTests();
                     Clear();
-
+                    displayTests();
                 }
                 catch (Exception Ex)
                 {
@@ -151,7 +193,6 @@ namespace Licenta
 
         private void testsView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
             try
             {
                 if (e.RowIndex >= 0)
@@ -161,23 +202,19 @@ namespace Licenta
                     int id = 0;
                     int nameIndex = 1;
                     int descriptionIndex = 2;
-                    int filePathIndex = 3;
 
 
-
-                    if (selectedRow.Cells.Count > filePathIndex)
+                    if (selectedRow.Cells.Count > descriptionIndex)
                     {
-
 
                         name.Text = GetCellValue(selectedRow, nameIndex);
                         description.Text = GetCellValue(selectedRow, descriptionIndex);
-                        filename.Text = GetCellValue(selectedRow, filePathIndex);
-
 
 
                         if (int.TryParse(GetCellValue(selectedRow, id), out int keyValue))
                         {
                             Key = keyValue;
+
                         }
 
                     }
@@ -189,8 +226,8 @@ namespace Licenta
             {
                 MessageBox.Show($"A apărut o eroare: {ex.Message}", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
+
 
         private string GetCellValue(DataGridViewRow row, int columnIndex)
         {
@@ -209,13 +246,13 @@ namespace Licenta
             return cellValue.ToString();
         }
 
+
         int Key = 0;
         private void Clear()
         {
             name.Text = "";
             description.Text = "";
-            selectedFilePath = "";
-            filename.Text = "Niciun fișier selectat.";
+            imgPath.Text = "";
             Key = 0;
         }
 
@@ -228,9 +265,9 @@ namespace Licenta
         private void AdministratorTests_Load(object sender, EventArgs e)
         {
             testsView.Columns[0].Width = 40;
-            testsView.Columns[1].Width = 210;
-            testsView.Columns[2].Width = 210;
-            testsView.Columns[3].Width = 210;
+            testsView.Columns[1].Width = 240;
+            testsView.Columns[2].Width = 240;
+
         }
 
 
@@ -261,5 +298,7 @@ namespace Licenta
             Obj.Show();
             this.Hide();
         }
+
+       
     }
 }

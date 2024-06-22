@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministratorAppointments));
             label1 = new Label();
             appointmentsView = new DataGridView();
@@ -84,19 +84,19 @@
             // 
             appointmentsView.AllowUserToOrderColumns = true;
             appointmentsView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.SelectionBackColor = Color.MediumAquamarine;
-            appointmentsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.SelectionBackColor = Color.MediumAquamarine;
+            appointmentsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             appointmentsView.BackgroundColor = Color.FromArgb(241, 251, 247);
             appointmentsView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.MediumAquamarine;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            appointmentsView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            appointmentsView.DefaultCellStyle = dataGridViewCellStyle4;
             appointmentsView.Location = new Point(517, 411);
             appointmentsView.Name = "appointmentsView";
             appointmentsView.RowHeadersVisible = false;
@@ -112,7 +112,7 @@
             label8.BackColor = Color.White;
             label8.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Teal;
-            label8.Location = new Point(919, 228);
+            label8.Location = new Point(854, 228);
             label8.Name = "label8";
             label8.Size = new Size(52, 25);
             label8.TabIndex = 13;
@@ -125,7 +125,7 @@
             label9.BackColor = Color.White;
             label9.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Teal;
-            label9.Location = new Point(919, 128);
+            label9.Location = new Point(854, 128);
             label9.Name = "label9";
             label9.Size = new Size(61, 25);
             label9.TabIndex = 11;
@@ -135,7 +135,7 @@
             // date
             // 
             date.Format = DateTimePickerFormat.Short;
-            date.Location = new Point(919, 170);
+            date.Location = new Point(854, 170);
             date.Name = "date";
             date.Size = new Size(250, 30);
             date.TabIndex = 15;
@@ -144,7 +144,7 @@
             // time
             // 
             time.Format = DateTimePickerFormat.Time;
-            time.Location = new Point(919, 268);
+            time.Location = new Point(854, 268);
             time.Name = "time";
             time.ShowUpDown = true;
             time.Size = new Size(250, 30);
@@ -302,7 +302,7 @@
             // 
             // firstname
             // 
-            firstname.Location = new Point(406, 271);
+            firstname.Location = new Point(475, 268);
             firstname.Name = "firstname";
             firstname.Size = new Size(250, 30);
             firstname.TabIndex = 23;
@@ -313,7 +313,7 @@
             label7.BackColor = Color.White;
             label7.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Teal;
-            label7.Location = new Point(406, 231);
+            label7.Location = new Point(475, 228);
             label7.Name = "label7";
             label7.Size = new Size(183, 25);
             label7.TabIndex = 22;
@@ -322,7 +322,7 @@
             // 
             // lastname
             // 
-            lastname.Location = new Point(406, 173);
+            lastname.Location = new Point(475, 170);
             lastname.Name = "lastname";
             lastname.Size = new Size(250, 30);
             lastname.TabIndex = 21;
@@ -333,7 +333,7 @@
             label6.BackColor = Color.White;
             label6.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Teal;
-            label6.Location = new Point(406, 131);
+            label6.Location = new Point(475, 128);
             label6.Name = "label6";
             label6.Size = new Size(151, 25);
             label6.TabIndex = 20;

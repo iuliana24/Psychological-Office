@@ -240,5 +240,7 @@ namespace Licenta
             Obj.Show();
             this.Hide();
         }
+
+      
     }
 }
