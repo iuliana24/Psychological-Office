@@ -15,13 +15,25 @@ namespace Licenta
     {
         private int testID;
 
-        //SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
-        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-C78TFJK\SQLEXPRESS02;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        //SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-C78TFJK\SQLEXPRESS02;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
 
+        private Panel questionsPanel;
         public PacientTest(int testID)
         {
             InitializeComponent();
             this.testID = testID;
+
+            questionsPanel = new Panel
+            {
+                AutoScroll = true,
+                Width = this.ClientSize.Width,
+                Height = this.ClientSize.Height - 50,
+                Top = 10,
+                Left = 10
+            };
+            this.Controls.Add(questionsPanel);
+
             LoadQuestionsAndOptions();
         }
 
@@ -29,8 +41,10 @@ namespace Licenta
         {
             try
             {
-                Con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT questionID, questionText FROM test_question WHERE testID = @testID", Con);
+                if (Con.State == ConnectionState.Closed)
+                    Con.Open();
+
+                SqlCommand cmd = new SqlCommand("SELECT questionID, questionText FROM question WHERE testID = @testID", Con);
                 cmd.Parameters.AddWithValue("@testID", testID);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -40,15 +54,15 @@ namespace Licenta
                     int questionID = reader.GetInt32(0);
                     string questionText = reader.GetString(1);
 
-                 
+
                     Label questionLabel = new Label();
                     questionLabel.Text = questionText;
                     questionLabel.Top = yOffset;
                     questionLabel.Left = 10;
                     questionLabel.AutoSize = true;
-                    this.Controls.Add(questionLabel);
+                    questionsPanel.Controls.Add(questionLabel);
 
-                    
+
                     LoadOptions(questionID, yOffset + 30);
                     yOffset += 100;
                 }
@@ -66,6 +80,7 @@ namespace Licenta
         {
             try
             {
+                Con.Open();
                 SqlCommand cmd = new SqlCommand("SELECT optionID, optionText, score FROM option WHERE questionID = @questionID", Con);
                 cmd.Parameters.AddWithValue("@questionID", questionID);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -77,19 +92,21 @@ namespace Licenta
                     string optionText = reader.GetString(1);
                     int score = reader.GetInt32(2);
 
-                   
+
                     RadioButton optionButton = new RadioButton();
                     optionButton.Text = optionText;
-                    optionButton.Tag = score; 
+                    optionButton.Tag = score;
                     optionButton.Top = yOffset;
                     optionButton.Left = xOffset;
                     optionButton.AutoSize = true;
-                    this.Controls.Add(optionButton);
+
+                    questionsPanel.Controls.Add(optionButton);
 
                     xOffset += 200;
                 }
 
                 reader.Close();
+                Con.Close();
             }
             catch (Exception ex)
             {
@@ -100,7 +117,7 @@ namespace Licenta
         private void submitButton_Click(object sender, EventArgs e)
         {
             int totalScore = 0;
-            foreach (Control control in this.Controls)
+            foreach (Control control in questionsPanel.Controls)
             {
                 if (control is RadioButton radioButton && radioButton.Checked)
                 {
@@ -128,6 +145,11 @@ namespace Licenta
             {
                 MessageBox.Show($"A apărut o eroare: {ex.Message}");
             }
+        }
+
+        private void PacientTest_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

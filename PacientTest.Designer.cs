@@ -42,6 +42,7 @@
             Name = "PacientTest";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "PacientTest";
+            Load += PacientTest_Load;
             ResumeLayout(false);
         }
 

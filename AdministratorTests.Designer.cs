@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministratorTests));
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             invoicesLb = new Label();
             pictureBox6 = new PictureBox();
@@ -336,25 +336,25 @@
             // 
             testsView.AllowUserToOrderColumns = true;
             testsView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.SelectionBackColor = Color.MediumAquamarine;
-            testsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumAquamarine;
+            testsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             testsView.BackgroundColor = Color.FromArgb(241, 251, 247);
             testsView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.MediumAquamarine;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            testsView.DefaultCellStyle = dataGridViewCellStyle4;
-            testsView.Location = new Point(532, 411);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            testsView.DefaultCellStyle = dataGridViewCellStyle2;
+            testsView.Location = new Point(404, 411);
             testsView.Name = "testsView";
             testsView.RowHeadersVisible = false;
             testsView.RowHeadersWidth = 20;
             testsView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            testsView.Size = new Size(517, 262);
+            testsView.Size = new Size(755, 262);
             testsView.TabIndex = 42;
             testsView.CellClick += testsView_CellClick;
             // 

@@ -23,14 +23,14 @@ namespace Licenta
             displayTests();
         }
 
-        //SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
-        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-C78TFJK\SQLEXPRESS02;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        //SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-C78TFJK\SQLEXPRESS02;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
 
 
         private void displayTests()
         {
             Con.Open();
-            string query = "SELECT testID as Id, name as Denumire, description as Descriere FROM test;";
+            string query = "SELECT testID as Id, name as Denumire, description as Descriere, imagePath as Imagine FROM test;";
             SqlDataAdapter sda = new SqlDataAdapter(query, Con);
             SqlCommandBuilder builder = new SqlCommandBuilder(sda);
             var ds = new DataSet();
@@ -135,7 +135,7 @@ namespace Licenta
                     cmd.ExecuteNonQuery();
                     Con.Close();
 
-
+                    
                     TestQuestions testQuestionsForm = new TestQuestions(Key, true);
                     this.Hide();
                     testQuestionsForm.LoadTestQuestions(Key);
@@ -202,14 +202,18 @@ namespace Licenta
                     int id = 0;
                     int nameIndex = 1;
                     int descriptionIndex = 2;
-
+                    int imagePathIndex = 3;
+                   
 
                     if (selectedRow.Cells.Count > descriptionIndex)
                     {
 
                         name.Text = GetCellValue(selectedRow, nameIndex);
                         description.Text = GetCellValue(selectedRow, descriptionIndex);
+                        imgPath.Text = GetCellValue(selectedRow, imagePathIndex);
 
+
+                        
 
                         if (int.TryParse(GetCellValue(selectedRow, id), out int keyValue))
                         {
@@ -267,7 +271,7 @@ namespace Licenta
             testsView.Columns[0].Width = 40;
             testsView.Columns[1].Width = 240;
             testsView.Columns[2].Width = 240;
-
+            testsView.Columns[3].Width = 240;
         }
 
 

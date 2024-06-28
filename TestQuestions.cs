@@ -14,8 +14,6 @@ namespace Licenta
     public partial class TestQuestions : Form
     {
         private int testID;
-        private string testName;
-        private string testDescription;
         private bool isUpdate;
         public TestQuestions(int testID, bool isUpdate = false)
         {
@@ -25,20 +23,20 @@ namespace Licenta
             this.isUpdate = isUpdate;
 
             if (isUpdate)
-            {              
+            {
                 LoadTestQuestions(testID);
             }
         }
 
-        //SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False;MultipleActiveResultSets=True");
-        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-C78TFJK\SQLEXPRESS02;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False;MultipleActiveResultSets=True");
+        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False;MultipleActiveResultSets=True");
+        //SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-C78TFJK\SQLEXPRESS02;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False;MultipleActiveResultSets=True");
 
         public void LoadTestQuestions(int testID)
         {
             try
             {
                 Con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM test_question WHERE testID=@testID", Con);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM question WHERE testID=@testID", Con);
                 cmd.Parameters.AddWithValue("@testID", testID);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -93,7 +91,7 @@ namespace Licenta
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            if (testID == 0) 
+            if (testID == 0)
             {
                 MessageBox.Show("ID-ul testului nu este valid.");
                 return;
@@ -113,8 +111,8 @@ namespace Licenta
                     TextBox questionTextBox = this.Controls["questionTextBox" + i] as TextBox;
                     if (questionTextBox != null && !string.IsNullOrEmpty(questionTextBox.Text))
                     {
-                       
-                        SqlCommand questionCmd = new SqlCommand("INSERT INTO test_question(testID, questionText) VALUES(@testID, @questionText); SELECT SCOPE_IDENTITY();", Con);
+
+                        SqlCommand questionCmd = new SqlCommand("INSERT INTO question(testID, questionText) VALUES(@testID, @questionText); SELECT SCOPE_IDENTITY();", Con);
                         questionCmd.Parameters.AddWithValue("@testID", testID);
                         questionCmd.Parameters.AddWithValue("@questionText", questionTextBox.Text);
 
@@ -126,7 +124,7 @@ namespace Licenta
                             TextBox optionTextBox = this.Controls["optionTextBox" + i + "_" + j] as TextBox;
                             if (optionTextBox != null && !string.IsNullOrEmpty(optionTextBox.Text))
                             {
-                              
+
                                 SqlCommand optionCmd = new SqlCommand("INSERT INTO [option](questionID, optionText) VALUES(@questionID, @optionText)", Con);
                                 optionCmd.Parameters.AddWithValue("@questionID", questionID);
                                 optionCmd.Parameters.AddWithValue("@optionText", optionTextBox.Text);
@@ -214,5 +212,11 @@ namespace Licenta
                 }
             }
         }
+
+        private void TestQuestions_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
