@@ -31,7 +31,7 @@ namespace Licenta
         private void addBtn_Click(object sender, EventArgs e)
         {
             if (lastname.Text == "" || firstname.Text == "" || gender.Text == ""
-                || age.Text == "" || mail.Text == "" || phone.Text == "")
+                || dob.Value.Date == DateTime.MinValue || mail.Text == "" || phone.Text == "")
             {
                 MessageBox.Show("Lipsesc informații!");
             }
@@ -40,14 +40,14 @@ namespace Licenta
                 try
                 {
                     Con.Open();
-                    SqlCommand cmd = new SqlCommand("insert into pacient(firstname, lastname, age, gender, phone, email, diagnostic)values(@firstname,@lastname,@age,@gender,@phone,@email,@diagnostic)", Con);
+                    SqlCommand cmd = new SqlCommand("insert into pacient(firstname, lastname, dob, gender, phone, email, observation)values(@firstname,@lastname,@dob,@gender,@phone,@email,@observation)", Con);
                     cmd.Parameters.AddWithValue("@lastname", lastname.Text);
                     cmd.Parameters.AddWithValue("@firstname", firstname.Text);
-                    cmd.Parameters.AddWithValue("@age", age.Text);
+                    cmd.Parameters.AddWithValue("@dob", dob.Value.Date);
                     cmd.Parameters.AddWithValue("@gender", gender.Text);
                     cmd.Parameters.AddWithValue("@phone", phone.Text);
                     cmd.Parameters.AddWithValue("@email", mail.Text);
-                    cmd.Parameters.AddWithValue("@diagnostic", diagnosis.Text);
+                    cmd.Parameters.AddWithValue("@observation", observation.Text);
                     cmd.ExecuteNonQuery();
                     Con.Close();
                     MessageBox.Show("Pacient adăugat.");
@@ -65,8 +65,8 @@ namespace Licenta
         private void displayPacients()
         {
             Con.Open();
-            string query = "SELECT pacientID as Id, lastname as Nume, firstname as Prenume, age as Vârsta," +
-                " gender as Gen, phone as Telefon, Email, Diagnostic FROM pacient;";
+            string query = "SELECT pacientID as Id, lastname as Nume, firstname as Prenume, dob as DataNașterii," +
+                " gender as Gen, phone as Telefon, Email, observation as Observații FROM pacient;";
             SqlDataAdapter sda = new SqlDataAdapter(query, Con);
             SqlCommandBuilder builder = new SqlCommandBuilder(sda);
             var ds = new DataSet();
@@ -89,21 +89,21 @@ namespace Licenta
                     int id = 0;
                     int lastnameIndex = 1;
                     int firstnameIndex = 2;
-                    int ageIndex = 3;
+                    int dobIndex = 3;
                     int genderIndex = 4;
                     int phoneIndex = 5;
                     int mailIndex = 6;
-                    int diagnosisIndex = 7;
+                    int observationIndex = 7;
 
-                    if (selectedRow.Cells.Count > diagnosisIndex)
+                    if (selectedRow.Cells.Count > observationIndex)
                     {
                         lastname.Text = GetCellValue(selectedRow, lastnameIndex);
                         firstname.Text = GetCellValue(selectedRow, firstnameIndex);
-                        age.Text = GetCellValue(selectedRow, ageIndex);
+                        dob.Text = GetCellValue(selectedRow, dobIndex);
                         gender.Text = GetCellValue(selectedRow, genderIndex);
                         phone.Text = GetCellValue(selectedRow, phoneIndex);
                         mail.Text = GetCellValue(selectedRow, mailIndex);
-                        diagnosis.Text = GetCellValue(selectedRow, diagnosisIndex);
+                        observation.Text = GetCellValue(selectedRow, observationIndex);
 
                         if (int.TryParse(GetCellValue(selectedRow, id), out int keyValue))
                         {
@@ -142,7 +142,7 @@ namespace Licenta
         private void editBtn_Click(object sender, EventArgs e)
         {
             if (lastname.Text == "" || firstname.Text == "" || gender.Text == ""
-                || age.Text == "" || mail.Text == "" || phone.Text == "")
+                || dob.Value.Date == DateTime.MinValue || mail.Text == "" || phone.Text == "")
             {
                 MessageBox.Show("Lipsesc informații!");
             }
@@ -151,14 +151,14 @@ namespace Licenta
                 try
                 {
                     Con.Open();
-                    SqlCommand cmd = new SqlCommand("update pacient set firstname=@firstname, lastname=@lastname, age=@age, gender=@gender, phone=@phone, email=@email, diagnostic=@diagnostic where pacientID=@Key", Con);
+                    SqlCommand cmd = new SqlCommand("update pacient set firstname=@firstname, lastname=@lastname, dob=@dob, gender=@gender, phone=@phone, email=@email, observation=@observation where pacientID=@Key", Con);
                     cmd.Parameters.AddWithValue("@lastname", lastname.Text);
                     cmd.Parameters.AddWithValue("@firstname", firstname.Text);
-                    cmd.Parameters.AddWithValue("@age", age.Text);
+                    cmd.Parameters.AddWithValue("@dob", dob.Value.Date);
                     cmd.Parameters.AddWithValue("@gender", gender.Text);
                     cmd.Parameters.AddWithValue("@phone", phone.Text);
                     cmd.Parameters.AddWithValue("@email", mail.Text);
-                    cmd.Parameters.AddWithValue("@diagnostic", diagnosis.Text);
+                    cmd.Parameters.AddWithValue("@observation", observation.Text);
                     cmd.Parameters.AddWithValue("@Key", Key);
                     cmd.ExecuteNonQuery();
                     Con.Close();
@@ -206,11 +206,11 @@ namespace Licenta
         {
             lastname.Text = "";
             firstname.Text = "";
-            age.Text = "";
+            dob.Text = "";
             gender.Text = "";
             phone.Text = "";
             mail.Text = "";
-            diagnosis.Text = "";
+            observation.Text = "";
             Key = 0;
 
         }

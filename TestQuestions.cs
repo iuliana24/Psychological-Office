@@ -106,38 +106,55 @@ namespace Licenta
             {
                 Con.Open();
 
+                SqlCommand deleteOptionsCmd = new SqlCommand("DELETE FROM [option] WHERE questionID IN (SELECT questionID FROM question WHERE testID=@testID)", Con);
+                deleteOptionsCmd.Parameters.AddWithValue("@testID", testID);
+                deleteOptionsCmd.ExecuteNonQuery();
+
+                SqlCommand deleteQuestionsCmd = new SqlCommand("DELETE FROM question WHERE testID=@testID", Con);
+                deleteQuestionsCmd.Parameters.AddWithValue("@testID", testID);
+                deleteQuestionsCmd.ExecuteNonQuery();
+
+
+
                 for (int i = 1; i <= 8; i++)
                 {
                     TextBox questionTextBox = this.Controls["questionTextBox" + i] as TextBox;
                     if (questionTextBox != null && !string.IsNullOrEmpty(questionTextBox.Text))
                     {
 
-                        SqlCommand questionCmd = new SqlCommand("INSERT INTO question(testID, questionText) VALUES(@testID, @questionText); SELECT SCOPE_IDENTITY();", Con);
-                        questionCmd.Parameters.AddWithValue("@testID", testID);
-                        questionCmd.Parameters.AddWithValue("@questionText", questionTextBox.Text);
+                        
+                        SqlCommand insertQuestionCmd = new SqlCommand("INSERT INTO question(testID, questionText) VALUES(@testID, @questionText); SELECT SCOPE_IDENTITY();", Con);
+                        insertQuestionCmd.Parameters.AddWithValue("@testID", testID);
+                        insertQuestionCmd.Parameters.AddWithValue("@questionText", questionTextBox.Text);
+                        int questionID = Convert.ToInt32(insertQuestionCmd.ExecuteScalar());
 
-                        int questionID = Convert.ToInt32(questionCmd.ExecuteScalar());
 
-                        bool areOptionsValid = false;
                         for (int j = 1; j <= 3; j++)
                         {
                             TextBox optionTextBox = this.Controls["optionTextBox" + i + "_" + j] as TextBox;
                             if (optionTextBox != null && !string.IsNullOrEmpty(optionTextBox.Text))
                             {
+                                int score = 0;
+                                switch (j)
+                                {
+                                    case 1:
+                                        score = 5;
+                                        break;
+                                    case 2:
+                                        score = 10;
+                                        break;
+                                    case 3:
+                                        score = 15;
+                                        break;
+                                }
 
-                                SqlCommand optionCmd = new SqlCommand("INSERT INTO [option](questionID, optionText) VALUES(@questionID, @optionText)", Con);
-                                optionCmd.Parameters.AddWithValue("@questionID", questionID);
-                                optionCmd.Parameters.AddWithValue("@optionText", optionTextBox.Text);
-                                optionCmd.ExecuteNonQuery();
 
-                                areOptionsValid = true;
+                                SqlCommand insertOptionCmd = new SqlCommand("INSERT INTO [option](questionID, optionText, score) VALUES(@questionID, @optionText, @score)", Con);
+                                insertOptionCmd.Parameters.AddWithValue("@questionID", questionID);
+                                insertOptionCmd.Parameters.AddWithValue("@optionText", optionTextBox.Text);
+                                insertOptionCmd.Parameters.AddWithValue("@score", score);
+                                insertOptionCmd.ExecuteNonQuery();
                             }
-                        }
-
-                        if (!areOptionsValid)
-                        {
-                            MessageBox.Show("Introduceți cel puțin o opțiune pentru întrebarea " + i);
-                            return;
                         }
                     }
                 }

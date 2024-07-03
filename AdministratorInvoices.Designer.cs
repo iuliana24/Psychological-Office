@@ -369,7 +369,7 @@
             // consultype
             // 
             consultype.FormattingEnabled = true;
-            consultype.Items.AddRange(new object[] { "Consult psihologic individual", "Psihoterapie", "Consiliere psihologică", "Evaluare psihologică" });
+            consultype.Items.AddRange(new object[] { "Aviz psihologic", "Consiliere psihologică", "Consult psihologic individual", "Evaluare psihologică", "Psihoterapie", "" });
             consultype.Location = new Point(670, 159);
             consultype.Name = "consultype";
             consultype.Size = new Size(250, 30);

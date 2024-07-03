@@ -28,14 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PacientTest));
+            closeBtn = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
             SuspendLayout();
+            // 
+            // closeBtn
+            // 
+            closeBtn.BackColor = Color.Transparent;
+            closeBtn.Image = (Image)resources.GetObject("closeBtn.Image");
+            closeBtn.Location = new Point(746, 0);
+            closeBtn.Name = "closeBtn";
+            closeBtn.Size = new Size(42, 42);
+            closeBtn.SizeMode = PictureBoxSizeMode.StretchImage;
+            closeBtn.TabIndex = 58;
+            closeBtn.TabStop = false;
+            closeBtn.Click += closeBtn_Click;
             // 
             // PacientTest
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1100, 495);
+            ClientSize = new Size(787, 1027);
+            Controls.Add(closeBtn);
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 3, 4, 3);
@@ -43,9 +59,12 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "PacientTest";
             Load += PacientTest_Load;
+            ((System.ComponentModel.ISupportInitialize)closeBtn).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
+
+        private PictureBox closeBtn;
     }
 }

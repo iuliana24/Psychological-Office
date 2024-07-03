@@ -357,6 +357,7 @@
             testsView.Size = new Size(755, 262);
             testsView.TabIndex = 42;
             testsView.CellClick += testsView_CellClick;
+    
             // 
             // uploadImgBtn
             // 

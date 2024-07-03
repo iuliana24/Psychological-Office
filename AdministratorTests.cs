@@ -48,7 +48,7 @@ namespace Licenta
                 string selectedImagePath = openFileDialog.FileName;
                 imgPath.Text = selectedImagePath;
 
-            
+
             }
         }
 
@@ -135,7 +135,7 @@ namespace Licenta
                     cmd.ExecuteNonQuery();
                     Con.Close();
 
-                    
+
                     TestQuestions testQuestionsForm = new TestQuestions(Key, true);
                     this.Hide();
                     testQuestionsForm.LoadTestQuestions(Key);
@@ -203,7 +203,7 @@ namespace Licenta
                     int nameIndex = 1;
                     int descriptionIndex = 2;
                     int imagePathIndex = 3;
-                   
+
 
                     if (selectedRow.Cells.Count > descriptionIndex)
                     {
@@ -213,7 +213,7 @@ namespace Licenta
                         imgPath.Text = GetCellValue(selectedRow, imagePathIndex);
 
 
-                        
+
 
                         if (int.TryParse(GetCellValue(selectedRow, id), out int keyValue))
                         {
@@ -303,6 +303,6 @@ namespace Licenta
             this.Hide();
         }
 
-       
+      
     }
 }
