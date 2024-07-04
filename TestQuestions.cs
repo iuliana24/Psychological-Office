@@ -26,6 +26,10 @@ namespace Licenta
             {
                 LoadTestQuestions(testID);
             }
+            else
+            {
+                ShowQuestionForm();
+            }
         }
 
         SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False;MultipleActiveResultSets=True");
@@ -61,9 +65,11 @@ namespace Licenta
                     while (optionReader.Read())
                     {
                         TextBox optionTextBox = this.Controls["optionTextBox" + questionIndex + "_" + optionIndex] as TextBox;
-                        if (optionTextBox != null)
+                        TextBox scoreTextBox = this.Controls["score" + questionIndex + "_" + optionIndex] as TextBox;
+                        if (optionTextBox != null && scoreTextBox != null)
                         {
                             optionTextBox.Text = optionReader["optionText"].ToString();
+                            scoreTextBox.Text = optionReader["score"].ToString();
                         }
                         optionIndex++;
                     }
@@ -81,10 +87,15 @@ namespace Licenta
             }
         }
 
-
-        private void closeBtn_Click(object sender, EventArgs e)
+        private void ShowQuestionForm()
         {
-            AdministratorTests Obj = new AdministratorTests();
+            
+            this.Show(); 
+        }
+
+        private void nextBtn_Click(object sender, EventArgs e)
+        {
+            TestInterpretations Obj = new TestInterpretations(testID);       
             Obj.Show();
             this.Hide();
         }
@@ -131,24 +142,13 @@ namespace Licenta
 
                         for (int j = 1; j <= 3; j++)
                         {
+                            
                             TextBox optionTextBox = this.Controls["optionTextBox" + i + "_" + j] as TextBox;
-                            if (optionTextBox != null && !string.IsNullOrEmpty(optionTextBox.Text))
+                            TextBox scoreTextBox = this.Controls["score" + i + "_" + j] as TextBox;
+
+                            if (optionTextBox != null && !string.IsNullOrEmpty(optionTextBox.Text) && scoreTextBox != null && int.TryParse(scoreTextBox.Text, out int score))
                             {
-                                int score = 0;
-                                switch (j)
-                                {
-                                    case 1:
-                                        score = 5;
-                                        break;
-                                    case 2:
-                                        score = 10;
-                                        break;
-                                    case 3:
-                                        score = 15;
-                                        break;
-                                }
-
-
+                                
                                 SqlCommand insertOptionCmd = new SqlCommand("INSERT INTO [option](questionID, optionText, score) VALUES(@questionID, @optionText, @score)", Con);
                                 insertOptionCmd.Parameters.AddWithValue("@questionID", questionID);
                                 insertOptionCmd.Parameters.AddWithValue("@optionText", optionTextBox.Text);
@@ -192,15 +192,26 @@ namespace Licenta
                 for (int j = 1; j <= 3; j++)
                 {
                     TextBox optionTextBox = this.Controls["optionTextBox" + i + "_" + j] as TextBox;
+                    TextBox scoreTextBox = this.Controls["score" + i + "_" + j] as TextBox;
+
                     if (optionTextBox != null && !string.IsNullOrEmpty(optionTextBox.Text))
                     {
-                        areOptionsValid = true;
+                        if (scoreTextBox != null && int.TryParse(scoreTextBox.Text, out int score))
+                        {
+                            areOptionsValid = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Introduceți un punctaj valid pentru opțiunea " + j + " a întrebării " + i);
+                            isValid = false;
+                            break;
+                        }
                     }
                 }
 
                 if (!areOptionsValid)
                 {
-                    MessageBox.Show("Introduceți cel puțin o opțiune pentru întrebarea " + i);
+                    MessageBox.Show("Introduceți cel puțin o opțiune și un punctaj pentru întrebarea " + i);
                     isValid = false;
                     break;
                 }
@@ -222,9 +233,11 @@ namespace Licenta
                 for (int j = 1; j <= 3; j++)
                 {
                     TextBox optionTextBox = this.Controls["optionTextBox" + i + "_" + j] as TextBox;
+                    TextBox scoreTextBox = this.Controls["score" + i + "_" + j] as TextBox;
                     if (optionTextBox != null)
                     {
                         optionTextBox.Text = "";
+                        scoreTextBox.Text = "";
                     }
                 }
             }

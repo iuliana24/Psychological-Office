@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministratorAppointments));
             label1 = new Label();
             appointmentsView = new DataGridView();
@@ -57,6 +57,7 @@
             closeBtn = new PictureBox();
             editBtn = new Button();
             delBtn = new Button();
+            filterComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)appointmentsView).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -84,25 +85,25 @@
             // 
             appointmentsView.AllowUserToOrderColumns = true;
             appointmentsView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.SelectionBackColor = Color.MediumAquamarine;
-            appointmentsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumAquamarine;
+            appointmentsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             appointmentsView.BackgroundColor = Color.FromArgb(241, 251, 247);
             appointmentsView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.MediumAquamarine;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            appointmentsView.DefaultCellStyle = dataGridViewCellStyle4;
-            appointmentsView.Location = new Point(517, 411);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            appointmentsView.DefaultCellStyle = dataGridViewCellStyle2;
+            appointmentsView.Location = new Point(462, 437);
             appointmentsView.Name = "appointmentsView";
             appointmentsView.RowHeadersVisible = false;
             appointmentsView.RowHeadersWidth = 20;
             appointmentsView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            appointmentsView.Size = new Size(540, 262);
+            appointmentsView.Size = new Size(667, 262);
             appointmentsView.TabIndex = 6;
             appointmentsView.CellClick += appointmentsView_CellClick;
             // 
@@ -397,12 +398,21 @@
             delBtn.UseVisualStyleBackColor = false;
             delBtn.Click += delBtn_Click;
             // 
+            // filterComboBox
+            // 
+            filterComboBox.FormattingEnabled = true;
+            filterComboBox.Location = new Point(462, 401);
+            filterComboBox.Name = "filterComboBox";
+            filterComboBox.Size = new Size(202, 30);
+            filterComboBox.TabIndex = 40;
+            // 
             // AdministratorAppointments
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
+            Controls.Add(filterComboBox);
             Controls.Add(delBtn);
             Controls.Add(editBtn);
             Controls.Add(closeBtn);
@@ -466,5 +476,6 @@
         private Button delBtn;
         private PictureBox pictureBox6;
         private Label logoutBtn;
+        private ComboBox filterComboBox;
     }
 }

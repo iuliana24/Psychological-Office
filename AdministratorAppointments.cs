@@ -16,25 +16,118 @@ namespace Licenta
 {
     public partial class AdministratorAppointments : Form
     {
+        private SortedSet<Appointment> appointments = new SortedSet<Appointment>();
+      
         public AdministratorAppointments()
         {
             InitializeComponent();
+            LoadAppointments();
             displayAppointments();
+            InitializeComboBox();
+
         }
 
         SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
         //SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-C78TFJK\SQLEXPRESS02;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
-        private void displayAppointments()
+
+        private void LoadAppointments()
         {
             Con.Open();
-            string query = "SELECT appointmentID as Id, lastname as Nume, firstname as Prenume, date as Data," +
-                " time as Ora FROM appointment;";
-            SqlDataAdapter sda = new SqlDataAdapter(query, Con);
-            SqlCommandBuilder builder = new SqlCommandBuilder(sda);
-            var ds = new DataSet();
-            sda.Fill(ds);
-            appointmentsView.DataSource = ds.Tables[0];
+            string query = "SELECT appointmentID, lastname, firstname, date, time, isCompleted FROM appointment ORDER BY date, time;";
+            SqlCommand cmd = new SqlCommand(query, Con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            appointments.Clear();
+            while (reader.Read())
+            {
+                appointments.Add(new Appointment
+                {
+                    Id = reader.GetInt32(0),
+                    LastName = reader.GetString(1),
+                    FirstName = reader.GetString(2),
+                    Date = reader.GetDateTime(3),
+                    Time = reader.GetTimeSpan(4),
+                    IsCompleted = reader.GetBoolean(5)
+                });
+            }
             Con.Close();
+        }
+
+        private void displayAppointments()
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("Id");
+            dt.Columns.Add("Nume");
+            dt.Columns.Add("Prenume");
+            dt.Columns.Add("Data");
+            dt.Columns.Add("Ora");
+            dt.Columns.Add("Status");
+
+            foreach (var appointment in appointments)
+            {
+                string status = appointment.IsCompleted ? "Terminat" : "Valabil";
+                dt.Rows.Add(appointment.Id, appointment.LastName, appointment.FirstName, appointment.Date.ToString("yyyy-MM-dd"), appointment.Time.ToString(@"hh\:mm"), status);
+            }
+
+            appointmentsView.DataSource = dt;
+            appointmentsView.Columns["Status"].ReadOnly = true;
+        }
+
+        private void InitializeComboBox()
+        {
+            
+            filterComboBox.Items.AddRange(new string[] { "Toate Programările", "Programări Valabile", "Programări Terminate" });
+           
+            filterComboBox.SelectedIndex = 0;
+            filterComboBox.SelectedIndexChanged += comboBoxFilter_SelectedIndexChanged;
+        }
+
+        private void FilterAppointments(string filterOption)
+        {
+            switch (filterOption)
+            {
+                case "Toate Programările":
+                   
+                    displayAppointments();
+                    break;
+                case "Programări Valabile":
+                    
+                    var available = appointments.Where(a => !a.IsCompleted).ToList();
+                    DisplayFilteredAppointments(available);
+                    break;
+                case "Programări Terminate":
+                    
+                    var completed = appointments.Where(a => a.IsCompleted).ToList();
+                    DisplayFilteredAppointments(completed);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void DisplayFilteredAppointments(List<Appointment> filteredAppointments)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("Id");
+            dt.Columns.Add("Nume");
+            dt.Columns.Add("Prenume");
+            dt.Columns.Add("Data");
+            dt.Columns.Add("Ora");
+            dt.Columns.Add("Status");
+
+            foreach (var appointment in filteredAppointments)
+            {
+                string status = appointment.IsCompleted ? "Terminat" : "Valabil";
+                dt.Rows.Add(appointment.Id, appointment.LastName, appointment.FirstName, appointment.Date.ToString("yyyy-MM-dd"), appointment.Time.ToString(@"hh\:mm"), status);
+            }
+
+            appointmentsView.DataSource = dt;        
+            appointmentsView.Columns["Status"].ReadOnly = true;
+        }
+
+        private void comboBoxFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedFilter = filterComboBox.SelectedItem.ToString();
+            FilterAppointments(selectedFilter);
         }
 
         private void addBtn_Click(object sender, EventArgs e)
@@ -46,28 +139,46 @@ namespace Licenta
             }
             else
             {
-                try
-                {
-                    Con.Open();
-                    SqlCommand cmd = new SqlCommand("insert into appointment(firstname, lastname, date, time)values(@firstname,@lastname,@date,@time)", Con);
-                    cmd.Parameters.AddWithValue("@lastname", lastname.Text);
-                    cmd.Parameters.AddWithValue("@firstname", firstname.Text);
-                    cmd.Parameters.AddWithValue("@date", date.Value.Date);
-                    string formattedTime = time.Value.ToString("t");
-                    cmd.Parameters.AddWithValue("@time", formattedTime);
-                    cmd.ExecuteNonQuery();
-                    Con.Close();
-                    MessageBox.Show("Programare adăugată.");
-                    displayAppointments();
-                    Clear();
+                DateTime appointmentDate = date.Value.Date;
+                TimeSpan appointmentTime = time.Value.TimeOfDay;
 
-                }
-                catch (Exception Ex)
+                if (appointments.Any(a => a.Date == appointmentDate && a.Time == appointmentTime))
                 {
-                    MessageBox.Show(Ex.Message);
+                    MessageBox.Show("Intervalul de timp solicitat nu este disponibil!");
+                }
+                else
+                {
+                    try
+                    {
+                        Con.Open();
+                        SqlCommand cmd = new SqlCommand("insert into appointment(firstname, lastname, date, time)values(@firstname,@lastname,@date,@time)", Con);
+                        cmd.Parameters.AddWithValue("@lastname", lastname.Text);
+                        cmd.Parameters.AddWithValue("@firstname", firstname.Text);
+                        cmd.Parameters.AddWithValue("@date", appointmentDate);
+                        cmd.Parameters.AddWithValue("@time", appointmentTime);
+                        cmd.ExecuteNonQuery();
+                        Con.Close();
+
+                        appointments.Add(new Appointment
+                        {
+
+                            LastName = lastname.Text,
+                            FirstName = firstname.Text,
+                            Date = appointmentDate,
+                            Time = appointmentTime
+                        });
+
+                        MessageBox.Show("Programare adăugată.");
+                        displayAppointments();
+                        Clear();
+
+                    }
+                    catch (Exception Ex)
+                    {
+                        MessageBox.Show(Ex.Message);
+                    }
                 }
             }
-
         }
 
         int Key = 0;
@@ -80,26 +191,48 @@ namespace Licenta
             }
             else
             {
-                try
-                {
-                    Con.Open();
-                    SqlCommand cmd = new SqlCommand("update appointment set firstname=@firstname, lastname=@lastname, date=@date, time=@time where appointmentID=@Key", Con);
-                    cmd.Parameters.AddWithValue("@lastname", lastname.Text);
-                    cmd.Parameters.AddWithValue("@firstname", firstname.Text);
-                    cmd.Parameters.AddWithValue("@date", date.Value.Date);
-                    string formattedTime = time.Value.ToString("t");
-                    cmd.Parameters.AddWithValue("@time", formattedTime);
-                    cmd.Parameters.AddWithValue("@Key", Key);
-                    cmd.ExecuteNonQuery();
-                    Con.Close();
-                    MessageBox.Show("Programare actualizată.");
-                    displayAppointments();
-                    Clear();
 
-                }
-                catch (Exception Ex)
+                DateTime appointmentDate = date.Value.Date;
+                TimeSpan appointmentTime = time.Value.TimeOfDay;
+
+                if (appointments.Any(a => a.Id != Key && a.Date == appointmentDate && a.Time == appointmentTime))
                 {
-                    MessageBox.Show(Ex.Message);
+                    MessageBox.Show("Intervalul de timp solicitat nu este disponibil!");
+                }
+                else
+                {
+                    try
+                    {
+                        Con.Open();
+                        SqlCommand cmd = new SqlCommand("UPDATE appointment SET firstname=@firstname, lastname=@lastname, date=@date, time=@time WHERE appointmentID=@Key", Con);
+                        cmd.Parameters.AddWithValue("@lastname", lastname.Text);
+                        cmd.Parameters.AddWithValue("@firstname", firstname.Text);
+                        cmd.Parameters.AddWithValue("@date", appointmentDate);
+                        cmd.Parameters.AddWithValue("@time", appointmentTime);
+                        cmd.Parameters.AddWithValue("@Key", Key);
+                        cmd.ExecuteNonQuery();
+                        Con.Close();
+
+                        var oldAppointment = appointments.First(a => a.Id == Key);
+                        appointments.Remove(oldAppointment);
+                        appointments.Add(new Appointment
+                        {
+                            Id = Key,
+                            LastName = lastname.Text,
+                            FirstName = firstname.Text,
+                            Date = appointmentDate,
+                            Time = appointmentTime
+                        });
+
+                        MessageBox.Show("Programare actualizată.");
+                        displayAppointments();
+                        Clear();
+
+                    }
+                    catch (Exception Ex)
+                    {
+                        MessageBox.Show(Ex.Message);
+                    }
                 }
             }
         }
@@ -116,11 +249,14 @@ namespace Licenta
                 try
                 {
                     Con.Open();
-                    SqlCommand cmd = new SqlCommand("delete from appointment where appointmentID=@Key", Con);
-
+                    SqlCommand cmd = new SqlCommand("DELETE FROM appointment WHERE appointmentID=@Key", Con);
                     cmd.Parameters.AddWithValue("@Key", Key);
                     cmd.ExecuteNonQuery();
                     Con.Close();
+
+                    var appointmentToDelete = appointments.First(a => a.Id == Key);
+                    appointments.Remove(appointmentToDelete);
+
                     MessageBox.Show("Programare ștearsă.");
                     displayAppointments();
                     Clear();

@@ -46,6 +46,7 @@
             label1 = new Label();
             closeBtn = new PictureBox();
             appointmentsView = new DataGridView();
+            filterComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -248,13 +249,21 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             appointmentsView.DefaultCellStyle = dataGridViewCellStyle2;
-            appointmentsView.Location = new Point(518, 186);
+            appointmentsView.Location = new Point(455, 231);
             appointmentsView.Name = "appointmentsView";
             appointmentsView.RowHeadersVisible = false;
             appointmentsView.RowHeadersWidth = 20;
             appointmentsView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            appointmentsView.Size = new Size(540, 374);
+            appointmentsView.Size = new Size(666, 374);
             appointmentsView.TabIndex = 38;
+            // 
+            // filterComboBox
+            // 
+            filterComboBox.FormattingEnabled = true;
+            filterComboBox.Location = new Point(455, 185);
+            filterComboBox.Name = "filterComboBox";
+            filterComboBox.Size = new Size(202, 30);
+            filterComboBox.TabIndex = 39;
             // 
             // PsychologistAppointments
             // 
@@ -262,6 +271,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
+            Controls.Add(filterComboBox);
             Controls.Add(appointmentsView);
             Controls.Add(closeBtn);
             Controls.Add(panel1);
@@ -303,5 +313,6 @@
         private Label logoutBtn;
         private PictureBox closeBtn;
         private DataGridView appointmentsView;
+        private ComboBox filterComboBox;
     }
 }

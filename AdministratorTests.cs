@@ -17,6 +17,7 @@ namespace Licenta
     public partial class AdministratorTests : Form
     {
         int testID;
+        
         public AdministratorTests()
         {
             InitializeComponent();
@@ -77,7 +78,7 @@ namespace Licenta
                         Con.Close();
                         return;
                     }
-
+                    
 
                     SqlCommand cmd = new SqlCommand("INSERT INTO test(name, description, imagePath) VALUES (@name, @description, @imagePath); SELECT SCOPE_IDENTITY()", Con);
                     cmd.Parameters.AddWithValue("@name", name.Text);
@@ -96,15 +97,15 @@ namespace Licenta
                         return;
                     }
 
+                    MessageBox.Show("Test adăugat preliminar. Adăugați întrebările și interpretările.");
+
                     TestQuestions addQuestions = new TestQuestions(testID, false);
                     this.Hide();
                     addQuestions.Show();
-
+                   
 
                     Con.Close();
-                    Clear();
-                    MessageBox.Show("Test adăugat.");
-
+                    Clear();                 
                 }
                 catch (Exception Ex)
                 {
@@ -117,7 +118,7 @@ namespace Licenta
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            if (name.Text == "" || description.Text == "")
+            if (Key == 0 || name.Text == "" || description.Text == "")
             {
                 MessageBox.Show("Lipsesc informații!");
             }
@@ -165,12 +166,17 @@ namespace Licenta
                     Con.Open();
 
 
-                    SqlCommand deleteOptionsCmd = new SqlCommand("DELETE FROM [option] WHERE questionID IN (SELECT questionID FROM test_question WHERE testID=@Key)", Con);
+                    SqlCommand deleteInterpretationsCmd = new SqlCommand("DELETE FROM interpretation WHERE testID=@Key", Con);
+                    deleteInterpretationsCmd.Parameters.AddWithValue("@Key", Key);
+                    deleteInterpretationsCmd.ExecuteNonQuery();
+
+
+                    SqlCommand deleteOptionsCmd = new SqlCommand("DELETE FROM [option] WHERE questionID IN (SELECT questionID FROM question WHERE testID=@Key)", Con);
                     deleteOptionsCmd.Parameters.AddWithValue("@Key", Key);
                     deleteOptionsCmd.ExecuteNonQuery();
 
 
-                    SqlCommand deleteQuestionsCmd = new SqlCommand("DELETE FROM test_question WHERE testID=@Key", Con);
+                    SqlCommand deleteQuestionsCmd = new SqlCommand("DELETE FROM question WHERE testID=@Key", Con);
                     deleteQuestionsCmd.Parameters.AddWithValue("@Key", Key);
                     deleteQuestionsCmd.ExecuteNonQuery();
 
@@ -303,6 +309,6 @@ namespace Licenta
             this.Hide();
         }
 
-      
+        
     }
 }

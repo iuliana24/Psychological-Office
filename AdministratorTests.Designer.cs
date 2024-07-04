@@ -236,7 +236,7 @@
             label7.BackColor = Color.White;
             label7.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Teal;
-            label7.Location = new Point(868, 129);
+            label7.Location = new Point(864, 147);
             label7.Name = "label7";
             label7.Size = new Size(107, 25);
             label7.TabIndex = 13;
@@ -245,9 +245,9 @@
             // 
             // name
             // 
-            name.Location = new Point(459, 171);
+            name.Location = new Point(462, 177);
             name.Name = "name";
-            name.Size = new Size(250, 30);
+            name.Size = new Size(243, 30);
             name.TabIndex = 12;
             // 
             // label6
@@ -256,7 +256,7 @@
             label6.BackColor = Color.White;
             label6.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Teal;
-            label6.Location = new Point(459, 129);
+            label6.Location = new Point(462, 147);
             label6.Name = "label6";
             label6.Size = new Size(111, 25);
             label6.TabIndex = 11;
@@ -265,9 +265,9 @@
             // 
             // description
             // 
-            description.Location = new Point(868, 171);
+            description.Location = new Point(864, 177);
             description.Name = "description";
-            description.Size = new Size(250, 132);
+            description.Size = new Size(243, 126);
             description.TabIndex = 15;
             description.Text = "";
             // 
@@ -278,7 +278,7 @@
             editBtn.FlatStyle = FlatStyle.Flat;
             editBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editBtn.ForeColor = Color.White;
-            editBtn.Location = new Point(724, 356);
+            editBtn.Location = new Point(720, 356);
             editBtn.Name = "editBtn";
             editBtn.Size = new Size(129, 49);
             editBtn.TabIndex = 38;
@@ -293,7 +293,7 @@
             delBtn.FlatStyle = FlatStyle.Flat;
             delBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             delBtn.ForeColor = Color.White;
-            delBtn.Location = new Point(868, 356);
+            delBtn.Location = new Point(864, 356);
             delBtn.Name = "delBtn";
             delBtn.Size = new Size(129, 49);
             delBtn.TabIndex = 39;
@@ -324,7 +324,7 @@
             addBtn.FlatStyle = FlatStyle.Flat;
             addBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             addBtn.ForeColor = Color.White;
-            addBtn.Location = new Point(580, 356);
+            addBtn.Location = new Point(576, 356);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(129, 49);
             addBtn.TabIndex = 41;
@@ -349,7 +349,7 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             testsView.DefaultCellStyle = dataGridViewCellStyle2;
-            testsView.Location = new Point(404, 411);
+            testsView.Location = new Point(400, 411);
             testsView.Name = "testsView";
             testsView.RowHeadersVisible = false;
             testsView.RowHeadersWidth = 20;
@@ -357,7 +357,6 @@
             testsView.Size = new Size(755, 262);
             testsView.TabIndex = 42;
             testsView.CellClick += testsView_CellClick;
-    
             // 
             // uploadImgBtn
             // 
@@ -366,9 +365,9 @@
             uploadImgBtn.FlatStyle = FlatStyle.Flat;
             uploadImgBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             uploadImgBtn.ForeColor = Color.White;
-            uploadImgBtn.Location = new Point(459, 254);
+            uploadImgBtn.Location = new Point(462, 254);
             uploadImgBtn.Name = "uploadImgBtn";
-            uploadImgBtn.Size = new Size(250, 49);
+            uploadImgBtn.Size = new Size(243, 49);
             uploadImgBtn.TabIndex = 43;
             uploadImgBtn.Text = "Selectează imagine";
             uploadImgBtn.UseVisualStyleBackColor = false;
@@ -380,12 +379,13 @@
             label2.BackColor = Color.White;
             label2.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Teal;
-            label2.Location = new Point(459, 214);
+            label2.Location = new Point(462, 226);
             label2.Name = "label2";
             label2.Size = new Size(93, 25);
             label2.TabIndex = 44;
             label2.Text = "Imagine";
             label2.TextAlign = ContentAlignment.TopCenter;
+           
             // 
             // imgPath
             // 
@@ -393,7 +393,7 @@
             imgPath.BackColor = Color.White;
             imgPath.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             imgPath.ForeColor = Color.Black;
-            imgPath.Location = new Point(459, 306);
+            imgPath.Location = new Point(459, 312);
             imgPath.Name = "imgPath";
             imgPath.Size = new Size(94, 22);
             imgPath.TabIndex = 45;

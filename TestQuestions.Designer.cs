@@ -80,7 +80,7 @@
             questionTextBox8 = new TextBox();
             addBtn = new Button();
             pictureBox1 = new PictureBox();
-            closeBtn = new PictureBox();
+            nextBtn = new PictureBox();
             label18 = new Label();
             label19 = new Label();
             label20 = new Label();
@@ -105,45 +105,78 @@
             label39 = new Label();
             label40 = new Label();
             label41 = new Label();
+            label44 = new Label();
+            score1_1 = new TextBox();
+            label66 = new Label();
+            score1_2 = new TextBox();
+            score1_3 = new TextBox();
             label42 = new Label();
             label43 = new Label();
-            label44 = new Label();
+            label67 = new Label();
+            label68 = new Label();
+            score2_3 = new TextBox();
+            score2_2 = new TextBox();
+            label69 = new Label();
+            score2_1 = new TextBox();
+            label70 = new Label();
             label45 = new Label();
             label46 = new Label();
+            score3_3 = new TextBox();
+            score3_2 = new TextBox();
             label47 = new Label();
+            score3_1 = new TextBox();
             label48 = new Label();
             label49 = new Label();
             label50 = new Label();
+            score4_3 = new TextBox();
+            score4_2 = new TextBox();
+            label71 = new Label();
+            score4_1 = new TextBox();
+            label72 = new Label();
             label51 = new Label();
             label52 = new Label();
+            score5_3 = new TextBox();
+            score5_2 = new TextBox();
             label53 = new Label();
+            score5_1 = new TextBox();
             label54 = new Label();
             label55 = new Label();
             label56 = new Label();
+            score6_3 = new TextBox();
+            score6_2 = new TextBox();
             label57 = new Label();
+            score6_1 = new TextBox();
             label58 = new Label();
             label59 = new Label();
             label60 = new Label();
+            score7_3 = new TextBox();
+            score7_2 = new TextBox();
             label61 = new Label();
+            score7_1 = new TextBox();
             label62 = new Label();
             label63 = new Label();
             label64 = new Label();
+            score8_3 = new TextBox();
+            score8_2 = new TextBox();
             label65 = new Label();
+            score8_1 = new TextBox();
+            label73 = new Label();
+            label74 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nextBtn).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Teal;
-            label1.Location = new Point(351, 28);
+            label1.Location = new Point(620, 9);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(103, 25);
+            label1.Size = new Size(115, 46);
             label1.TabIndex = 3;
-            label1.Text = "Întrebări";
+            label1.Text = "Interpretări \r\nrezultate";
             // 
             // questionTextBox1
             // 
@@ -589,17 +622,17 @@
             pictureBox1.TabIndex = 56;
             pictureBox1.TabStop = false;
             // 
-            // closeBtn
+            // nextBtn
             // 
-            closeBtn.BackColor = Color.Transparent;
-            closeBtn.Image = (Image)resources.GetObject("closeBtn.Image");
-            closeBtn.Location = new Point(745, -2);
-            closeBtn.Name = "closeBtn";
-            closeBtn.Size = new Size(42, 42);
-            closeBtn.SizeMode = PictureBoxSizeMode.StretchImage;
-            closeBtn.TabIndex = 57;
-            closeBtn.TabStop = false;
-            closeBtn.Click += closeBtn_Click;
+            nextBtn.BackColor = Color.Transparent;
+            nextBtn.Image = (Image)resources.GetObject("nextBtn.Image");
+            nextBtn.Location = new Point(740, 12);
+            nextBtn.Name = "nextBtn";
+            nextBtn.Size = new Size(35, 35);
+            nextBtn.SizeMode = PictureBoxSizeMode.StretchImage;
+            nextBtn.TabIndex = 57;
+            nextBtn.TabStop = false;
+            nextBtn.Click += nextBtn_Click;
             // 
             // label18
             // 
@@ -841,245 +874,505 @@
             label41.TabIndex = 79;
             label41.Text = "1.";
             // 
+            // label44
+            // 
+            label44.AutoSize = true;
+            label44.Location = new Point(316, 237);
+            label44.Margin = new Padding(2, 0, 2, 0);
+            label44.Name = "label44";
+            label44.Size = new Size(34, 19);
+            label44.TabIndex = 82;
+            label44.Text = "pct.";
+            // 
+            // score1_1
+            // 
+            score1_1.Location = new Point(261, 229);
+            score1_1.Name = "score1_1";
+            score1_1.Size = new Size(50, 27);
+            score1_1.TabIndex = 106;
+            // 
+            // label66
+            // 
+            label66.AutoSize = true;
+            label66.Location = new Point(255, 207);
+            label66.Margin = new Padding(2, 0, 2, 0);
+            label66.Name = "label66";
+            label66.Size = new Size(65, 19);
+            label66.TabIndex = 107;
+            label66.Text = "Punctaj:";
+            // 
+            // score1_2
+            // 
+            score1_2.Location = new Point(261, 261);
+            score1_2.Name = "score1_2";
+            score1_2.Size = new Size(50, 27);
+            score1_2.TabIndex = 108;
+            // 
+            // score1_3
+            // 
+            score1_3.Location = new Point(261, 292);
+            score1_3.Name = "score1_3";
+            score1_3.Size = new Size(50, 27);
+            score1_3.TabIndex = 109;
+            // 
             // label42
             // 
             label42.AutoSize = true;
-            label42.Location = new Point(255, 264);
+            label42.Location = new Point(316, 269);
             label42.Margin = new Padding(2, 0, 2, 0);
             label42.Name = "label42";
-            label42.Size = new Size(56, 19);
-            label42.TabIndex = 84;
-            label42.Text = "10 pct.";
+            label42.Size = new Size(34, 19);
+            label42.TabIndex = 110;
+            label42.Text = "pct.";
             // 
             // label43
             // 
             label43.AutoSize = true;
-            label43.Location = new Point(255, 295);
+            label43.Location = new Point(316, 300);
             label43.Margin = new Padding(2, 0, 2, 0);
             label43.Name = "label43";
-            label43.Size = new Size(56, 19);
-            label43.TabIndex = 83;
-            label43.Text = "15 pct.";
+            label43.Size = new Size(34, 19);
+            label43.TabIndex = 111;
+            label43.Text = "pct.";
             // 
-            // label44
+            // label67
             // 
-            label44.AutoSize = true;
-            label44.Location = new Point(255, 237);
-            label44.Margin = new Padding(2, 0, 2, 0);
-            label44.Name = "label44";
-            label44.Size = new Size(47, 19);
-            label44.TabIndex = 82;
-            label44.Text = "5 pct.";
+            label67.AutoSize = true;
+            label67.Location = new Point(316, 498);
+            label67.Margin = new Padding(2, 0, 2, 0);
+            label67.Name = "label67";
+            label67.Size = new Size(34, 19);
+            label67.TabIndex = 118;
+            label67.Text = "pct.";
+            // 
+            // label68
+            // 
+            label68.AutoSize = true;
+            label68.Location = new Point(316, 467);
+            label68.Margin = new Padding(2, 0, 2, 0);
+            label68.Name = "label68";
+            label68.Size = new Size(34, 19);
+            label68.TabIndex = 117;
+            label68.Text = "pct.";
+            // 
+            // score2_3
+            // 
+            score2_3.Location = new Point(261, 490);
+            score2_3.Name = "score2_3";
+            score2_3.Size = new Size(50, 27);
+            score2_3.TabIndex = 116;
+            // 
+            // score2_2
+            // 
+            score2_2.Location = new Point(261, 459);
+            score2_2.Name = "score2_2";
+            score2_2.Size = new Size(50, 27);
+            score2_2.TabIndex = 115;
+            // 
+            // label69
+            // 
+            label69.AutoSize = true;
+            label69.Location = new Point(255, 405);
+            label69.Margin = new Padding(2, 0, 2, 0);
+            label69.Name = "label69";
+            label69.Size = new Size(65, 19);
+            label69.TabIndex = 114;
+            label69.Text = "Punctaj:";
+            // 
+            // score2_1
+            // 
+            score2_1.Location = new Point(261, 427);
+            score2_1.Name = "score2_1";
+            score2_1.Size = new Size(50, 27);
+            score2_1.TabIndex = 113;
+            // 
+            // label70
+            // 
+            label70.AutoSize = true;
+            label70.Location = new Point(316, 435);
+            label70.Margin = new Padding(2, 0, 2, 0);
+            label70.Name = "label70";
+            label70.Size = new Size(34, 19);
+            label70.TabIndex = 112;
+            label70.Text = "pct.";
             // 
             // label45
             // 
             label45.AutoSize = true;
-            label45.Location = new Point(255, 461);
+            label45.Location = new Point(316, 699);
             label45.Margin = new Padding(2, 0, 2, 0);
             label45.Name = "label45";
-            label45.Size = new Size(56, 19);
-            label45.TabIndex = 87;
-            label45.Text = "10 pct.";
+            label45.Size = new Size(34, 19);
+            label45.TabIndex = 125;
+            label45.Text = "pct.";
             // 
             // label46
             // 
             label46.AutoSize = true;
-            label46.Location = new Point(255, 492);
+            label46.Location = new Point(316, 668);
             label46.Margin = new Padding(2, 0, 2, 0);
             label46.Name = "label46";
-            label46.Size = new Size(56, 19);
-            label46.TabIndex = 86;
-            label46.Text = "15 pct.";
+            label46.Size = new Size(34, 19);
+            label46.TabIndex = 124;
+            label46.Text = "pct.";
+            // 
+            // score3_3
+            // 
+            score3_3.Location = new Point(261, 691);
+            score3_3.Name = "score3_3";
+            score3_3.Size = new Size(50, 27);
+            score3_3.TabIndex = 123;
+            // 
+            // score3_2
+            // 
+            score3_2.Location = new Point(261, 660);
+            score3_2.Name = "score3_2";
+            score3_2.Size = new Size(50, 27);
+            score3_2.TabIndex = 122;
             // 
             // label47
             // 
             label47.AutoSize = true;
-            label47.Location = new Point(255, 434);
+            label47.Location = new Point(255, 606);
             label47.Margin = new Padding(2, 0, 2, 0);
             label47.Name = "label47";
-            label47.Size = new Size(47, 19);
-            label47.TabIndex = 85;
-            label47.Text = "5 pct.";
+            label47.Size = new Size(65, 19);
+            label47.TabIndex = 121;
+            label47.Text = "Punctaj:";
+            // 
+            // score3_1
+            // 
+            score3_1.Location = new Point(261, 628);
+            score3_1.Name = "score3_1";
+            score3_1.Size = new Size(50, 27);
+            score3_1.TabIndex = 120;
             // 
             // label48
             // 
             label48.AutoSize = true;
-            label48.Location = new Point(255, 663);
+            label48.Location = new Point(316, 636);
             label48.Margin = new Padding(2, 0, 2, 0);
             label48.Name = "label48";
-            label48.Size = new Size(56, 19);
-            label48.TabIndex = 90;
-            label48.Text = "10 pct.";
+            label48.Size = new Size(34, 19);
+            label48.TabIndex = 119;
+            label48.Text = "pct.";
             // 
             // label49
             // 
             label49.AutoSize = true;
-            label49.Location = new Point(255, 694);
+            label49.Location = new Point(316, 900);
             label49.Margin = new Padding(2, 0, 2, 0);
             label49.Name = "label49";
-            label49.Size = new Size(56, 19);
-            label49.TabIndex = 89;
-            label49.Text = "15 pct.";
+            label49.Size = new Size(34, 19);
+            label49.TabIndex = 132;
+            label49.Text = "pct.";
             // 
             // label50
             // 
             label50.AutoSize = true;
-            label50.Location = new Point(255, 636);
+            label50.Location = new Point(316, 869);
             label50.Margin = new Padding(2, 0, 2, 0);
             label50.Name = "label50";
-            label50.Size = new Size(47, 19);
-            label50.TabIndex = 88;
-            label50.Text = "5 pct.";
+            label50.Size = new Size(34, 19);
+            label50.TabIndex = 131;
+            label50.Text = "pct.";
+            // 
+            // score4_3
+            // 
+            score4_3.Location = new Point(261, 892);
+            score4_3.Name = "score4_3";
+            score4_3.Size = new Size(50, 27);
+            score4_3.TabIndex = 130;
+            // 
+            // score4_2
+            // 
+            score4_2.Location = new Point(261, 861);
+            score4_2.Name = "score4_2";
+            score4_2.Size = new Size(50, 27);
+            score4_2.TabIndex = 129;
+            // 
+            // label71
+            // 
+            label71.AutoSize = true;
+            label71.Location = new Point(255, 807);
+            label71.Margin = new Padding(2, 0, 2, 0);
+            label71.Name = "label71";
+            label71.Size = new Size(65, 19);
+            label71.TabIndex = 128;
+            label71.Text = "Punctaj:";
+            // 
+            // score4_1
+            // 
+            score4_1.Location = new Point(261, 829);
+            score4_1.Name = "score4_1";
+            score4_1.Size = new Size(50, 27);
+            score4_1.TabIndex = 127;
+            // 
+            // label72
+            // 
+            label72.AutoSize = true;
+            label72.Location = new Point(316, 837);
+            label72.Margin = new Padding(2, 0, 2, 0);
+            label72.Name = "label72";
+            label72.Size = new Size(34, 19);
+            label72.TabIndex = 126;
+            label72.Text = "pct.";
             // 
             // label51
             // 
             label51.AutoSize = true;
-            label51.Location = new Point(255, 863);
+            label51.Location = new Point(712, 300);
             label51.Margin = new Padding(2, 0, 2, 0);
             label51.Name = "label51";
-            label51.Size = new Size(56, 19);
-            label51.TabIndex = 93;
-            label51.Text = "10 pct.";
+            label51.Size = new Size(34, 19);
+            label51.TabIndex = 139;
+            label51.Text = "pct.";
             // 
             // label52
             // 
             label52.AutoSize = true;
-            label52.Location = new Point(255, 894);
+            label52.Location = new Point(712, 269);
             label52.Margin = new Padding(2, 0, 2, 0);
             label52.Name = "label52";
-            label52.Size = new Size(56, 19);
-            label52.TabIndex = 92;
-            label52.Text = "15 pct.";
+            label52.Size = new Size(34, 19);
+            label52.TabIndex = 138;
+            label52.Text = "pct.";
+            // 
+            // score5_3
+            // 
+            score5_3.Location = new Point(657, 292);
+            score5_3.Name = "score5_3";
+            score5_3.Size = new Size(50, 27);
+            score5_3.TabIndex = 137;
+            // 
+            // score5_2
+            // 
+            score5_2.Location = new Point(657, 261);
+            score5_2.Name = "score5_2";
+            score5_2.Size = new Size(50, 27);
+            score5_2.TabIndex = 136;
             // 
             // label53
             // 
             label53.AutoSize = true;
-            label53.Location = new Point(255, 836);
+            label53.Location = new Point(651, 207);
             label53.Margin = new Padding(2, 0, 2, 0);
             label53.Name = "label53";
-            label53.Size = new Size(47, 19);
-            label53.TabIndex = 91;
-            label53.Text = "5 pct.";
+            label53.Size = new Size(65, 19);
+            label53.TabIndex = 135;
+            label53.Text = "Punctaj:";
+            // 
+            // score5_1
+            // 
+            score5_1.Location = new Point(657, 229);
+            score5_1.Name = "score5_1";
+            score5_1.Size = new Size(50, 27);
+            score5_1.TabIndex = 134;
             // 
             // label54
             // 
             label54.AutoSize = true;
-            label54.Location = new Point(651, 264);
+            label54.Location = new Point(712, 237);
             label54.Margin = new Padding(2, 0, 2, 0);
             label54.Name = "label54";
-            label54.Size = new Size(56, 19);
-            label54.TabIndex = 96;
-            label54.Text = "10 pct.";
+            label54.Size = new Size(34, 19);
+            label54.TabIndex = 133;
+            label54.Text = "pct.";
             // 
             // label55
             // 
             label55.AutoSize = true;
-            label55.Location = new Point(651, 295);
+            label55.Location = new Point(712, 498);
             label55.Margin = new Padding(2, 0, 2, 0);
             label55.Name = "label55";
-            label55.Size = new Size(56, 19);
-            label55.TabIndex = 95;
-            label55.Text = "15 pct.";
+            label55.Size = new Size(34, 19);
+            label55.TabIndex = 146;
+            label55.Text = "pct.";
             // 
             // label56
             // 
             label56.AutoSize = true;
-            label56.Location = new Point(651, 237);
+            label56.Location = new Point(712, 467);
             label56.Margin = new Padding(2, 0, 2, 0);
             label56.Name = "label56";
-            label56.Size = new Size(47, 19);
-            label56.TabIndex = 94;
-            label56.Text = "5 pct.";
+            label56.Size = new Size(34, 19);
+            label56.TabIndex = 145;
+            label56.Text = "pct.";
+            // 
+            // score6_3
+            // 
+            score6_3.Location = new Point(657, 490);
+            score6_3.Name = "score6_3";
+            score6_3.Size = new Size(50, 27);
+            score6_3.TabIndex = 144;
+            // 
+            // score6_2
+            // 
+            score6_2.Location = new Point(657, 459);
+            score6_2.Name = "score6_2";
+            score6_2.Size = new Size(50, 27);
+            score6_2.TabIndex = 143;
             // 
             // label57
             // 
             label57.AutoSize = true;
-            label57.Location = new Point(651, 461);
+            label57.Location = new Point(651, 405);
             label57.Margin = new Padding(2, 0, 2, 0);
             label57.Name = "label57";
-            label57.Size = new Size(56, 19);
-            label57.TabIndex = 99;
-            label57.Text = "10 pct.";
+            label57.Size = new Size(65, 19);
+            label57.TabIndex = 142;
+            label57.Text = "Punctaj:";
+            // 
+            // score6_1
+            // 
+            score6_1.Location = new Point(657, 427);
+            score6_1.Name = "score6_1";
+            score6_1.Size = new Size(50, 27);
+            score6_1.TabIndex = 141;
             // 
             // label58
             // 
             label58.AutoSize = true;
-            label58.Location = new Point(651, 492);
+            label58.Location = new Point(712, 435);
             label58.Margin = new Padding(2, 0, 2, 0);
             label58.Name = "label58";
-            label58.Size = new Size(56, 19);
-            label58.TabIndex = 98;
-            label58.Text = "15 pct.";
+            label58.Size = new Size(34, 19);
+            label58.TabIndex = 140;
+            label58.Text = "pct.";
             // 
             // label59
             // 
             label59.AutoSize = true;
-            label59.Location = new Point(651, 434);
+            label59.Location = new Point(712, 699);
             label59.Margin = new Padding(2, 0, 2, 0);
             label59.Name = "label59";
-            label59.Size = new Size(47, 19);
-            label59.TabIndex = 97;
-            label59.Text = "5 pct.";
+            label59.Size = new Size(34, 19);
+            label59.TabIndex = 153;
+            label59.Text = "pct.";
             // 
             // label60
             // 
             label60.AutoSize = true;
-            label60.Location = new Point(651, 663);
+            label60.Location = new Point(712, 668);
             label60.Margin = new Padding(2, 0, 2, 0);
             label60.Name = "label60";
-            label60.Size = new Size(56, 19);
-            label60.TabIndex = 102;
-            label60.Text = "10 pct.";
+            label60.Size = new Size(34, 19);
+            label60.TabIndex = 152;
+            label60.Text = "pct.";
+            // 
+            // score7_3
+            // 
+            score7_3.Location = new Point(657, 691);
+            score7_3.Name = "score7_3";
+            score7_3.Size = new Size(50, 27);
+            score7_3.TabIndex = 151;
+            // 
+            // score7_2
+            // 
+            score7_2.Location = new Point(657, 660);
+            score7_2.Name = "score7_2";
+            score7_2.Size = new Size(50, 27);
+            score7_2.TabIndex = 150;
             // 
             // label61
             // 
             label61.AutoSize = true;
-            label61.Location = new Point(651, 694);
+            label61.Location = new Point(651, 606);
             label61.Margin = new Padding(2, 0, 2, 0);
             label61.Name = "label61";
-            label61.Size = new Size(56, 19);
-            label61.TabIndex = 101;
-            label61.Text = "15 pct.";
+            label61.Size = new Size(65, 19);
+            label61.TabIndex = 149;
+            label61.Text = "Punctaj:";
+            // 
+            // score7_1
+            // 
+            score7_1.Location = new Point(657, 628);
+            score7_1.Name = "score7_1";
+            score7_1.Size = new Size(50, 27);
+            score7_1.TabIndex = 148;
             // 
             // label62
             // 
             label62.AutoSize = true;
-            label62.Location = new Point(651, 636);
+            label62.Location = new Point(712, 636);
             label62.Margin = new Padding(2, 0, 2, 0);
             label62.Name = "label62";
-            label62.Size = new Size(47, 19);
-            label62.TabIndex = 100;
-            label62.Text = "5 pct.";
+            label62.Size = new Size(34, 19);
+            label62.TabIndex = 147;
+            label62.Text = "pct.";
             // 
             // label63
             // 
             label63.AutoSize = true;
-            label63.Location = new Point(651, 863);
+            label63.Location = new Point(712, 899);
             label63.Margin = new Padding(2, 0, 2, 0);
             label63.Name = "label63";
-            label63.Size = new Size(56, 19);
-            label63.TabIndex = 105;
-            label63.Text = "10 pct.";
+            label63.Size = new Size(34, 19);
+            label63.TabIndex = 160;
+            label63.Text = "pct.";
             // 
             // label64
             // 
             label64.AutoSize = true;
-            label64.Location = new Point(651, 894);
+            label64.Location = new Point(712, 868);
             label64.Margin = new Padding(2, 0, 2, 0);
             label64.Name = "label64";
-            label64.Size = new Size(56, 19);
-            label64.TabIndex = 104;
-            label64.Text = "15 pct.";
+            label64.Size = new Size(34, 19);
+            label64.TabIndex = 159;
+            label64.Text = "pct.";
+            // 
+            // score8_3
+            // 
+            score8_3.Location = new Point(657, 891);
+            score8_3.Name = "score8_3";
+            score8_3.Size = new Size(50, 27);
+            score8_3.TabIndex = 158;
+            // 
+            // score8_2
+            // 
+            score8_2.Location = new Point(657, 860);
+            score8_2.Name = "score8_2";
+            score8_2.Size = new Size(50, 27);
+            score8_2.TabIndex = 157;
             // 
             // label65
             // 
             label65.AutoSize = true;
-            label65.Location = new Point(651, 836);
+            label65.Location = new Point(651, 806);
             label65.Margin = new Padding(2, 0, 2, 0);
             label65.Name = "label65";
-            label65.Size = new Size(47, 19);
-            label65.TabIndex = 103;
-            label65.Text = "5 pct.";
+            label65.Size = new Size(65, 19);
+            label65.TabIndex = 156;
+            label65.Text = "Punctaj:";
+            // 
+            // score8_1
+            // 
+            score8_1.Location = new Point(657, 828);
+            score8_1.Name = "score8_1";
+            score8_1.Size = new Size(50, 27);
+            score8_1.TabIndex = 155;
+            // 
+            // label73
+            // 
+            label73.AutoSize = true;
+            label73.Location = new Point(712, 836);
+            label73.Margin = new Padding(2, 0, 2, 0);
+            label73.Name = "label73";
+            label73.Size = new Size(34, 19);
+            label73.TabIndex = 154;
+            label73.Text = "pct.";
+            // 
+            // label74
+            // 
+            label74.AutoSize = true;
+            label74.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label74.ForeColor = Color.Teal;
+            label74.Location = new Point(351, 55);
+            label74.Margin = new Padding(2, 0, 2, 0);
+            label74.Name = "label74";
+            label74.Size = new Size(103, 25);
+            label74.TabIndex = 161;
+            label74.Text = "Întrebări";
             // 
             // TestQuestions
             // 
@@ -1087,29 +1380,62 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(787, 1027);
+            Controls.Add(label74);
             Controls.Add(label63);
             Controls.Add(label64);
+            Controls.Add(score8_3);
+            Controls.Add(score8_2);
             Controls.Add(label65);
-            Controls.Add(label60);
-            Controls.Add(label61);
-            Controls.Add(label62);
-            Controls.Add(label57);
-            Controls.Add(label58);
+            Controls.Add(score8_1);
+            Controls.Add(label73);
             Controls.Add(label59);
-            Controls.Add(label54);
+            Controls.Add(label60);
+            Controls.Add(score7_3);
+            Controls.Add(score7_2);
+            Controls.Add(label61);
+            Controls.Add(score7_1);
+            Controls.Add(label62);
             Controls.Add(label55);
             Controls.Add(label56);
+            Controls.Add(score6_3);
+            Controls.Add(score6_2);
+            Controls.Add(label57);
+            Controls.Add(score6_1);
+            Controls.Add(label58);
             Controls.Add(label51);
             Controls.Add(label52);
+            Controls.Add(score5_3);
+            Controls.Add(score5_2);
             Controls.Add(label53);
-            Controls.Add(label48);
+            Controls.Add(score5_1);
+            Controls.Add(label54);
             Controls.Add(label49);
             Controls.Add(label50);
+            Controls.Add(score4_3);
+            Controls.Add(score4_2);
+            Controls.Add(label71);
+            Controls.Add(score4_1);
+            Controls.Add(label72);
             Controls.Add(label45);
             Controls.Add(label46);
+            Controls.Add(score3_3);
+            Controls.Add(score3_2);
             Controls.Add(label47);
-            Controls.Add(label42);
+            Controls.Add(score3_1);
+            Controls.Add(label48);
+            Controls.Add(label67);
+            Controls.Add(label68);
+            Controls.Add(score2_3);
+            Controls.Add(score2_2);
+            Controls.Add(label69);
+            Controls.Add(score2_1);
+            Controls.Add(label70);
             Controls.Add(label43);
+            Controls.Add(label42);
+            Controls.Add(score1_3);
+            Controls.Add(score1_2);
+            Controls.Add(label66);
+            Controls.Add(score1_1);
             Controls.Add(label44);
             Controls.Add(label39);
             Controls.Add(label40);
@@ -1135,7 +1461,7 @@
             Controls.Add(label20);
             Controls.Add(label19);
             Controls.Add(label18);
-            Controls.Add(closeBtn);
+            Controls.Add(nextBtn);
             Controls.Add(pictureBox1);
             Controls.Add(addBtn);
             Controls.Add(optionTextBox8_3);
@@ -1194,7 +1520,7 @@
             Text = "n ";
             Load += TestQuestions_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)closeBtn).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nextBtn).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1251,7 +1577,7 @@
         private TextBox questionTextBox8;
         private Button addBtn;
         private PictureBox pictureBox1;
-        private PictureBox closeBtn;
+        private PictureBox nextBtn;
         private Label label18;
         private Label label19;
         private Label label20;
@@ -1276,29 +1602,62 @@
         private Label label39;
         private Label label40;
         private Label label41;
+        private Label label44;
+        private TextBox score1_1;
+        private Label label66;
+        private TextBox score1_2;
+        private TextBox score1_3;
         private Label label42;
         private Label label43;
-        private Label label44;
+        private Label label67;
+        private Label label68;
+        private TextBox score2_3;
+        private TextBox score2_2;
+        private Label label69;
+        private TextBox score2_1;
+        private Label label70;
         private Label label45;
         private Label label46;
+        private TextBox score3_3;
+        private TextBox score3_2;
         private Label label47;
+        private TextBox score3_1;
         private Label label48;
         private Label label49;
         private Label label50;
+        private TextBox score4_3;
+        private TextBox score4_2;
+        private Label label71;
+        private TextBox score4_1;
+        private Label label72;
         private Label label51;
         private Label label52;
+        private TextBox score5_3;
+        private TextBox score5_2;
         private Label label53;
+        private TextBox score5_1;
         private Label label54;
         private Label label55;
         private Label label56;
+        private TextBox score6_3;
+        private TextBox score6_2;
         private Label label57;
+        private TextBox score6_1;
         private Label label58;
         private Label label59;
         private Label label60;
+        private TextBox score7_3;
+        private TextBox score7_2;
         private Label label61;
+        private TextBox score7_1;
         private Label label62;
         private Label label63;
         private Label label64;
+        private TextBox score8_3;
+        private TextBox score8_2;
         private Label label65;
+        private TextBox score8_1;
+        private Label label73;
+        private Label label74;
     }
 }
