@@ -234,18 +234,29 @@ namespace Licenta
             if (AreAllQuestionsAnswered())
             {
                 int totalScore = 0;
-                
-                
+                int questionCount = 0;
+
+
                 foreach (Control control in questionsPanel.Controls)
                 {
-                    if (control is CheckBox checkBox && checkBox.Checked)
+                    if (control is Label label && label != nameLabel)
+                    {
+                        questionCount++;
+                    }
+                    else if (control is CheckBox checkBox && checkBox.Checked)
                     {
                         totalScore += (int)checkBox.Tag;
                     }
                 }
 
-                string interpretation = GetInterpretation(totalScore);
-                SaveTestResult(totalScore, interpretation);
+
+                (int minIntervalScore, int maxIntervalScore) = GetIntervalLimits(testID);
+
+                
+                int normalizedScore = NormalizeScore(totalScore, questionCount, minIntervalScore, maxIntervalScore);
+
+                string interpretation = GetInterpretation(normalizedScore);
+                SaveTestResult(normalizedScore, interpretation);
                 
             }
             else
@@ -254,6 +265,59 @@ namespace Licenta
             }
         }
 
+        private (int, int) GetIntervalLimits(int testID)
+        {
+            int minIntervalScore = int.MaxValue;
+            int maxIntervalScore = int.MinValue;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("SELECT MIN(scoreMIN), MAX(scoreMAX) FROM interpretation WHERE testID = @testID", con))
+                    {
+                        cmd.Parameters.AddWithValue("@testID", testID);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                if (!reader.IsDBNull(0))
+                                {
+                                    minIntervalScore = reader.GetInt32(0);
+                                }
+                                if (!reader.IsDBNull(1))
+                                {
+                                    maxIntervalScore = reader.GetInt32(1);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"A apărut o eroare la obținerea limitelor intervalelor: {ex.Message}");
+            }
+
+            return (minIntervalScore, maxIntervalScore);
+        }
+
+        private int NormalizeScore(int totalScore, int questionCount, int minIntervalScore, int maxIntervalScore)
+        {
+            
+            int minPossibleScore = questionCount; 
+            int maxPossibleScore = questionCount * 3; 
+
+           
+            double proportion = (double)(totalScore - minPossibleScore) / (maxPossibleScore - minPossibleScore);
+            int normalizedScore = (int)Math.Round(minIntervalScore + proportion * (maxIntervalScore - minIntervalScore));
+
+            if (normalizedScore < minIntervalScore) normalizedScore = minIntervalScore;
+            if (normalizedScore > maxIntervalScore) normalizedScore = maxIntervalScore;
+
+            return normalizedScore;
+        }
         private bool AreAllQuestionsAnswered()
         {
 

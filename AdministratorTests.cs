@@ -97,7 +97,7 @@ namespace Licenta
                         return;
                     }
 
-                    MessageBox.Show("Test adăugat preliminar. Adăugați întrebările și interpretările.");
+                   
 
                     TestQuestions addQuestions = new TestQuestions(testID, false);
                     this.Hide();

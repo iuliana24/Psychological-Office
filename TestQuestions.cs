@@ -168,10 +168,11 @@ namespace Licenta
                 MessageBox.Show(Ex.Message);
             }
 
+            /*
             if (isUpdate)
             {
                 MessageBox.Show("Test actualizat.");
-            }
+            }*/
         }
 
         private bool ValidateQuestionsAndOptions()
