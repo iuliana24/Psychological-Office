@@ -24,7 +24,7 @@ namespace Licenta
         private void displayTests()
         {
             Con.Open();
-            string query = "SELECT t.testID as Id, t.name as Denumire, t.description as Descriere, tr.date as Data, tr.time as Ora, tr.score as Rezultat FROM test t join test_result tr on t.testID = tr.testID;";
+            string query = "SELECT t.testID as Id, tr.name as Nume, t.name as Test, tr.date as Data, tr.time as Ora, tr.score as Rezultat, tr.interpretation as Interpretare FROM test t join test_result tr on t.testID = tr.testID;";
             SqlDataAdapter sda = new SqlDataAdapter(query, Con);
             SqlCommandBuilder builder = new SqlCommandBuilder(sda);
             var ds = new DataSet();
@@ -70,11 +70,12 @@ namespace Licenta
         private void PsychologistTests_Load(object sender, EventArgs e)
         {
             testsView.Columns[0].Width = 40;
-            testsView.Columns[1].Width = 180;
-            testsView.Columns[2].Width = 180;
-            testsView.Columns[3].Width = 180;
-            testsView.Columns[4].Width = 180;
-            testsView.Columns[5].Width = 180;
+            testsView.Columns[1].Width = 150;
+            testsView.Columns[2].Width = 150;
+            testsView.Columns[3].Width = 150;
+            testsView.Columns[4].Width = 150;
+            testsView.Columns[5].Width = 150;
+            testsView.Columns[6].Width = 150;
         }
     }
 }

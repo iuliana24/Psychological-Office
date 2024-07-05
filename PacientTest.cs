@@ -21,8 +21,6 @@ namespace Licenta
         private Label nameLabel;
         private string connectionString = @"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
-        private int[] questionWeights = new int[8];
-        private int maxScore;
         public PacientTest(int testID)
         {
             InitializeComponent();
@@ -56,17 +54,17 @@ namespace Licenta
 
             nameLabel = new Label
             {
-                Text = "Nume:",
+                Text = "Nume și prenume:",
                 Font = new Font(Font.FontFamily, 12, FontStyle.Regular),
                 AutoSize = true,
-                Top = 10,
-                Left = 30
+                Top = 20,
+                Left = 35
             };
             questionsPanel.Controls.Add(nameLabel);
 
             nameTextBox = new TextBox
             {
-                Width = 200,
+                Width = 250,
                 Top = nameLabel.Bottom + 5,
                 Left = nameLabel.Left,
             };
@@ -88,56 +86,12 @@ namespace Licenta
             submitButton.Click += submitButton_Click;
             questionsPanel.Controls.Add(submitButton);
 
-            for (int i = 0; i < questionWeights.Length; i++)
-            {
-                questionWeights[i] = 1;
-            }
-
             
-            questionWeights[0] = 1; 
-            questionWeights[1] = 2; 
-            questionWeights[2] = 1; 
-            questionWeights[3] = 2; 
-            questionWeights[4] = 1; 
-            questionWeights[5] = 2; 
-            questionWeights[6] = 1; 
-            questionWeights[7] = 2;
-
-            CalculateMaxScore();
-
             LoadQuestionsAndOptions();
 
         }
 
-        private void CalculateMaxScore()
-        {
-            try
-            {
-                using (SqlConnection con = new SqlConnection(connectionString))
-                {
-                    con.Open();
-                    using (SqlCommand cmd = new SqlCommand("SELECT MAX(score) FROM [option] WHERE questionID IN (SELECT questionID FROM question WHERE testID = @testID)", con))
-                    {
-                        cmd.Parameters.AddWithValue("@testID", testID);
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            maxScore = 0;
-                            while (reader.Read())
-                            {
-                                int maxOptionScore = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
-                                maxScore += maxOptionScore;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"A apărut o eroare la calcularea scorului maxim: {ex.Message}");
-            }
-        }
-
-
+       
         private string GetTestName(int testID)
         {
             string testName = "";
@@ -149,7 +103,7 @@ namespace Licenta
                     using (SqlCommand cmd = new SqlCommand("SELECT name FROM test WHERE testID = @testID", con))
                     {
                         cmd.Parameters.AddWithValue("@testID", testID);
-                        testName = cmd.ExecuteScalar().ToString();
+                        testName = cmd.ExecuteScalar()?.ToString();
                     }
                 }
             }
@@ -164,6 +118,10 @@ namespace Licenta
         {
             int yOffset = nameTextBox.Bottom + 20;
             questionsPanel.Controls.Clear();
+
+            questionsPanel.Controls.Add(nameLabel);
+            questionsPanel.Controls.Add(nameTextBox);
+
             try
             {
                 using (SqlConnection con = new SqlConnection(connectionString))
@@ -181,12 +139,13 @@ namespace Licenta
                                     int questionID = reader.GetInt32(0);
                                     string questionText = reader.IsDBNull(1) ? string.Empty : reader.GetString(1);
 
+
                                     Label questionLabel = new Label
                                     {
-                                        Text = questionText,                                     
-                                        AutoSize = true
+                                        Text = questionText,
+                                        AutoSize = true,
+                                        Location = new Point(30, yOffset)
                                     };
-                                    questionLabel.Location = new Point(30, yOffset);
                                     questionsPanel.Controls.Add(questionLabel);
 
                                     yOffset += questionLabel.Height + 10;
@@ -194,11 +153,12 @@ namespace Licenta
                                     yOffset = LoadOptions(questionID, yOffset);
 
                                     yOffset += 30;
-                                    
+
                                 }
 
                                 yOffset += 20;
-                               
+
+
                                 submitButton.Top = yOffset;
                                 submitButton.Left = (questionsPanel.Width - submitButton.Width) / 2;
                                 questionsPanel.Controls.Add(submitButton);
@@ -237,10 +197,11 @@ namespace Licenta
                                 string optionText = reader.IsDBNull(1) ? string.Empty : reader.GetString(1);
                                 int score = reader.IsDBNull(2) ? 0 : reader.GetInt32(2);
 
+
                                 CheckBox optionCheckBox = new CheckBox
                                 {
                                     Text = optionText,
-                                    Tag = score,                                  
+                                    Tag = score,
                                     AutoSize = true
                                 };
                                 optionCheckBox.Location = new Point(50, yOffset);
@@ -264,34 +225,28 @@ namespace Licenta
        
         private void submitButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(nameTextBox.Text))
+            {
+                MessageBox.Show("Vă rugăm să introduceți numele.");
+                return;
+            }
+
             if (AreAllQuestionsAnswered())
             {
                 int totalScore = 0;
-                int questionIndex = 0;
-
+                
+                
                 foreach (Control control in questionsPanel.Controls)
                 {
-                    if (control is Label)
+                    if (control is CheckBox checkBox && checkBox.Checked)
                     {
-                        
-                        int questionScore = 0;
-                        foreach (Control innerControl in questionsPanel.Controls)
-                        {
-                            if (innerControl is CheckBox checkBox && checkBox.Checked)
-                            {
-                                
-                                questionScore += (int)checkBox.Tag;
-                            }
-                        }
-                       
-                        totalScore += questionScore * questionWeights[questionIndex];
-
-                        questionIndex++;
+                        totalScore += (int)checkBox.Tag;
                     }
                 }
 
                 string interpretation = GetInterpretation(totalScore);
                 SaveTestResult(totalScore, interpretation);
+                
             }
             else
             {
@@ -301,12 +256,14 @@ namespace Licenta
 
         private bool AreAllQuestionsAnswered()
         {
+
             int currentQuestionID = -1;
             bool isChecked = false;
 
             foreach (Control control in questionsPanel.Controls)
             {
-                if (control is Label label)
+
+                if (control is Label label && label != nameLabel)
                 {
                     if (currentQuestionID != -1 && !isChecked)
                     {
@@ -323,28 +280,32 @@ namespace Licenta
                     }
                 }
             }
+
+
             return isChecked;
         }
 
         private string GetInterpretation(int score)
         {
             string interpretation = "";
-            int interval1Max = maxScore / 3;
-            int interval2Max = 2 * maxScore / 3;
-
-            if (score <= interval1Max)
+            try
             {
-                interpretation = "Interpretare pentru intervalul 1";
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("SELECT interpretationText FROM interpretation WHERE testID = @testID AND @score BETWEEN scoreMIN AND scoreMAX", con))
+                    {
+                        cmd.Parameters.AddWithValue("@testID", testID);
+                        cmd.Parameters.AddWithValue("@score", score);
+                        interpretation = cmd.ExecuteScalar()?.ToString() ?? "Interpretare necunoscută";
+                    }
+                }
             }
-            else if (score <= interval2Max)
+            catch (Exception ex)
             {
-                interpretation = "Interpretare pentru intervalul 2";
+                MessageBox.Show($"A apărut o eroare la obținerea interpretării: {ex.Message}");
+                interpretation = "Interpretare necunoscută";
             }
-            else
-            {
-                interpretation = "Interpretare pentru intervalul 3";
-            }
-
             return interpretation;
         }
 
@@ -356,17 +317,22 @@ namespace Licenta
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    using (SqlCommand cmd = new SqlCommand("INSERT INTO test_result(testID, score, date, time, interpretation) VALUES (@testID, @score, @date, @time, @interpretation)", con))
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO test_result(testID, score, date, time, interpretation, name) VALUES (@testID, @score, @date, @time, @interpretation, @name)", con))
                     {
                         cmd.Parameters.AddWithValue("@testID", testID);
                         cmd.Parameters.AddWithValue("@score", score);
                         cmd.Parameters.AddWithValue("@date", DateTime.Now.Date);
                         cmd.Parameters.AddWithValue("@time", DateTime.Now.ToString("HH:mm:ss"));
                         cmd.Parameters.AddWithValue("@interpretation", interpretation);
+                        cmd.Parameters.AddWithValue("@name", nameTextBox.Text);
                         cmd.ExecuteNonQuery();
                     }
                 }
                 MessageBox.Show("Rezultatul testului a fost salvat cu succes!");
+
+                Pacients testSelectionPage = new Pacients();
+                testSelectionPage.Show();
+                this.Close();
             }
             catch (Exception ex)
             {
