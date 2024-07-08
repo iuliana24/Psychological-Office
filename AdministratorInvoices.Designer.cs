@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministratorInvoices));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pictureBox5 = new PictureBox();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
@@ -60,6 +60,7 @@
             editBtn = new Button();
             addBtn = new Button();
             invoicegenBtn = new Button();
+            clrbtn = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -131,7 +132,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Teal;
-            label1.Location = new Point(746, 32);
+            label1.Location = new Point(743, 32);
             label1.Name = "label1";
             label1.Size = new Size(103, 32);
             label1.TabIndex = 24;
@@ -309,20 +310,20 @@
             // 
             invoicesView.AllowUserToOrderColumns = true;
             invoicesView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.SelectionBackColor = Color.MediumAquamarine;
-            invoicesView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.SelectionBackColor = Color.MediumAquamarine;
+            invoicesView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             invoicesView.BackgroundColor = Color.FromArgb(241, 251, 247);
             invoicesView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.MediumAquamarine;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            invoicesView.DefaultCellStyle = dataGridViewCellStyle2;
-            invoicesView.Location = new Point(456, 375);
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            invoicesView.DefaultCellStyle = dataGridViewCellStyle4;
+            invoicesView.Location = new Point(453, 391);
             invoicesView.Name = "invoicesView";
             invoicesView.RowHeadersVisible = false;
             invoicesView.RowHeadersWidth = 20;
@@ -382,7 +383,7 @@
             delBtn.FlatStyle = FlatStyle.Flat;
             delBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             delBtn.ForeColor = Color.White;
-            delBtn.Location = new Point(1047, 278);
+            delBtn.Location = new Point(863, 336);
             delBtn.Name = "delBtn";
             delBtn.Size = new Size(116, 49);
             delBtn.TabIndex = 59;
@@ -397,7 +398,7 @@
             editBtn.FlatStyle = FlatStyle.Flat;
             editBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editBtn.ForeColor = Color.White;
-            editBtn.Location = new Point(1112, 221);
+            editBtn.Location = new Point(730, 336);
             editBtn.Name = "editBtn";
             editBtn.Size = new Size(116, 49);
             editBtn.TabIndex = 58;
@@ -412,7 +413,7 @@
             addBtn.FlatStyle = FlatStyle.Flat;
             addBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             addBtn.ForeColor = Color.White;
-            addBtn.Location = new Point(978, 221);
+            addBtn.Location = new Point(596, 336);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(116, 49);
             addBtn.TabIndex = 57;
@@ -427,7 +428,7 @@
             invoicegenBtn.FlatStyle = FlatStyle.Flat;
             invoicegenBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             invoicegenBtn.ForeColor = Color.White;
-            invoicegenBtn.Location = new Point(670, 305);
+            invoicegenBtn.Location = new Point(978, 238);
             invoicegenBtn.Name = "invoicegenBtn";
             invoicegenBtn.Size = new Size(250, 49);
             invoicegenBtn.TabIndex = 60;
@@ -435,12 +436,24 @@
             invoicegenBtn.UseVisualStyleBackColor = false;
             invoicegenBtn.Click += invoicegenBtn_Click;
             // 
+            // clrbtn
+            // 
+            clrbtn.AutoSize = true;
+            clrbtn.Font = new Font("Times New Roman", 12F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            clrbtn.Location = new Point(361, 290);
+            clrbtn.Name = "clrbtn";
+            clrbtn.Size = new Size(144, 22);
+            clrbtn.TabIndex = 61;
+            clrbtn.Text = "Golește formular";
+            clrbtn.Click += clrbtn_Click;
+            // 
             // AdministratorInvoices
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
+            Controls.Add(clrbtn);
             Controls.Add(invoicegenBtn);
             Controls.Add(delBtn);
             Controls.Add(editBtn);
@@ -510,5 +523,6 @@
         private Button editBtn;
         private Button addBtn;
         private Button invoicegenBtn;
+        private Label clrbtn;
     }
 }

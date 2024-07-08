@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministratorTests));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
             invoicesLb = new Label();
             pictureBox6 = new PictureBox();
@@ -55,8 +55,8 @@
             addBtn = new Button();
             testsView = new DataGridView();
             uploadImgBtn = new Button();
-            label2 = new Label();
-            imgPath = new Label();
+            testimg = new PictureBox();
+            clrbtn = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
@@ -66,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
             ((System.ComponentModel.ISupportInitialize)testsView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)testimg).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -236,7 +237,7 @@
             label7.BackColor = Color.White;
             label7.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Teal;
-            label7.Location = new Point(864, 147);
+            label7.Location = new Point(494, 177);
             label7.Name = "label7";
             label7.Size = new Size(107, 25);
             label7.TabIndex = 13;
@@ -245,7 +246,7 @@
             // 
             // name
             // 
-            name.Location = new Point(462, 177);
+            name.Location = new Point(494, 140);
             name.Name = "name";
             name.Size = new Size(243, 30);
             name.TabIndex = 12;
@@ -256,7 +257,7 @@
             label6.BackColor = Color.White;
             label6.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Teal;
-            label6.Location = new Point(462, 147);
+            label6.Location = new Point(494, 110);
             label6.Name = "label6";
             label6.Size = new Size(111, 25);
             label6.TabIndex = 11;
@@ -265,7 +266,7 @@
             // 
             // description
             // 
-            description.Location = new Point(864, 177);
+            description.Location = new Point(494, 207);
             description.Name = "description";
             description.Size = new Size(243, 126);
             description.TabIndex = 15;
@@ -278,7 +279,7 @@
             editBtn.FlatStyle = FlatStyle.Flat;
             editBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editBtn.ForeColor = Color.White;
-            editBtn.Location = new Point(720, 356);
+            editBtn.Location = new Point(721, 382);
             editBtn.Name = "editBtn";
             editBtn.Size = new Size(129, 49);
             editBtn.TabIndex = 38;
@@ -293,7 +294,7 @@
             delBtn.FlatStyle = FlatStyle.Flat;
             delBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             delBtn.ForeColor = Color.White;
-            delBtn.Location = new Point(864, 356);
+            delBtn.Location = new Point(865, 382);
             delBtn.Name = "delBtn";
             delBtn.Size = new Size(129, 49);
             delBtn.TabIndex = 39;
@@ -324,7 +325,7 @@
             addBtn.FlatStyle = FlatStyle.Flat;
             addBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             addBtn.ForeColor = Color.White;
-            addBtn.Location = new Point(576, 356);
+            addBtn.Location = new Point(577, 382);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(129, 49);
             addBtn.TabIndex = 41;
@@ -336,20 +337,20 @@
             // 
             testsView.AllowUserToOrderColumns = true;
             testsView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.SelectionBackColor = Color.MediumAquamarine;
-            testsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.SelectionBackColor = Color.MediumAquamarine;
+            testsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             testsView.BackgroundColor = Color.FromArgb(241, 251, 247);
             testsView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.MediumAquamarine;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            testsView.DefaultCellStyle = dataGridViewCellStyle2;
-            testsView.Location = new Point(400, 411);
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            testsView.DefaultCellStyle = dataGridViewCellStyle4;
+            testsView.Location = new Point(402, 437);
             testsView.Name = "testsView";
             testsView.RowHeadersVisible = false;
             testsView.RowHeadersWidth = 20;
@@ -365,40 +366,34 @@
             uploadImgBtn.FlatStyle = FlatStyle.Flat;
             uploadImgBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             uploadImgBtn.ForeColor = Color.White;
-            uploadImgBtn.Location = new Point(462, 254);
+            uploadImgBtn.Location = new Point(896, 284);
             uploadImgBtn.Name = "uploadImgBtn";
-            uploadImgBtn.Size = new Size(243, 49);
+            uploadImgBtn.Size = new Size(150, 49);
             uploadImgBtn.TabIndex = 43;
-            uploadImgBtn.Text = "Selectează imagine";
+            uploadImgBtn.Text = "Imagine";
             uploadImgBtn.UseVisualStyleBackColor = false;
             uploadImgBtn.Click += uploadImgBtn_Click;
             // 
-            // label2
+            // testimg
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.White;
-            label2.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.Teal;
-            label2.Location = new Point(462, 226);
-            label2.Name = "label2";
-            label2.Size = new Size(93, 25);
-            label2.TabIndex = 44;
-            label2.Text = "Imagine";
-            label2.TextAlign = ContentAlignment.TopCenter;
-           
+            testimg.BackColor = Color.Transparent;
+            testimg.Location = new Point(896, 122);
+            testimg.Name = "testimg";
+            testimg.Size = new Size(150, 150);
+            testimg.SizeMode = PictureBoxSizeMode.StretchImage;
+            testimg.TabIndex = 47;
+            testimg.TabStop = false;
             // 
-            // imgPath
+            // clrbtn
             // 
-            imgPath.AutoSize = true;
-            imgPath.BackColor = Color.White;
-            imgPath.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            imgPath.ForeColor = Color.Black;
-            imgPath.Location = new Point(459, 312);
-            imgPath.Name = "imgPath";
-            imgPath.Size = new Size(94, 22);
-            imgPath.TabIndex = 45;
-            imgPath.Text = "Cale fișier";
-            imgPath.TextAlign = ContentAlignment.TopCenter;
+            clrbtn.AutoSize = true;
+            clrbtn.Font = new Font("Times New Roman", 12F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            clrbtn.Location = new Point(494, 337);
+            clrbtn.Name = "clrbtn";
+            clrbtn.Size = new Size(144, 22);
+            clrbtn.TabIndex = 48;
+            clrbtn.Text = "Golește formular";
+            clrbtn.Click += clrbtn_Click;
             // 
             // AdministratorTests
             // 
@@ -406,8 +401,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
-            Controls.Add(imgPath);
-            Controls.Add(label2);
+            Controls.Add(clrbtn);
+            Controls.Add(testimg);
             Controls.Add(uploadImgBtn);
             Controls.Add(testsView);
             Controls.Add(addBtn);
@@ -438,6 +433,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)closeBtn).EndInit();
             ((System.ComponentModel.ISupportInitialize)testsView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)testimg).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -468,7 +464,7 @@
         private Button addBtn;
         private DataGridView testsView;
         private Button uploadImgBtn;
-        private Label label2;
-        private Label imgPath;
+        private PictureBox testimg;
+        private Label clrbtn;
     }
 }

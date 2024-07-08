@@ -13,11 +13,11 @@ namespace Licenta
 {
     public partial class PacientTest : Form
     {
-        
+
         private int testID;
         private Panel questionsPanel;
         private Button submitButton;
-        private TextBox nameTextBox; 
+        private TextBox nameTextBox;
         private Label nameLabel;
         private string connectionString = @"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
@@ -26,29 +26,29 @@ namespace Licenta
             InitializeComponent();
             this.testID = testID;
 
-           
+
             Label testNameLabel = new Label
             {
-                ForeColor = Color.Teal,    
+                ForeColor = Color.Teal,
                 Text = GetTestName(testID),
                 Font = new Font(Font.FontFamily, 14, FontStyle.Bold),
                 AutoSize = true,
                 Top = 50
-                 
+
             };
             testNameLabel.Left = (this.ClientSize.Width - GetTextWidth(testNameLabel.Text, testNameLabel.Font)) / 2;
             this.Controls.Add(testNameLabel);
 
-           
+
 
             questionsPanel = new Panel
             {
-                AutoScroll = true,                                         
+                AutoScroll = true,
                 Location = new Point(20, testNameLabel.Bottom + 20),
                 Width = this.ClientSize.Width - 40,
                 Height = this.ClientSize.Height - testNameLabel.Bottom - 80,
                 AutoScrollMargin = new Size(0, 20)
-              
+
             };
             this.Controls.Add(questionsPanel);
 
@@ -80,18 +80,18 @@ namespace Licenta
                 Height = 40,
                 Top = questionsPanel.Bottom - 60,
                 Left = (this.questionsPanel.Width - 140) / 2,
-                
+
             };
-            
+
             submitButton.Click += submitButton_Click;
             questionsPanel.Controls.Add(submitButton);
 
-            
+
             LoadQuestionsAndOptions();
 
         }
 
-       
+
         private string GetTestName(int testID)
         {
             string testName = "";
@@ -133,7 +133,7 @@ namespace Licenta
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.HasRows)
-                            {                               
+                            {
                                 while (reader.Read())
                                 {
                                     int questionID = reader.GetInt32(0);
@@ -190,7 +190,7 @@ namespace Licenta
                         cmd.Parameters.AddWithValue("@questionID", questionID);
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            
+
                             while (reader.Read())
                             {
                                 int optionID = reader.GetInt32(0);
@@ -222,7 +222,7 @@ namespace Licenta
             return yOffset;
         }
 
-       
+
         private void submitButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(nameTextBox.Text))
@@ -252,12 +252,12 @@ namespace Licenta
 
                 (int minIntervalScore, int maxIntervalScore) = GetIntervalLimits(testID);
 
-                
+
                 int normalizedScore = NormalizeScore(totalScore, questionCount, minIntervalScore, maxIntervalScore);
 
                 string interpretation = GetInterpretation(normalizedScore);
                 SaveTestResult(normalizedScore, interpretation);
-                
+
             }
             else
             {
@@ -305,11 +305,11 @@ namespace Licenta
 
         private int NormalizeScore(int totalScore, int questionCount, int minIntervalScore, int maxIntervalScore)
         {
-            
-            int minPossibleScore = questionCount; 
-            int maxPossibleScore = questionCount * 3; 
 
-           
+            int minPossibleScore = questionCount;
+            int maxPossibleScore = questionCount * 3;
+
+
             double proportion = (double)(totalScore - minPossibleScore) / (maxPossibleScore - minPossibleScore);
             int normalizedScore = (int)Math.Round(minIntervalScore + proportion * (maxIntervalScore - minIntervalScore));
 

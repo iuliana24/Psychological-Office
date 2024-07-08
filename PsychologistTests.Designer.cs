@@ -100,6 +100,7 @@
             testsView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             testsView.Size = new Size(927, 417);
             testsView.TabIndex = 7;
+          
             // 
             // pictureBox5
             // 

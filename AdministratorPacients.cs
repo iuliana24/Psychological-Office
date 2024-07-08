@@ -247,5 +247,10 @@ namespace Licenta
             Obj.Show();
             this.Hide();
         }
+
+        private void clrbtn_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
     }
 }

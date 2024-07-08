@@ -58,6 +58,7 @@
             editBtn = new Button();
             delBtn = new Button();
             filterComboBox = new ComboBox();
+            clrbtn = new Label();
             ((System.ComponentModel.ISupportInitialize)appointmentsView).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -406,12 +407,24 @@
             filterComboBox.Size = new Size(202, 30);
             filterComboBox.TabIndex = 40;
             // 
+            // clrbtn
+            // 
+            clrbtn.AutoSize = true;
+            clrbtn.Font = new Font("Times New Roman", 12F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            clrbtn.Location = new Point(475, 301);
+            clrbtn.Name = "clrbtn";
+            clrbtn.Size = new Size(144, 22);
+            clrbtn.TabIndex = 41;
+            clrbtn.Text = "Golește formular";
+            clrbtn.Click += clrbtn_Click;
+            // 
             // AdministratorAppointments
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
+            Controls.Add(clrbtn);
             Controls.Add(filterComboBox);
             Controls.Add(delBtn);
             Controls.Add(editBtn);
@@ -477,5 +490,6 @@
         private PictureBox pictureBox6;
         private Label logoutBtn;
         private ComboBox filterComboBox;
+        private Label clrbtn;
     }
 }

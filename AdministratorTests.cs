@@ -17,11 +17,13 @@ namespace Licenta
     public partial class AdministratorTests : Form
     {
         int testID;
-        
+        private string selectedImagePath = "";
+        private string defaultImagePath = "C:\\Users\\Iuliana\\Desktop\\Licenta\\Poze\\testIcon.png";
         public AdministratorTests()
         {
             InitializeComponent();
             displayTests();
+            LoadDefaultImage();
         }
 
         SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
@@ -46,9 +48,9 @@ namespace Licenta
             openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string selectedImagePath = openFileDialog.FileName;
-                imgPath.Text = selectedImagePath;
+                selectedImagePath = openFileDialog.FileName;
 
+                testimg.Image = Image.FromFile(selectedImagePath);
 
             }
         }
@@ -61,7 +63,7 @@ namespace Licenta
             }
             else
             {
-                string imagePath = imgPath.Text;
+
                 try
                 {
 
@@ -78,12 +80,12 @@ namespace Licenta
                         Con.Close();
                         return;
                     }
-                    
+
 
                     SqlCommand cmd = new SqlCommand("INSERT INTO test(name, description, imagePath) VALUES (@name, @description, @imagePath); SELECT SCOPE_IDENTITY()", Con);
                     cmd.Parameters.AddWithValue("@name", name.Text);
                     cmd.Parameters.AddWithValue("@description", description.Text);
-                    cmd.Parameters.AddWithValue("@imagePath", imagePath);
+                    cmd.Parameters.AddWithValue("@imagePath", selectedImagePath);
 
 
                     object result = cmd.ExecuteScalar();
@@ -97,15 +99,15 @@ namespace Licenta
                         return;
                     }
 
-                   
+
 
                     TestQuestions addQuestions = new TestQuestions(testID, false);
                     this.Hide();
                     addQuestions.Show();
-                   
+
 
                     Con.Close();
-                    Clear();                 
+                    Clear();
                 }
                 catch (Exception Ex)
                 {
@@ -124,14 +126,14 @@ namespace Licenta
             }
             else
             {
-                string imagePath = imgPath.Text;
+
                 try
                 {
                     Con.Open();
                     SqlCommand cmd = new SqlCommand("update test set name=@name, description=@description, imagePath=@imagePath where testID=@Key", Con);
                     cmd.Parameters.AddWithValue("@name", name.Text);
                     cmd.Parameters.AddWithValue("@description", description.Text);
-                    cmd.Parameters.AddWithValue("@imagePath", imagePath);
+                    cmd.Parameters.AddWithValue("@imagePath", selectedImagePath);
                     cmd.Parameters.AddWithValue("@Key", Key);
                     cmd.ExecuteNonQuery();
                     Con.Close();
@@ -165,6 +167,9 @@ namespace Licenta
                 {
                     Con.Open();
 
+                    SqlCommand deleteTestResultCmd = new SqlCommand("DELETE FROM test_result WHERE testID=@Key", Con);
+                    deleteTestResultCmd.Parameters.AddWithValue("@Key", Key);
+                    deleteTestResultCmd.ExecuteNonQuery();
 
                     SqlCommand deleteInterpretationsCmd = new SqlCommand("DELETE FROM interpretation WHERE testID=@Key", Con);
                     deleteInterpretationsCmd.Parameters.AddWithValue("@Key", Key);
@@ -216,10 +221,17 @@ namespace Licenta
 
                         name.Text = GetCellValue(selectedRow, nameIndex);
                         description.Text = GetCellValue(selectedRow, descriptionIndex);
-                        imgPath.Text = GetCellValue(selectedRow, imagePathIndex);
+                        selectedImagePath = GetCellValue(selectedRow, imagePathIndex);
 
 
-
+                        if (!string.IsNullOrEmpty(selectedImagePath) && System.IO.File.Exists(selectedImagePath))
+                        {
+                            testimg.Image = Image.FromFile(selectedImagePath);
+                        }
+                        else
+                        {
+                            LoadDefaultImage();
+                        }
 
                         if (int.TryParse(GetCellValue(selectedRow, id), out int keyValue))
                         {
@@ -262,9 +274,22 @@ namespace Licenta
         {
             name.Text = "";
             description.Text = "";
-            imgPath.Text = "";
+            LoadDefaultImage();
             Key = 0;
         }
+
+        private void LoadDefaultImage()
+        {
+            if (System.IO.File.Exists(defaultImagePath))
+            {
+                testimg.Image = Image.FromFile(defaultImagePath);
+            }
+            else
+            {
+                testimg.Image = null;
+            }
+        }
+
 
         private void closeBtn_Click(object sender, EventArgs e)
         {
@@ -309,6 +334,9 @@ namespace Licenta
             this.Hide();
         }
 
-        
+        private void clrbtn_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
     }
 }

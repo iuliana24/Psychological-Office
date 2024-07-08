@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministratorPacients));
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pictureBox5 = new PictureBox();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
@@ -65,6 +65,7 @@
             closeBtn = new PictureBox();
             gender = new ComboBox();
             dob = new DateTimePicker();
+            clrbtn = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -240,7 +241,7 @@
             // 
             // firstname
             // 
-            firstname.Location = new Point(322, 259);
+            firstname.Location = new Point(322, 242);
             firstname.Name = "firstname";
             firstname.Size = new Size(250, 30);
             firstname.TabIndex = 18;
@@ -251,7 +252,7 @@
             label7.BackColor = Color.White;
             label7.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Teal;
-            label7.Location = new Point(322, 219);
+            label7.Location = new Point(322, 202);
             label7.Name = "label7";
             label7.Size = new Size(104, 25);
             label7.TabIndex = 17;
@@ -293,7 +294,7 @@
             // 
             // mail
             // 
-            mail.Location = new Point(663, 357);
+            mail.Location = new Point(663, 327);
             mail.Name = "mail";
             mail.Size = new Size(250, 30);
             mail.TabIndex = 26;
@@ -304,7 +305,7 @@
             label10.BackColor = Color.White;
             label10.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Teal;
-            label10.Location = new Point(663, 317);
+            label10.Location = new Point(663, 287);
             label10.Name = "label10";
             label10.Size = new Size(68, 25);
             label10.TabIndex = 25;
@@ -313,7 +314,7 @@
             // 
             // phone
             // 
-            phone.Location = new Point(663, 259);
+            phone.Location = new Point(663, 242);
             phone.Name = "phone";
             phone.Size = new Size(250, 30);
             phone.TabIndex = 24;
@@ -324,7 +325,7 @@
             label11.BackColor = Color.White;
             label11.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.Teal;
-            label11.Location = new Point(663, 217);
+            label11.Location = new Point(663, 200);
             label11.Name = "label11";
             label11.Size = new Size(85, 25);
             label11.TabIndex = 23;
@@ -337,7 +338,7 @@
             label9.BackColor = Color.White;
             label9.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Teal;
-            label9.Location = new Point(322, 317);
+            label9.Location = new Point(322, 284);
             label9.Name = "label9";
             label9.Size = new Size(140, 25);
             label9.TabIndex = 27;
@@ -361,7 +362,7 @@
             // 
             observation.Location = new Point(1000, 161);
             observation.Name = "observation";
-            observation.Size = new Size(250, 128);
+            observation.Size = new Size(250, 150);
             observation.TabIndex = 30;
             observation.Text = "";
             // 
@@ -372,7 +373,7 @@
             addBtn.FlatStyle = FlatStyle.Flat;
             addBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             addBtn.ForeColor = Color.White;
-            addBtn.Location = new Point(1000, 305);
+            addBtn.Location = new Point(589, 388);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(116, 49);
             addBtn.TabIndex = 31;
@@ -384,37 +385,37 @@
             // 
             pacientsView.AllowUserToOrderColumns = true;
             pacientsView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = SystemColors.Control;
-            dataGridViewCellStyle5.SelectionBackColor = Color.MediumAquamarine;
-            pacientsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumAquamarine;
+            pacientsView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             pacientsView.BackgroundColor = Color.FromArgb(241, 251, 247);
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.Teal;
-            dataGridViewCellStyle6.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = Color.Turquoise;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            pacientsView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.Teal;
+            dataGridViewCellStyle2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Turquoise;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            pacientsView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             pacientsView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Window;
-            dataGridViewCellStyle7.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = Color.MediumAquamarine;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            pacientsView.DefaultCellStyle = dataGridViewCellStyle7;
-            pacientsView.Location = new Point(322, 430);
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            pacientsView.DefaultCellStyle = dataGridViewCellStyle3;
+            pacientsView.Location = new Point(322, 443);
             pacientsView.Name = "pacientsView";
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.Control;
-            dataGridViewCellStyle8.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = Color.MediumAquamarine;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            pacientsView.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.MediumAquamarine;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            pacientsView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             pacientsView.RowHeadersVisible = false;
             pacientsView.RowHeadersWidth = 51;
             pacientsView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -430,7 +431,7 @@
             editBtn.FlatStyle = FlatStyle.Flat;
             editBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editBtn.ForeColor = Color.White;
-            editBtn.Location = new Point(1134, 305);
+            editBtn.Location = new Point(723, 388);
             editBtn.Name = "editBtn";
             editBtn.Size = new Size(116, 49);
             editBtn.TabIndex = 33;
@@ -445,7 +446,7 @@
             delBtn.FlatStyle = FlatStyle.Flat;
             delBtn.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             delBtn.ForeColor = Color.White;
-            delBtn.Location = new Point(1069, 360);
+            delBtn.Location = new Point(858, 388);
             delBtn.Name = "delBtn";
             delBtn.Size = new Size(116, 49);
             delBtn.TabIndex = 34;
@@ -477,11 +478,22 @@
             // dob
             // 
             dob.Format = DateTimePickerFormat.Short;
-            dob.Location = new Point(322, 357);
+            dob.Location = new Point(322, 324);
             dob.Name = "dob";
             dob.Size = new Size(250, 30);
             dob.TabIndex = 41;
             dob.Value = new DateTime(2024, 5, 8, 0, 0, 0, 0);
+            // 
+            // clrbtn
+            // 
+            clrbtn.AutoSize = true;
+            clrbtn.Font = new Font("Times New Roman", 12F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            clrbtn.Location = new Point(322, 358);
+            clrbtn.Name = "clrbtn";
+            clrbtn.Size = new Size(144, 22);
+            clrbtn.TabIndex = 42;
+            clrbtn.Text = "Golește formular";
+            clrbtn.Click += clrbtn_Click;
             // 
             // AdministratorPacients
             // 
@@ -489,6 +501,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1280, 720);
+            Controls.Add(clrbtn);
             Controls.Add(dob);
             Controls.Add(gender);
             Controls.Add(closeBtn);
@@ -564,5 +577,6 @@
         private Label appointmentsLb;
         private Label pacientsLb;
         private DateTimePicker dob;
+        private Label clrbtn;
     }
 }

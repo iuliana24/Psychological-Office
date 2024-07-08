@@ -21,13 +21,13 @@ namespace Licenta
             this.testID = testID;
             interpretationsList = new List<Interpretation>();
             LoadInterpretations();
-            
+
         }
 
         SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False;MultipleActiveResultSets=True");
 
 
-       
+
         private void LoadInterpretations()
         {
             try
@@ -50,7 +50,7 @@ namespace Licenta
                     };
                     interpretationsList.Add(interpretation);
 
-                   
+
                     TextBox scoreMinTextBox = this.Controls["min" + i] as TextBox;
                     TextBox scoreMaxTextBox = this.Controls["max" + i] as TextBox;
                     TextBox interpretationTextBox = this.Controls["interpretation" + i] as TextBox;
@@ -154,13 +154,18 @@ namespace Licenta
         }
 
         private void closeBtn_Click(object sender, EventArgs e)
-        {       
+        {
 
             AdministratorTests Obj = new AdministratorTests();
             Obj.Show();
             this.Hide();
         }
 
-       
+        private void backbtn_Click(object sender, EventArgs e)
+        {
+            TestQuestions Obj = new TestQuestions(testID, true);
+            Obj.Show();
+            this.Hide();
+        }
     }
 }

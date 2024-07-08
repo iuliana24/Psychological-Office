@@ -79,7 +79,6 @@
             label17 = new Label();
             questionTextBox8 = new TextBox();
             addBtn = new Button();
-            pictureBox1 = new PictureBox();
             nextBtn = new PictureBox();
             label18 = new Label();
             label19 = new Label();
@@ -162,8 +161,10 @@
             score8_1 = new TextBox();
             label73 = new Label();
             label74 = new Label();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            backbtn = new PictureBox();
+            label75 = new Label();
             ((System.ComponentModel.ISupportInitialize)nextBtn).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)backbtn).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -609,18 +610,6 @@
             addBtn.Text = "Salvează";
             addBtn.UseVisualStyleBackColor = false;
             addBtn.Click += addBtn_Click;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(0, -2);
-            pictureBox1.Margin = new Padding(2, 3, 2, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(87, 92);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 56;
-            pictureBox1.TabStop = false;
             // 
             // nextBtn
             // 
@@ -1374,12 +1363,38 @@
             label74.TabIndex = 161;
             label74.Text = "Întrebări";
             // 
+            // backbtn
+            // 
+            backbtn.BackColor = Color.Transparent;
+            backbtn.Image = (Image)resources.GetObject("backbtn.Image");
+            backbtn.Location = new Point(12, 12);
+            backbtn.Name = "backbtn";
+            backbtn.Size = new Size(35, 35);
+            backbtn.SizeMode = PictureBoxSizeMode.StretchImage;
+            backbtn.TabIndex = 162;
+            backbtn.TabStop = false;
+            backbtn.Click += backbtn_Click;
+            // 
+            // label75
+            // 
+            label75.AutoSize = true;
+            label75.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label75.ForeColor = Color.Teal;
+            label75.Location = new Point(52, 12);
+            label75.Margin = new Padding(2, 0, 2, 0);
+            label75.Name = "label75";
+            label75.Size = new Size(63, 23);
+            label75.TabIndex = 163;
+            label75.Text = "Înapoi";
+            // 
             // TestQuestions
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(787, 1027);
+            Controls.Add(label75);
+            Controls.Add(backbtn);
             Controls.Add(label74);
             Controls.Add(label63);
             Controls.Add(label64);
@@ -1462,7 +1477,6 @@
             Controls.Add(label19);
             Controls.Add(label18);
             Controls.Add(nextBtn);
-            Controls.Add(pictureBox1);
             Controls.Add(addBtn);
             Controls.Add(optionTextBox8_3);
             Controls.Add(optionTextBox8_2);
@@ -1519,8 +1533,8 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "n ";
             Load += TestQuestions_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)nextBtn).EndInit();
+            ((System.ComponentModel.ISupportInitialize)backbtn).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1576,7 +1590,6 @@
         private Label label17;
         private TextBox questionTextBox8;
         private Button addBtn;
-        private PictureBox pictureBox1;
         private PictureBox nextBtn;
         private Label label18;
         private Label label19;
@@ -1659,5 +1672,7 @@
         private TextBox score8_1;
         private Label label73;
         private Label label74;
+        private PictureBox backbtn;
+        private Label label75;
     }
 }

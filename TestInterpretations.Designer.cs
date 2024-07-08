@@ -49,9 +49,10 @@
             label9 = new Label();
             addBtn = new Button();
             closeBtn = new PictureBox();
-            pictureBox1 = new PictureBox();
+            label75 = new Label();
+            backbtn = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)backbtn).BeginInit();
             SuspendLayout();
             // 
             // interpretation1
@@ -261,17 +262,29 @@
             closeBtn.TabStop = false;
             closeBtn.Click += closeBtn_Click;
             // 
-            // pictureBox1
+            // label75
             // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(-1, -2);
-            pictureBox1.Margin = new Padding(2, 3, 2, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(87, 92);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 57;
-            pictureBox1.TabStop = false;
+            label75.AutoSize = true;
+            label75.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label75.ForeColor = Color.Teal;
+            label75.Location = new Point(52, 12);
+            label75.Margin = new Padding(2, 0, 2, 0);
+            label75.Name = "label75";
+            label75.Size = new Size(63, 23);
+            label75.TabIndex = 165;
+            label75.Text = "Înapoi";
+            // 
+            // backbtn
+            // 
+            backbtn.BackColor = Color.Transparent;
+            backbtn.Image = (Image)resources.GetObject("backbtn.Image");
+            backbtn.Location = new Point(12, 12);
+            backbtn.Name = "backbtn";
+            backbtn.Size = new Size(35, 35);
+            backbtn.SizeMode = PictureBoxSizeMode.StretchImage;
+            backbtn.TabIndex = 164;
+            backbtn.TabStop = false;
+            backbtn.Click += backbtn_Click;
             // 
             // TestInterpretations
             // 
@@ -279,7 +292,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(673, 601);
-            Controls.Add(pictureBox1);
+            Controls.Add(label75);
+            Controls.Add(backbtn);
             Controls.Add(closeBtn);
             Controls.Add(addBtn);
             Controls.Add(label9);
@@ -307,7 +321,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TestInterpretations";
             ((System.ComponentModel.ISupportInitialize)closeBtn).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)backbtn).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -334,6 +348,7 @@
         private Label label9;
         private Button addBtn;
         private PictureBox closeBtn;
-        private PictureBox pictureBox1;
+        private Label label75;
+        private PictureBox backbtn;
     }
 }

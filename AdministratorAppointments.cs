@@ -17,7 +17,7 @@ namespace Licenta
     public partial class AdministratorAppointments : Form
     {
         private SortedSet<Appointment> appointments = new SortedSet<Appointment>();
-      
+
         public AdministratorAppointments()
         {
             InitializeComponent();
@@ -74,9 +74,9 @@ namespace Licenta
 
         private void InitializeComboBox()
         {
-            
+
             filterComboBox.Items.AddRange(new string[] { "Toate Programările", "Programări Valabile", "Programări Terminate" });
-           
+
             filterComboBox.SelectedIndex = 0;
             filterComboBox.SelectedIndexChanged += comboBoxFilter_SelectedIndexChanged;
         }
@@ -86,16 +86,16 @@ namespace Licenta
             switch (filterOption)
             {
                 case "Toate Programările":
-                   
+
                     displayAppointments();
                     break;
                 case "Programări Valabile":
-                    
+
                     var available = appointments.Where(a => !a.IsCompleted).ToList();
                     DisplayFilteredAppointments(available);
                     break;
                 case "Programări Terminate":
-                    
+
                     var completed = appointments.Where(a => a.IsCompleted).ToList();
                     DisplayFilteredAppointments(completed);
                     break;
@@ -120,7 +120,7 @@ namespace Licenta
                 dt.Rows.Add(appointment.Id, appointment.LastName, appointment.FirstName, appointment.Date.ToString("yyyy-MM-dd"), appointment.Time.ToString(@"hh\:mm"), status);
             }
 
-            appointmentsView.DataSource = dt;        
+            appointmentsView.DataSource = dt;
             appointmentsView.Columns["Status"].ReadOnly = true;
         }
 
@@ -377,6 +377,9 @@ namespace Licenta
             this.Hide();
         }
 
-      
+        private void clrbtn_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
     }
 }

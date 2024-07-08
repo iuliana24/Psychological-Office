@@ -226,7 +226,7 @@ namespace Licenta
                     {
                         MessageBox.Show("Factura nu a fost găsită.");
                     }
-                   
+
                 }
                 catch (SqlException sqlEx)
                 {
@@ -286,6 +286,9 @@ namespace Licenta
             this.Hide();
         }
 
-      
+        private void clrbtn_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
     }
 }
