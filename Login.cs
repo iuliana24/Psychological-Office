@@ -10,12 +10,12 @@ namespace Licenta
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
       (
-          int nLeftRect,     // x-coordinate of upper-left corner
-          int nTopRect,      // y-coordinate of upper-left corner
-          int nRightRect,    // x-coordinate of lower-right corner
-          int nBottomRect,   // y-coordinate of lower-right corner
-          int nWidthEllipse, // height of ellipse
-          int nHeightEllipse // width of ellipse
+          int nLeftRect,     
+          int nTopRect,      
+          int nRightRect,    
+          int nBottomRect,   
+          int nWidthEllipse, 
+          int nHeightEllipse 
       );
         public Login()
         {
@@ -23,9 +23,7 @@ namespace Licenta
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 50, 50));
         }
-
-        //SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-C78TFJK\SQLEXPRESS02;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
-        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+     
         private void reset_Click(object sender, EventArgs e)
         {
             role.SelectedIndex = -1;
@@ -34,94 +32,92 @@ namespace Licenta
 
         }
 
-
         private void loginBtn_Click(object sender, EventArgs e)
         {
             if (role.SelectedIndex == -1)
             {
                 MessageBox.Show("Selectează un utilizator.");
+                return;
 
             }
-            else if (role.SelectedIndex == 0)
+            string selectedRole = "";
+            switch (role.SelectedIndex)
             {
-                if (username.Text == "" || password.Text == "")
-                {
-                    MessageBox.Show("Introduceți numele de utilizator și parola administratorului.");
-                }
-                else
-                {
-                    Con.Open();
-                    SqlDataAdapter sda = new SqlDataAdapter("select Count(*) from client where username='" + username.Text + "'and password='" + password.Text + "'", Con);
-                    DataTable dt = new DataTable();
-                    sda.Fill(dt);
-                    if (dt.Rows[0][0].ToString() == "1")
-                    {
-                        AdministratorPacients Obj = new AdministratorPacients();
-                        Obj.Show();
-                        this.Hide();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Nume de utilizator și parolă greșite.");
-                    }
-
-
-                    Con.Close();
-                }
-
+                case 0:
+                    selectedRole = "administrator";
+                    break;
+                case 1:
+                    selectedRole = "psiholog";
+                    break;
+                case 2:
+                    selectedRole = "pacient";
+                    break;
+                default:
+                    MessageBox.Show("Rolul selectat nu este valid.");
+                    return; 
             }
-            else if (role.SelectedIndex == 1)
+
+           
+            if (string.IsNullOrEmpty(username.Text) || string.IsNullOrEmpty(password.Text))
             {
-                if (username.Text == "" || password.Text == "")
-                {
-                    MessageBox.Show("Introduceți numele de utilizator și parola psihologului.");
-                }
-                else
-                {
-                    Con.Open();
-                    SqlDataAdapter sda = new SqlDataAdapter("select Count(*) from client where username='" + username.Text + "'and password='" + password.Text + "'", Con);
-                    DataTable dt = new DataTable();
-                    sda.Fill(dt);
-                    if (dt.Rows[0][0].ToString() == "1")
-                    {
-                        PsychologistPacients Obj = new PsychologistPacients();
-                        Obj.Show();
-                        this.Hide();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Nume de utilizator și parolă greșite.");
-                    }
-
-
-                    Con.Close();
-                }
+                MessageBox.Show($"Introduceți numele de utilizator și parola {selectedRole}ului.");
+                return; 
             }
-            else
+
+            
+            string query = $"SELECT COUNT(*) FROM client WHERE username=@username AND password=@password AND role=@role";
+
+           
+            string connectionString = @"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+
+            
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
-                if (username.Text == "" || password.Text == "")
+                using (SqlCommand cmd = new SqlCommand(query, con))
                 {
-                    MessageBox.Show("Introduceți numele de utilizator și parola pacientului.");
-                }
-                else
-                {
-                    Con.Open();
-                    SqlDataAdapter sda = new SqlDataAdapter("select Count(*) from client where username='" + username.Text + "'and password='" + password.Text + "'", Con);
-                    DataTable dt = new DataTable();
-                    sda.Fill(dt);
-                    if (dt.Rows[0][0].ToString() == "1")
-                    {
-                        Pacients Obj = new Pacients();
-                        Obj.Show();
-                        this.Hide();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Nume de utilizator și parolă greșite.");
-                    }
+                  
+                    cmd.Parameters.AddWithValue("@username", username.Text);
+                    cmd.Parameters.AddWithValue("@password", password.Text);
+                    cmd.Parameters.AddWithValue("@role", selectedRole);
 
+                    try
+                    {
+                        
+                        con.Open();
+                        int count = (int)cmd.ExecuteScalar();
 
-                    Con.Close();
+                       
+                        if (count == 1)
+                        {
+                           
+                            switch (selectedRole)
+                            {
+                                case "administrator":
+                                    AdministratorPacients adminForm = new AdministratorPacients();
+                                    adminForm.Show();
+                                    break;
+                                case "psiholog":
+                                    PsychologistPacients psychologistForm = new PsychologistPacients();
+                                    psychologistForm.Show();
+                                    break;
+                                case "pacient":
+                                    Pacients pacientForm = new Pacients();
+                                    pacientForm.Show();
+                                    break;
+                            }
+
+                           
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Nume de utilizator și parolă greșite pentru rolul {selectedRole}.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Eroare la autentificare: {ex.Message}");
+                    }
                 }
             }
         }
