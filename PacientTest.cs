@@ -115,6 +115,8 @@ namespace Licenta
             return testName;
         }
 
+        private Dictionary<int, (int minScore, int maxScore)> questionScores = new Dictionary<int, (int minScore, int maxScore)>();
+
         private void LoadQuestionsAndOptions()
         {
             int yOffset = nameTextBox.Bottom + 20;
@@ -151,7 +153,10 @@ namespace Licenta
 
                                     yOffset += questionLabel.Height + 10;
 
-                                    yOffset = LoadOptions(questionID, yOffset);
+
+                                    (yOffset, int minScore, int maxScore) = LoadOptions(questionID, yOffset);
+                                    questionScores[questionID] = (minScore, maxScore);
+
 
                                     yOffset += 30;
 
@@ -179,8 +184,10 @@ namespace Licenta
             }
         }
 
-        private int LoadOptions(int questionID, int yOffset)
+        private (int, int, int) LoadOptions(int questionID, int yOffset)
         {
+            int minScore = int.MaxValue;
+            int maxScore = int.MinValue;
             try
             {
                 using (SqlConnection con = new SqlConnection(connectionString))
@@ -210,6 +217,9 @@ namespace Licenta
 
                                 yOffset += optionCheckBox.Height + 10;
 
+                                if (score < minScore) minScore = score;
+                                if (score > maxScore) maxScore = score;
+
                             }
                         }
                     }
@@ -220,7 +230,7 @@ namespace Licenta
                 MessageBox.Show($"A apărut o eroare: {ex.Message}");
             }
 
-            return yOffset;
+            return (yOffset, minScore == int.MaxValue ? 0 : minScore, maxScore == int.MinValue ? 0 : maxScore);
         }
 
 
@@ -235,26 +245,32 @@ namespace Licenta
             if (AreAllQuestionsAnswered())
             {
                 int totalScore = 0;
-                int questionCount = 0;
+                
+                List<int> minScores = new List<int>();
+                List<int> maxScores = new List<int>();
 
 
                 foreach (Control control in questionsPanel.Controls)
                 {
-                    if (control is Label label && label != nameLabel)
-                    {
-                        questionCount++;
-                    }
-                    else if (control is CheckBox checkBox && checkBox.Checked)
+                    
+                    if (control is CheckBox checkBox && checkBox.Checked)
                     {
                         totalScore += (int)checkBox.Tag;
                     }
                 }
 
+                foreach (var scores in questionScores.Values)
+                {
+                    minScores.Add(scores.minScore);
+                    maxScores.Add(scores.maxScore);
+                }
+
+
 
                 (int minIntervalScore, int maxIntervalScore) = GetIntervalLimits(testID);
 
 
-                int normalizedScore = NormalizeScore(totalScore, questionCount, minIntervalScore, maxIntervalScore);
+                int normalizedScore = NormalizeScore(totalScore, minScores, maxScores, minIntervalScore, maxIntervalScore);
 
                 string interpretation = GetInterpretation(normalizedScore);
                 SaveTestResult(normalizedScore, interpretation);
@@ -304,11 +320,11 @@ namespace Licenta
             return (minIntervalScore, maxIntervalScore);
         }
 
-        private int NormalizeScore(int totalScore, int questionCount, int minIntervalScore, int maxIntervalScore)
+        private int NormalizeScore(int totalScore, List<int> minScores, List<int> maxScores, int minIntervalScore, int maxIntervalScore)
         {
 
-            int minPossibleScore = questionCount;
-            int maxPossibleScore = questionCount * 3;
+            int minPossibleScore = minScores.Sum();
+            int maxPossibleScore = maxScores.Sum();
 
 
             double proportion = (double)(totalScore - minPossibleScore) / (maxPossibleScore - minPossibleScore);
@@ -319,6 +335,7 @@ namespace Licenta
 
             return normalizedScore;
         }
+
         private bool AreAllQuestionsAnswered()
         {
 

@@ -135,9 +135,9 @@
             // 
             password.Location = new Point(129, 381);
             password.Name = "password";
-            password.PasswordChar = '*';
             password.Size = new Size(250, 30);
             password.TabIndex = 6;
+            password.UseSystemPasswordChar = true;
             // 
             // loginBtn
             // 
