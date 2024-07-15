@@ -28,7 +28,7 @@ namespace Licenta
         }
 
         SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-K09QKJF\SQLEXPRESS;Initial Catalog=PsychologicalOffice;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
-       
+
 
         private void LoadAppointments()
         {
@@ -151,17 +151,18 @@ namespace Licenta
                     try
                     {
                         Con.Open();
-                        SqlCommand cmd = new SqlCommand("insert into appointment(firstname, lastname, date, time)values(@firstname,@lastname,@date,@time)", Con);
+                        SqlCommand cmd = new SqlCommand("INSERT INTO appointment(firstname, lastname, date, time) VALUES (@firstname, @lastname, @date, @time); SELECT SCOPE_IDENTITY();", Con);
                         cmd.Parameters.AddWithValue("@lastname", lastname.Text);
                         cmd.Parameters.AddWithValue("@firstname", firstname.Text);
                         cmd.Parameters.AddWithValue("@date", appointmentDate);
                         cmd.Parameters.AddWithValue("@time", appointmentTime);
-                        cmd.ExecuteNonQuery();
+                        int id = Convert.ToInt32(cmd.ExecuteScalar());
+                        
                         Con.Close();
 
                         appointments.Add(new Appointment
                         {
-
+                            Id = id,
                             LastName = lastname.Text,
                             FirstName = firstname.Text,
                             Date = appointmentDate,
@@ -287,8 +288,7 @@ namespace Licenta
 
                     if (selectedRow.Cells.Count > timeIndex)
                     {
-
-
+                      
                         lastname.Text = GetCellValue(selectedRow, lastnameIndex);
                         firstname.Text = GetCellValue(selectedRow, firstnameIndex);
                         date.Text = GetCellValue(selectedRow, dateIndex);

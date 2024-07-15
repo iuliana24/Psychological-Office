@@ -17,12 +17,31 @@ namespace Licenta
 
         public int CompareTo(Appointment other)
         {
-            int dateComparison = Date.CompareTo(other.Date);
-            if (dateComparison == 0)
+
+            if (other == null) return 1;
+
+            int result = Date.CompareTo(other.Date);
+            if (result == 0)
             {
-                return Time.CompareTo(other.Time);
+                result = Time.CompareTo(other.Time);
             }
-            return dateComparison;
+            return result;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Appointment other = (Appointment)obj;
+            return Id == other.Id && Date == other.Date && Time == other.Time;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Date, Time);
         }
     }
 }
